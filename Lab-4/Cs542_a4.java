@@ -34,10 +34,10 @@ public class Cs542_a4 {
             sort_this.add(new Product(id, name, price));
         }
         
-        for(int i = 0; i < sort_this.size(); i++){
-            System.out.print(i + ": ");
-            System.out.println(sort_this.get(i).getID());
-        }
+        sortingUtilityHelper sorter = new sortingUtilityHelper();
+        
+        //sorter.sort(sort_this, 0);  //Quicksort
+        sorter.sort(sort_this, 1);  //Bubblesort
         
     }
     public static String randword(){
@@ -45,7 +45,7 @@ public class Cs542_a4 {
         String letters = "abcdefghijklmnopqrstuvwxyz";
         int length = 0;
         while(length < 5){
-            length = rng.nextInt(20);
+            length = rng.nextInt(10);
         }
         String the_word = "";
         for(int i = 0; i < length; i++){
