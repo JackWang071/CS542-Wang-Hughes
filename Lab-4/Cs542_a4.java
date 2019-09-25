@@ -27,6 +27,7 @@ public class Cs542_a4 {
             do{
                 id = rng.nextInt(100);
             } while(already_used.indexOf(id) != -1);
+            already_used = already_used + id + ',';
             
             String name = randword();
             double price = rng.nextDouble()*100;
@@ -34,7 +35,8 @@ public class Cs542_a4 {
         }
         
         for(int i = 0; i < sort_this.size(); i++){
-            
+            System.out.print(i + ": ");
+            System.out.println(sort_this.get(i).getID());
         }
         
     }
