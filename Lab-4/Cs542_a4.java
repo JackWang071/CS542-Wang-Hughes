@@ -36,7 +36,9 @@ public class Cs542_a4 {
         
         sortingUtilityHelper sorter = new sortingUtilityHelper();
         
-        //sorter.sort(sort_this, 0);  //Quicksort
+        System.out.println("Running Quicksort");
+        sorter.sort(sort_this, 0);  //Quicksort
+        System.out.println("Running Bubblesort");
         sorter.sort(sort_this, 1);  //Bubblesort
         
     }
@@ -54,4 +56,3 @@ public class Cs542_a4 {
         return the_word;
     }
 }
-
