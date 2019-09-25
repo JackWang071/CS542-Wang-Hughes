@@ -5,6 +5,7 @@
  */
 package cs542_a4;
 import java.util.List;
+import java.text.DecimalFormat;
 /**
  *
  * @author Jack
@@ -18,17 +19,24 @@ public class sortingUtilityHelper {
     }
     
     public List<Product> sort(List<Product> items, int sortingApproach){
+        DecimalFormat sigfig = new DecimalFormat("#.00");
         List<Product> sorted_list = s_util.sort(items, sortingApproach);
         //If quicksort
         if(sortingApproach == 0){
             for(int i = 0; i < sorted_list.size(); i++){
-                
+                System.out.print(i + ": ");
+                System.out.println(sorted_list.get(i).getName() 
+                        + " | " + sorted_list.get(i).getID() 
+                        + " | $" + sigfig.format(sorted_list.get(i).getPrice()));
             }
         }
         //Else bubblesort
         else{
             for(int i = 0; i < sorted_list.size(); i++){
-                
+                System.out.print(i + ": ");
+                System.out.println(sorted_list.get(i).getID() 
+                        + " | " + sorted_list.get(i).getName() 
+                        + " | $" + sigfig.format(sorted_list.get(i).getPrice()));
             }
         }
         return sorted_list;
