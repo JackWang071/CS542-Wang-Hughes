@@ -14,7 +14,7 @@ public class TaskRequester implements Runnable{
     private ObjectPool server;
     
     public TaskRequester(ObjectPool p){
-        
+        server = p;
     }
     
     public void run(){
