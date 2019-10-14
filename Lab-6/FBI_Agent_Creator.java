@@ -1,9 +1,25 @@
-package com.mycompany.assignment6;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cs542_a6;
 
 /**
  *
- * @author Duran and Jack
+ * @author Jack
  */
-public class FBI_Agent_Creator extends ObjectCreation_IF {
+public class FBI_Agent_Creator {
+    private char[] footprints = {'@', '#', '$', '*', '.', '?'};
+    private int index;
     
+    public FBI_Agent_Creator(){
+        index = 0;
+    }
+    
+    public Object create(){
+        String this_footprint = "" + footprints[index];
+        index += 1;
+        return new FBI_Agent(this_footprint);
+    }
 }
