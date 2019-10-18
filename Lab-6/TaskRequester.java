@@ -9,39 +9,40 @@ import java.util.Random;
 
 /**
  *
- * @author Jack and Duran
+ * @author Jack
  */
 public class TaskRequester implements Runnable{
     private ObjectPool server;
-    private int task_id_gen;
     private int requester_id;
     private Random rando;
 
     public TaskRequester(ObjectPool p, int r){
         server = p;
         requester_id = r;
-        task_id_gen = 0;
         rando = new Random();
     }
 
     public void run() {
         try {
-            Agent_IF agent = (Agent_IF)server.waitForObject();
-            task_id_gen++;
-            agent.setTaskID("" + requester_id + "-" + task_id_gen);
-            agent.startTask();
-            agent.run();
-            Thread.sleep(rando.nextInt(2000));
-            agent.stopTask();
-            server.release(agent);
+            for(int i = 1; i < 4; i++){
+                Agent_IF agent = (Agent_IF)server.waitForObject();
+                if(agent == null){
+                    throw new NullPointerException("Agent is null");
+                }
+                agent.startTask("" + requester_id + "-" + i);
+                agent.run();
+                Thread.sleep(rando.nextInt(2000));
+                agent.stopTask();
+                server.release(agent);
+            }
         }
         catch(InterruptedException intex){
             System.out.println("Agent interrupted");
         }
         catch(NullPointerException npe){
-            //shhhhhhhhhh no snitching on us
-            //System.out.println("Null pointer exception thrown TEST");
+            System.out.println(npe.getMessage());
         }
+        System.out.println("Requester " + requester_id + " is done.");
     }
 
 }
