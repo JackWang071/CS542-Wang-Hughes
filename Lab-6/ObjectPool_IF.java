@@ -1,4 +1,4 @@
-package com.mycompany.assignment6;
+package cs542_a6;
 
 /**
  *
@@ -14,7 +14,7 @@ public interface ObjectPool_IF {
     
     public Object getObject();
     
-    public Object waitForObject();
+    public Object waitForObject() throws InterruptedException;
     
     public void release(Object o);
 }

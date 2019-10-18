@@ -1,4 +1,4 @@
-package com.mycompany.assignment6;
+package cs542_a6;
 
 import java.util.ArrayList;
 import java.util.*;
@@ -9,29 +9,29 @@ import java.io.*;
  * @author Duran and Jack
  */
 //i believe ths should actually be public according to the textbook (pg 166)
-public class ObjectPool extends ObjectPool_IF {
+public class ObjectPool implements ObjectPool_IF {
     
-    private ObjectPool poolInstance;
-    private int size;
-    //private Object lockObject;
-    private int maxInstances;
+    private static ObjectPool poolInstance;
+    private int size;  //Number of existing objects
+    private int maxInstances;  //Maximum number of objects available
     
     //textbook stuff
     private Object[] pool;
     private Object lockObject = new Object();
+    ObjectCreation_IF creator;
     
-    private ObjectPool(ObjectCreation_IF c, int capacity, int max) {
-        //something = c
+    private ObjectPool(ObjectCreation_IF c, int max) {
+        creator = c;
         size = 0;
-        poolInstance = c;
         maxInstances = max;
-        pool = (Object[]Array.newInstance(poolClass, capacity));
+        pool = new Object[max];
     }
     
-    public static ObjectPool getPoolInstance(ObjectCreation_IF c, int capacity, int max) {
+    public synchronized static ObjectPool getPoolInstance(ObjectCreation_IF c, int max) {
         if(poolInstance == null) {
-            //stuff
+            poolInstance = new ObjectPool(c, max);
         }
+        return poolInstance;
     }
     
     public int getSize() {
@@ -39,7 +39,7 @@ public class ObjectPool extends ObjectPool_IF {
     }
         
     public int getCapacity() {
-        return pool.length;
+        return maxInstances;
     }
     
     public void setCapacity(int c) {
@@ -59,7 +59,7 @@ public class ObjectPool extends ObjectPool_IF {
             if(size > 0) {
                 return removeObject();
                 // getInstanceCount = size  getMaxInstances = getCapacity()
-            } else if (getInstanceCount() < getMaxInstances()) {
+            } else if (getSize() < getCapacity()) {
                 return createObject();
             } else {
                 return null;
@@ -71,7 +71,7 @@ public class ObjectPool extends ObjectPool_IF {
         synchronized(lockObject) {
             if(size > 0) {
                 return removeObject();
-            } else if (getInstanceCount() < getMaxInstances()) {
+            } else if (getSize() < getCapacity()) {
                 return createObject();
             } else {
                 do {
@@ -105,33 +105,9 @@ public class ObjectPool extends ObjectPool_IF {
     } // release ()
 
     private Object createObject() {
-        
-    }objectPool server = objectpool.getpoolinstance(new fbi-agen-ceator(), 5)'
-    syste,.out.printl(servicer)
-    forI i - 10)
-            thread client = new thread(new taskrequester(server));
-    client.start()
-            
-    while(thread.active ount >1
-            
-            syste,print its done'
-            
-    
-    taskrequester
-    
-    public void run() {
-        try {
-            agentif agent = (agentif_ server.waitforObject()
-            int taskid = rand.netInt(50)
-                    agent.setTaskID
-                            agent.startTask
-                                    
-                                  sleep
-                                    stop
-                                            sleep
-                                            [rint
-                                                    release])
-        }
-    })
+        Object newObject = creator.create();
+        size++;
+        return newObject;
+    }
     
 }
