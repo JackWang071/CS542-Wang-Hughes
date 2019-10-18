@@ -9,8 +9,8 @@ package cs542_a6;
  *
  * @author Jack
  */
-public class FBI_Agent_Creator {
-    private char[] footprints = {'@', '#', '$', '*', '.', '?'};
+public class FBI_Agent_Creator implements ObjectCreation_IF {
+    private char[] footprints = {'A', 'B', 'C', 'D', 'E', 'F'};
     private int index;
     
     public FBI_Agent_Creator(){

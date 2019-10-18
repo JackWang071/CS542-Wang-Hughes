@@ -9,8 +9,8 @@ package cs542_a6;
  *
  * @author Jack
  */
-public class CIA_Agent_Creator {
-    private char[] footprints = {'@', '#', '$', '*', '.', '?'};
+public class CIA_Agent_Creator implements ObjectCreation_IF {
+    private char[] footprints = {'A', 'B', 'C', 'D', 'E', 'F'};
     private int index;
     
     public CIA_Agent_Creator(){

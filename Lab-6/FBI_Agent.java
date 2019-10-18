@@ -26,16 +26,16 @@ public class FBI_Agent implements Agent_IF, Runnable {
     
     public void startTask(){
         is_working = true;
-        System.out.println("Agent "+myFootprint+" has started Task "+current_task);
+        System.out.println("FBI Agent "+myFootprint+" has started Task "+current_task);
     }
     
     public void stopTask(){
         is_working = false;
-        System.out.println("Agent "+myFootprint+" has finished Task "+current_task);
+        System.out.println("FBI Agent "+myFootprint+" has finished Task "+current_task);
     }
     
     private void processing(){
-        System.out.println("Agent "+myFootprint+" is working on Task "+current_task);
+        System.out.println("FBI Agent "+myFootprint+" is working on Task "+current_task);
     }
     
     public void setTaskID(String tid){

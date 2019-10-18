@@ -28,7 +28,7 @@ public class TaskRequester implements Runnable{
         try {
             Agent_IF agent = (Agent_IF)server.waitForObject();
             task_id_gen++;
-            agent.setTaskID("" + requester_id + task_id_gen);
+            agent.setTaskID("" + requester_id + "-" + task_id_gen);
             agent.startTask();
             agent.run();
             Thread.sleep(rando.nextInt(2000));
@@ -37,6 +37,9 @@ public class TaskRequester implements Runnable{
         }
         catch(InterruptedException intex){
             System.out.println("Agent interrupted");
+        }
+        catch(NullPointerException npe){
+            System.out.println("Null pointer exception thrown");
         }
     }
 
