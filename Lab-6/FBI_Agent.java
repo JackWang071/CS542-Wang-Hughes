@@ -1,13 +1,16 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cs542_a6;
 import java.lang.Runnable;
 
 /**
  *
- * @author Jack and Duran
+ * @author Jack
  */
 public class FBI_Agent implements Agent_IF, Runnable {
-    
     private String myFootprint;
     private boolean is_working;
     private String current_task;
@@ -17,16 +20,13 @@ public class FBI_Agent implements Agent_IF, Runnable {
     }
     
     public void run(){
-        if(is_working == true) {
-            processing();
-        }
-        //processing();
+        processing();
     }
     
-    public void startTask(){
+    public void startTask(String taskId){
         is_working = true;
-        //System.out.println("FBI Agent "+myFootprint+" has started Task "+current_task);
-        System.out.println("FBI Agent "+myFootprint+" has been assigned "+current_task);
+        current_task = taskId;
+        System.out.println("FBI Agent "+myFootprint+" has started Task "+current_task);
     }
     
     public void stopTask(){
@@ -38,7 +38,7 @@ public class FBI_Agent implements Agent_IF, Runnable {
         System.out.println("FBI Agent "+myFootprint+" is working on Task "+current_task);
     }
     
-    public void setTaskID(String tid){
-        current_task = tid;
+    public boolean checkIfWorking(){
+        return is_working;
     }
 }

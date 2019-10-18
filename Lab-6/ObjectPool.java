@@ -72,9 +72,11 @@ public class ObjectPool implements ObjectPool_IF {
         synchronized(lockObject) {
             if (instanceCount < getCapacity()) {
                 return createObject();
-            } else if(size > 0) {
+            } 
+            else if(size > 0) {
                 return removeObject();
-            } else {
+            } 
+            else {
                 do {
                     // Wait until notified that an object has been put back into pool
                     wait();
@@ -93,7 +95,7 @@ public class ObjectPool implements ObjectPool_IF {
     public void release(Object o) {
         // no nulls
         if(o == null) {
-            throw new NullPointerException("ObjectPool release() throws NPE");
+            throw new NullPointerException("Returned a null object to ObjectPool");
         } // if null
         synchronized(lockObject) {
             if(getSize() < getCapacity()) {
@@ -106,7 +108,8 @@ public class ObjectPool implements ObjectPool_IF {
     } // release ()
 
     private Object createObject() {
-        Object newObject = creator.create();
+        pool[instanceCount] = creator.create();
+        Object newObject = pool[instanceCount];
         instanceCount++;
         return newObject;
     }

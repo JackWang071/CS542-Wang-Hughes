@@ -34,6 +34,7 @@ public class TaskRequester implements Runnable{
                 Thread.sleep(rando.nextInt(2000));
                 agent.stopTask();
                 server.release(agent);
+                Thread.sleep(200);
             }
         }
         catch(InterruptedException intex){
