@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cs542_a6;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public class CIA_Agent_Creator implements ObjectCreation_IF {
     private char[] footprints = {'A', 'B', 'C', 'D', 'E', 'F'};

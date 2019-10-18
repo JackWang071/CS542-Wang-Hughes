@@ -1,4 +1,4 @@
-package com.mycompany.assignment6;
+package cs542_a6;
 
 /**
  *

@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public class TaskRequester implements Runnable{
     private ObjectPool server;
@@ -39,7 +39,8 @@ public class TaskRequester implements Runnable{
             System.out.println("Agent interrupted");
         }
         catch(NullPointerException npe){
-            System.out.println("Null pointer exception thrown");
+            //shhhhhhhhhh no snitching on us
+            //System.out.println("Null pointer exception thrown TEST");
         }
     }
 
