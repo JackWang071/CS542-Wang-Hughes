@@ -29,11 +29,12 @@ public class TaskRequester implements Runnable{
             agent.setTaskID("" + requester_id + task_id_gen);
             agent.startTask();
             agent.run();
+            Thread.sleep(2000);
             agent.stopTask();
             server.release(agent);
         }
         catch(InterruptedException intex){
-            
+            System.out.println();
         }
     }
     

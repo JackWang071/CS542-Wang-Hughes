@@ -20,6 +20,9 @@ public class CIA_Agent_Creator {
     public Object create(){
         String this_footprint = "" + footprints[index];
         index += 1;
-        return new CIA_Agent(this_footprint);
+        CIA_Agent new_agent = new CIA_Agent(this_footprint);
+        Thread t = new Thread(new_agent, "Agent "+this_footprint);
+        t.start();
+        return new_agent;
     }
 }

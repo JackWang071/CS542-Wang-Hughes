@@ -20,7 +20,7 @@ public class CIA_Agent implements Agent_IF, Runnable{
     }
     
     public void run(){
-        
+        processing();
     }
     
     public void startTask(){
@@ -34,7 +34,7 @@ public class CIA_Agent implements Agent_IF, Runnable{
     }
     
     private void processing(){
-        System.out.println("Agent "+myFootprint+" has is working on Task "+current_task);
+        System.out.println("Agent "+myFootprint+" is working on Task "+current_task);
     }
     
     public void setTaskID(String tid){
