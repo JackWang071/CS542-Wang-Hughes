@@ -12,28 +12,32 @@ import java.lang.Runnable;
  */
 public class FBI_Agent implements Agent_IF, Runnable {
     
-    
     private String myFootprint;
     private boolean is_working;
+    private String current_task;
     
     public FBI_Agent(String footprint){
         myFootprint = footprint;
     }
     
     public void run(){
-        
+        processing();
     }
     
     public void startTask(){
-        
+        is_working = true;
     }
     
     public void stopTask(){
-        
+        is_working = false;
     }
     
     private void processing(){
         
+    }
+    
+    public void setTaskID(String tid){
+        current_task = tid;
     }
     
 }

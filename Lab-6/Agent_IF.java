@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package cs542_a6;
-
+import java.lang.Runnable;
 /**
  *
  * @author Jack
  */
-public interface Agent_IF {
+public interface Agent_IF extends Runnable{
     void startTask();
     void stopTask();
+    public void setTaskID(String tid);
 }

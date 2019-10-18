@@ -20,6 +20,8 @@ public class FBI_Agent_Creator {
     public Object create(){
         String this_footprint = "" + footprints[index];
         index += 1;
-        return new FBI_Agent(this_footprint);
+        FBI_Agent new_agent = new FBI_Agent(this_footprint);
+        
+        return new_agent;
     }
 }
