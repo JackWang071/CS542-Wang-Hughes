@@ -58,11 +58,10 @@ public class ObjectPool implements ObjectPool_IF {
     
     public Object getObject() {
         synchronized(lockObject) {
-            if(size > 0) {
-                return removeObject();
-                // getInstanceCount = size  getMaxInstances = getCapacity()
-            } else if (instanceCount < getCapacity()) {
+            if (instanceCount < getCapacity()) {
                 return createObject();
+            } else if(size > 0) {
+                return removeObject();
             } else {
                 return null;
             } // if
@@ -71,10 +70,10 @@ public class ObjectPool implements ObjectPool_IF {
 
     public Object waitForObject() throws InterruptedException {
         synchronized(lockObject) {
-            if(size > 0) {
-                return removeObject();
-            } else if (instanceCount < getCapacity()) {
+            if (instanceCount < getCapacity()) {
                 return createObject();
+            } else if(size > 0) {
+                return removeObject();
             } else {
                 do {
                     // Wait until notified that an object has been put back into pool
