@@ -34,7 +34,7 @@ public class TaskRequester implements Runnable{
             server.release(agent);
         }
         catch(InterruptedException intex){
-            System.out.println();
+            System.out.println("Agent interrupted");
         }
     }
     

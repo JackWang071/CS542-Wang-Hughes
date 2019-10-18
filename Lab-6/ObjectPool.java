@@ -12,7 +12,8 @@ import java.io.*;
 public class ObjectPool implements ObjectPool_IF {
     
     private static ObjectPool poolInstance;
-    private int size;  //Number of existing objects
+    private int size;  //Number of free objects
+    private int instanceCount;  //number of objects already created
     private int maxInstances;  //Maximum number of objects available
     
     //textbook stuff
@@ -22,7 +23,8 @@ public class ObjectPool implements ObjectPool_IF {
     
     private ObjectPool(ObjectCreation_IF c, int max) {
         creator = c;
-        size = 0;
+        size = max;
+        instanceCount = 0;
         maxInstances = max;
         pool = new Object[max];
     }
@@ -59,7 +61,7 @@ public class ObjectPool implements ObjectPool_IF {
             if(size > 0) {
                 return removeObject();
                 // getInstanceCount = size  getMaxInstances = getCapacity()
-            } else if (getSize() < getCapacity()) {
+            } else if (instanceCount < getCapacity()) {
                 return createObject();
             } else {
                 return null;
@@ -71,7 +73,7 @@ public class ObjectPool implements ObjectPool_IF {
         synchronized(lockObject) {
             if(size > 0) {
                 return removeObject();
-            } else if (getSize() < getCapacity()) {
+            } else if (instanceCount < getCapacity()) {
                 return createObject();
             } else {
                 do {
@@ -106,7 +108,7 @@ public class ObjectPool implements ObjectPool_IF {
 
     private Object createObject() {
         Object newObject = creator.create();
-        size++;
+        instanceCount++;
         return newObject;
     }
     
