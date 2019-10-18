@@ -5,7 +5,7 @@
  */
 package cs542_a6;
 import java.lang.Runnable;
-
+import java.util.Random;
 
 /**
  *
@@ -15,13 +15,15 @@ public class TaskRequester implements Runnable{
     private ObjectPool server;
     private int task_id_gen;
     private int requester_id;
-    
+    private Random rando;
+
     public TaskRequester(ObjectPool p, int r){
         server = p;
         requester_id = r;
         task_id_gen = 0;
+        rando = new Random();
     }
-    
+
     public void run() {
         try {
             Agent_IF agent = (Agent_IF)server.waitForObject();
@@ -29,7 +31,7 @@ public class TaskRequester implements Runnable{
             agent.setTaskID("" + requester_id + task_id_gen);
             agent.startTask();
             agent.run();
-            Thread.sleep(2000);
+            Thread.sleep(rando.nextInt(2000));
             agent.stopTask();
             server.release(agent);
         }
@@ -37,5 +39,5 @@ public class TaskRequester implements Runnable{
             System.out.println("Agent interrupted");
         }
     }
-    
+
 }
