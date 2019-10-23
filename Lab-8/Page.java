@@ -11,7 +11,13 @@ package cs542_a8;
  */
 public class Page extends CompositeArchiveElement {
     
-    public Page(){
-        
+    int pageNumber;
+    
+    public Page(int pN){
+        pageNumber = pN;
+    }
+    
+    public void display() {
+        System.out.println(pageNumber);
     }
 }

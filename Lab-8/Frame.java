@@ -11,7 +11,13 @@ package cs542_a8;
  */
 public class Frame extends CompositeArchiveElement {
     
-    public Frame(){
-        
+    boolean fitsPage;
+    
+    public Frame(boolean fP){
+        fitsPage = fP;
+    }
+    
+    public void display() {
+        System.out.println(fitsPage); 
     }
 }
