@@ -12,12 +12,15 @@ package cs542_a8;
 public class Novel extends CompositeArchiveElement {
     
     String ISBN;
+    String title;
     
-    public Novel(String num){
+    public Novel(String num, String t){
         ISBN = num;
+        title = t;
     }
     
     public void display() {
         System.out.println(ISBN);
+        System.out.println(title);
     }
 }

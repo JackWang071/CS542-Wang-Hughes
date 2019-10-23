@@ -11,17 +11,18 @@ package cs542_a8;
  */
 public class Image implements ArchiveElementIF {
     
-    private int height;
-    private int width;
-    private String name;
+    String name;
+    int width;
+    int height;
     
-    public Image(String name, int height, int width){
-        this.height = height;
-        this.width = width;
-        this.name = name;
+    public Image(String n, int w, int h){
+        name = n;
+        width = w;
+        height = h;
     }
     
-    public void display(){
+    public void display() {
+        System.out.print(name);
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
                 System.out.print("*");
@@ -29,4 +30,5 @@ public class Image implements ArchiveElementIF {
             System.out.println();
         }
     }
+    
 }
