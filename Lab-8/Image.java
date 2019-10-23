@@ -9,7 +9,7 @@ package cs542_a8;
  *
  * @author Jack and Duran
  */
-public class Image extends CompositeArchiveElement {
+public class Image implements ArchiveElementIF {
     
     
     
