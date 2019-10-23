@@ -10,5 +10,5 @@ package cs542_a8;
  * @author Jack
  */
 public interface ArchiveElementIF {
-    
+    void display();
 }

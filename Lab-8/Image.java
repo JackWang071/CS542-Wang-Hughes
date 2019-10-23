@@ -11,10 +11,22 @@ package cs542_a8;
  */
 public class Image implements ArchiveElementIF {
     
+    private int height;
+    private int width;
+    private String name;
     
-    
-    public Image(String link){
-        
+    public Image(String name, int height, int width){
+        this.height = height;
+        this.width = width;
+        this.name = name;
     }
     
+    public void display(){
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
 }

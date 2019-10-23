@@ -5,6 +5,8 @@
  */
 package cs542_a8;
 import java.util.HashMap;
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  *
@@ -26,6 +28,27 @@ public class Archive {
         return archive_inst;
     }
     
+    public boolean addNovel(String isbn, Novel novel){
+        try{
+            list_of_novels.put(isbn, novel);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
     
+    public Novel getNovel(String isbn){
+        return list_of_novels.get(isbn);
+    }
     
+    public void showAll(){
+        Collection all_novels = list_of_novels.values();
+        Iterator novels_iter = all_novels.iterator();
+        
+        while(novels_iter.hasNext()){
+            Novel n = (Novel) novels_iter.next();
+            
+        }
+    }
 }

@@ -4,15 +4,34 @@
  * and open the template in the editor.
  */
 package cs542_a8;
-
+import java.util.ArrayList;
 /**
  *
  * @author Jack
  */
 public class CompositeArchiveElement implements ArchiveElementIF {
     
+    private ArrayList<ArchiveElementIF> elements;
+    
     public CompositeArchiveElement(){
-        
+        elements = new ArrayList();
     }
     
+    public void add(ArchiveElementIF elem){
+        elements.add(elem);
+    }
+    
+    public void remove(int here){
+        elements.remove(here);
+    }
+    
+    public ArchiveElementIF get(int here){
+        return elements.get(here);
+    }
+    
+    public void display(){
+        for(ArchiveElementIF e : elements){
+            e.display();
+        }
+    }
 }
