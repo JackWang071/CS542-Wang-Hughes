@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package cs542_a8;
 
 /**
@@ -11,13 +12,18 @@ package cs542_a8;
  */
 public class Frame extends CompositeArchiveElement {
     
-    boolean fitsPage;
+    boolean fitsPage; 
     
     public Frame(boolean fP){
         fitsPage = fP;
     }
     
     public void display() {
-        System.out.println(fitsPage); 
+        System.out.println(fitsPage);  
+        
+        ArrayList<ArchiveElementIF> elements = getElements();
+        for(ArchiveElementIF e : elements){
+            e.display();
+        }
     }
 }
