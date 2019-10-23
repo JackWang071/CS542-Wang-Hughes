@@ -15,8 +15,18 @@ public class Cs542_a8 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Image test = new Image("test", 5, 5);
-        test.display();
+        Novel n = new Novel("1234", "Test Novel");
+        
+        Page p1 = new Page(1);
+        Page p2 = new Page(2);
+        
+        Column p1c1 = new Column("Column 1");
+        Column p1c2 = new Column("Column 2");
+        
+        LineOfText t1 = new LineOfText();
+        
+        
+        
     }
     
 }

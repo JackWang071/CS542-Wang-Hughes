@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cs542_a8;
+import java.util.ArrayList;
 
 /**
  *

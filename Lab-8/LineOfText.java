@@ -11,9 +11,12 @@ import java.util.ArrayList;
  */
 public class LineOfText extends CompositeArchiveElement {
     
-    String position;
     
-    public LineOfText(String position){
-        this.position = position;
+    public LineOfText(String characters){
+        for(int i = 0; i < characters.length(); i++){
+            add(new Character(characters.charAt(i), 12, "Times New Roman"));
+        }
     }
+    
+    
 }
