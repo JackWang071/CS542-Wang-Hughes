@@ -13,18 +13,19 @@ import java.util.ArrayList;
  */
 public class Frame extends CompositeArchiveElement {
     
-    boolean fitsPage; 
+    String caption; 
     
-    public Frame(boolean fP){
-        fitsPage = fP;
+    public Frame(String cap){
+        caption = cap;
     }
     
     public void display() {
-        System.out.println(fitsPage);  
-        
         ArrayList<ArchiveElementIF> elements = getElements();
+        System.out.println("-----------------------------------------------");
         for(ArchiveElementIF e : elements){
             e.display();
         }
+        System.out.println("-----------------------------------------------");
+        System.out.println("Caption: " + caption);
     }
 }

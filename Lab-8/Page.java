@@ -23,11 +23,13 @@ public class Page extends CompositeArchiveElement {
     }
     
     public void display() {
-        System.out.println(pageNumber);
+        System.out.println("Page " + pageNumber);
         
         ArrayList<ArchiveElementIF> elements = getElements();
         for(ArchiveElementIF e : elements){
             e.display();
         }
+        
+        System.out.println();
     }
 }

@@ -23,6 +23,7 @@ public class Novel extends CompositeArchiveElement {
     public void display() {
         System.out.println(ISBN);
         System.out.println(title);
+        System.out.println();
         
         ArrayList<ArchiveElementIF> elements = getElements();
         for(ArchiveElementIF e : elements){

@@ -18,5 +18,12 @@ public class LineOfText extends CompositeArchiveElement {
         }
     }
     
+    public void display(){
+        ArrayList<ArchiveElementIF> elements = getElements();
+        for(ArchiveElementIF e : elements){
+            e.display();
+        }
+        System.out.println();
+    }
     
 }
