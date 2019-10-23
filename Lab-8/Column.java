@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cs542_a8;
+import java.util.ArrayList;
 
 /**
  *
@@ -11,7 +12,17 @@ package cs542_a8;
  */
 public class Column extends CompositeArchiveElement {
     
-    public Column(){
-        
+    String header;
+    
+    public Column(String header){
+        this.header = header;
+    }
+    
+    public void display(){
+        System.out.println(header);
+        ArrayList<ArchiveElementIF> elements = getElements();
+        for(ArchiveElementIF e : elements){
+            e.display();
+        }
     }
 }

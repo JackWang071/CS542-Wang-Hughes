@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 package cs542_a8;
-
+import java.util.ArrayList;
 /**
  *
  * @author Jack and Duran
  */
 public class LineOfText extends CompositeArchiveElement {
     
-    public LineOfText(){
-        
+    String position;
+    
+    public LineOfText(String position){
+        this.position = position;
     }
 }

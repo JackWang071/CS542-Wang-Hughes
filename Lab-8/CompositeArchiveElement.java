@@ -29,6 +29,10 @@ public class CompositeArchiveElement implements ArchiveElementIF {
         return elements.get(here);
     }
     
+    public ArrayList<ArchiveElementIF> getElements(){
+        return elements;
+    }
+    
     public void display(){
         for(ArchiveElementIF e : elements){
             e.display();
