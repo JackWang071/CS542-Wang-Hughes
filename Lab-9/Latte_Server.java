@@ -22,6 +22,33 @@ public class Latte_Server implements CMM_LoadableServer_IF{
         
     }
     public void start(){
+        env.setCoffeeType("Latte");
+        env.setPowerLED(0);
+        env.setTypeLED(3);
         
+        Coffee coffee = new Latte();
+        
+        env.setGrindingTime(5);
+        env.setTemperature(200);
+        env.holdTemperature(5);
+        
+        Condiment cream1 = new Cream();
+        Condiment chocolate1 = new Vanilla();
+        coffee.addCondiment(cream1);
+        coffee.addCondiment(chocolate1);
+        env.addCondiment(cream1);
+        env.addCondiment(chocolate1);
+        
+        try{
+            Thread.sleep(1500);
+        }
+        catch(InterruptedException ie){
+            System.out.println("Latte server has been interrupted.");
+        }
+        
+        env.setPowerLED(1);
+        env.done();
+        env.computePrice(coffee);
+        env = null;
     }
 }

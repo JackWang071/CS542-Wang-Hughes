@@ -16,6 +16,33 @@ public class Cappucino_Server implements CMM_LoadableServer_IF {
         this.env = env;
     }
     public void start(){
+        env.setCoffeeType("Cappucino");
+        env.setPowerLED(0);
+        env.setTypeLED(5);
         
+        Coffee coffee = new Cappucino();
+        
+        env.setGrindingTime(5);
+        env.setTemperature(200);
+        env.holdTemperature(5);
+        
+        Condiment cream1 = new Cream();
+        Condiment vanilla1 = new Vanilla();
+        coffee.addCondiment(cream1);
+        coffee.addCondiment(vanilla1);
+        env.addCondiment(cream1);
+        env.addCondiment(vanilla1);
+        
+        try{
+            Thread.sleep(1500);
+        }
+        catch(InterruptedException ie){
+            System.out.println("Cappucino server has been interrupted.");
+        }
+        
+        env.setPowerLED(1);
+        env.done();
+        env.computePrice(coffee);
+        env = null;
     }
 }
