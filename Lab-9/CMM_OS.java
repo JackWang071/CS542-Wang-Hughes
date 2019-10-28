@@ -32,7 +32,7 @@ public class CMM_OS implements CMM_OpenAPI_IF {
     }
     
     public void setCoffeeType(String str){
-        System.out.println();
+        System.out.println("---------------------------------------------------");
         String message = "You have chosen: " + str;
         System.out.println(message);
     }
@@ -58,7 +58,7 @@ public class CMM_OS implements CMM_OpenAPI_IF {
             System.out.print(num + "  ");
         }
         else{
-            System.out.println(num);
+            System.out.println(num + "  -");
             System.out.println();
         }
     }
@@ -69,7 +69,7 @@ public class CMM_OS implements CMM_OpenAPI_IF {
     }
     public void computePrice(Coffee cif){
         coffee_orders.add(cif);
-        String message = "Calculating total price: $" + decim.format(cif.getPrice());
+        String message = "Calculating total price: $" + decim.format(cif.getTotalPrice());
         System.out.println(message);
     }
     public void done(){

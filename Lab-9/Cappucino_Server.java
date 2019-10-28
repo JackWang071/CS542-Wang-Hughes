@@ -22,16 +22,13 @@ public class Cappucino_Server implements CMM_LoadableServer_IF {
         
         Coffee coffee = new Cappucino();
         
-        env.setGrindingTime(5);
-        env.setTemperature(200);
-        env.holdTemperature(5);
+        env.setGrindingTime(10);
+        env.setTemperature(232);
+        env.holdTemperature(240);
         
         Condiment cream1 = new Cream();
-        Condiment vanilla1 = new Vanilla();
         coffee.addCondiment(cream1);
-        coffee.addCondiment(vanilla1);
         env.addCondiment(cream1);
-        env.addCondiment(vanilla1);
         
         try{
             Thread.sleep(1500);

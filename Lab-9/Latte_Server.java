@@ -19,8 +19,9 @@ public class Latte_Server implements CMM_LoadableServer_IF{
     }
     
     public void setEnvironment(CMM_OpenAPI_IF env){
-        
+        this.env = env;
     }
+    
     public void start(){
         env.setCoffeeType("Latte");
         env.setPowerLED(0);
@@ -30,10 +31,10 @@ public class Latte_Server implements CMM_LoadableServer_IF{
         
         env.setGrindingTime(5);
         env.setTemperature(200);
-        env.holdTemperature(5);
+        env.holdTemperature(30);
         
         Condiment cream1 = new Cream();
-        Condiment chocolate1 = new Vanilla();
+        Condiment chocolate1 = new Chocolate();
         coffee.addCondiment(cream1);
         coffee.addCondiment(chocolate1);
         env.addCondiment(cream1);

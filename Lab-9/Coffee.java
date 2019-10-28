@@ -26,6 +26,9 @@ public abstract class Coffee {
         return name;
     }
     public float getPrice(){
+        return price;
+    }
+    public float getTotalPrice(){
         float total_price = price;
         for(Condiment c : condiments){
             total_price += c.getPrice();
