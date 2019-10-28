@@ -7,15 +7,10 @@ package cs542_a9;
 
 /**
  *
- * @author Jack and Duran
+ * @author Jack
  */
-public class Cappucino implements CMM_LoadableServer_IF {
-    
-    
-    public void setEnvironment(CMM_OpenAPI_IF env){
-        
-    }
-    public void start(){
-        
+public class Cappucino extends Coffee{
+    public Cappucino(){
+        super("Cappucino", (float) 5);
     }
 }

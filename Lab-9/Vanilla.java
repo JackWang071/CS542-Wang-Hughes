@@ -7,15 +7,11 @@ package cs542_a9;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
-public class Cs542_a9 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class Vanilla extends Condiment {
     
+    public Vanilla(){
+        super("Condiment", (float) 0.5);
+    }
 }

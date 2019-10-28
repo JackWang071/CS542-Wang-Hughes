@@ -12,11 +12,18 @@ package cs542_a9;
 
 public class Mocha_Server implements CMM_LoadableServer_IF{
     
+    private CMM_OpenAPI_IF env;
+
+    public Mocha_Server(){
+    }
     
     public void setEnvironment(CMM_OpenAPI_IF env){
-        
+        this.env = env;
     }
     public void start(){
+        Coffee coffee = new Mocha();
+        
+        
         
     }
 }

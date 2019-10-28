@@ -9,17 +9,11 @@ package cs542_a9;
  *
  * @author Jack and Duran
  */
-
-public class Latte_Server implements CMM_LoadableServer_IF{
-    
+public class Cappucino_Server implements CMM_LoadableServer_IF {
     private CMM_OpenAPI_IF env;
     
-    public Latte_Server(){
-        
-    }
-    
     public void setEnvironment(CMM_OpenAPI_IF env){
-        
+        this.env = env;
     }
     public void start(){
         

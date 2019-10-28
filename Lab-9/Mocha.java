@@ -7,15 +7,12 @@ package cs542_a9;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
-public class Cs542_a9 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Mocha extends Coffee{
+    
+    public Mocha(){
+        super("Mocha", (float) 2);
     }
     
 }

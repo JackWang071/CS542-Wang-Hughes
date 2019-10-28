@@ -10,10 +10,10 @@ package cs542_a9;
  * @author Jack and Duran
  */
 public class Espresso_Server implements CMM_LoadableServer_IF{
-    
+    private CMM_OpenAPI_IF env;
     
     public void setEnvironment(CMM_OpenAPI_IF env){
-        
+        this.env = env;
     }
     public void start(){
         
