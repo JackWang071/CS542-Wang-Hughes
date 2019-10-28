@@ -12,7 +12,7 @@ package cs542_a9;
 public class Cream extends Condiment{
     
     public Cream(){
-        super("Cream", (float) 0.25);
+        super("cream", (float) 0.25);
     }
     
 }

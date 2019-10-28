@@ -16,6 +16,21 @@ public class Cs542_a9 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        CMM_LoadableServer_IF regular = new Regular_Server();
+        CMM_LoadableServer_IF mocha = new Mocha_Server();
+        CMM_LoadableServer_IF latte = new Latte_Server();
+        CMM_LoadableServer_IF espresso = new Espresso_Server();
+        CMM_LoadableServer_IF cappucino = new Cappucino_Server();
+        
+        CMM_OS operating_system = new CMM_OS();
+        
+        operating_system.setServer(regular);
+        operating_system.run();
+        
+        operating_system.setServer(mocha);
+        operating_system.run();
+        
     }
     
 }

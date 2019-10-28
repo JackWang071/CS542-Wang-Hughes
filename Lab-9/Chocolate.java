@@ -11,6 +11,6 @@ package cs542_a9;
  */
 public class Chocolate extends Condiment {
     public Chocolate(){
-        super("Chocolate", (float) 1);
+        super("chocolate", (float) 1);
     }
 }

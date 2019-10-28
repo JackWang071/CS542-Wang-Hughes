@@ -12,6 +12,6 @@ package cs542_a9;
 public class Vanilla extends Condiment {
     
     public Vanilla(){
-        super("Condiment", (float) 0.5);
+        super("vanilla", (float) 0.5);
     }
 }

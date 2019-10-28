@@ -5,6 +5,7 @@
  */
 package cs542_a9;
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -13,32 +14,34 @@ import java.util.ArrayList;
 public class CMM_OS implements CMM_OpenAPI_IF {
     
     private CMM_LoadableServer_IF currentServer;
-    private int server_type;
-    private int running;
     private ArrayList<Coffee> coffee_orders;
+    DecimalFormat decim;
     
     public CMM_OS(){
-        running = 1;
+        coffee_orders = new ArrayList();
+        decim = new DecimalFormat("0.00");
     }
     
     public void setServer(CMM_LoadableServer_IF s){
         currentServer = s;
-        currentServer.setEnvironment(this);
     }
     
     public void run(){
+        currentServer.setEnvironment(this);
         currentServer.start();
     }
     
     public void setCoffeeType(String str){
-        
+        System.out.println();
+        String message = "You have chosen: " + str;
+        System.out.println(message);
     }
     public void setGrindingTime(int secs){
-        String message = "Grinding coffee for " + secs + "seconds.";
+        String message = "Grinding coffee for " + secs + " seconds.";
         System.out.println(message);
     }
     public void addCondiment(Condiment type){
-        String message = "Add " + type.getName();
+        String message = "Add " + type.getName() + ".";
         System.out.println(message);
     }
     public void setTemperature(int degree){
@@ -50,18 +53,27 @@ public class CMM_OS implements CMM_OpenAPI_IF {
         System.out.println(message);
     }
     public void setPowerLED(int num){
-        running = num;
+        System.out.println();
+        if(num == 0){
+            System.out.print(num + "  ");
+        }
+        else{
+            System.out.println(num);
+            System.out.println();
+        }
     }
     public void setTypeLED(int num){
-        server_type = num;
+        System.out.print(num);
+        System.out.println();
+        System.out.println();
     }
     public void computePrice(Coffee cif){
         coffee_orders.add(cif);
-        String message = "Total price: " + cif.getPrice();
+        String message = "Calculating total price: $" + decim.format(cif.getPrice());
         System.out.println(message);
     }
     public void done(){
-        running = 1;
         currentServer = null;
+        System.out.println("Transaction completed.");
     }
 }
