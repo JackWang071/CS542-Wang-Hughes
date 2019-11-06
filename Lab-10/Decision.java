@@ -9,6 +9,6 @@ package cs542_a10;
  *
  * @author Jack
  */
-public class Hazard {
+public class Decision {
     
 }

@@ -4,11 +4,19 @@
  * and open the template in the editor.
  */
 package cs542_a10;
-
 /**
  *
  * @author Jack
  */
-public class Hazard {
+public abstract class Leader extends Admin{
+    
+    public Leader(String name){
+        super(name);
+    }
+    
+    public boolean getFeedback(Hazard h){
+        
+        return false;
+    }
     
 }
