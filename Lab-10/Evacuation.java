@@ -16,6 +16,6 @@ public class Evacuation extends Decision {
     }
     
     public void execute(CEO ceo){
-        System.out.println("CEO " + ceo.getName() + " has a report filed with the city's environmental department.");
+        ceo.evacuate();
     } 
 }

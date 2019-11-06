@@ -25,10 +25,17 @@ public class CEO extends Admin{
                 decisions.add(manager.suggestDecision(h));
             }
         }
+        implementDecision(decisions);
     }
     
     public void implementDecision(List<Decision> ls){
-        
+        if(ls.size() >= 2){
+            
+            ls.get(0).execute(this);
+            ls.get(1).execute(this);
+        }
+        else if(ls.size() == 1){
+            ls.get(0).execute(this);
+        }
     }
-    
 }

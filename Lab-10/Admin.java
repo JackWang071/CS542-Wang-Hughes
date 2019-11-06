@@ -27,4 +27,7 @@ public abstract class Admin extends Employee {
         return subordinates;
     }
     
+    public void evacuate(){
+        System.out.println(getName() + " is evacuating.");
+    }
 }

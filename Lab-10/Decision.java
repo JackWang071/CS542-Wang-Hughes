@@ -9,7 +9,7 @@ package cs542_a10;
  *
  * @author Jack and Duran
  */
-abstract class Decision {
+public abstract class Decision {
     
     private int priority;
     
@@ -21,6 +21,5 @@ abstract class Decision {
         return priority;
     }
     
-    public void execute(CEO ceo){
-    }
+    public abstract void execute(CEO ceo);
 }

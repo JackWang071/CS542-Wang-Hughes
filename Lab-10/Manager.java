@@ -34,8 +34,11 @@ public class Manager extends Admin{
     
     public Decision suggestDecision(Hazard h){
         
-        
-        
-        return null;
+        if(h.getHazard_lvl() >= 4){
+            return new Evacuation(5);
+        }
+        else{
+            return new FileReport(3);
+        }
     }
 }

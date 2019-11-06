@@ -15,5 +15,7 @@ public interface Hazard_Report_IF {
     
     void setDirectOverseer(Hazard_Report_IF r);
     
+    void evacuate();
+    
     Hazard_Report_IF getDirectOverseer();
 }

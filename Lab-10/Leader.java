@@ -15,7 +15,7 @@ public abstract class Leader extends Admin{
     }
     
     public boolean getFeedback(Hazard h){
-        if(h.getHazard_lvl() >= 4){
+        if(h.getHazard_lvl() >= 3){
             return true;
         }
         return false;

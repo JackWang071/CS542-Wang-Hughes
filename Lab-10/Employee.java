@@ -32,4 +32,8 @@ public abstract class Employee implements Hazard_Report_IF {
         }
         return null;
     }
+    
+    public void evacuate(){
+        System.out.println(name + " is evacuating.");
+    }
 }
