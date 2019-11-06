@@ -21,7 +21,7 @@ public class FileReport extends Decision  {
     }
     
     public void execute(ceo CEO){
-        System.out.println("Everyone please evacuate");
+        System.out.println("I want a report on this incident on my desk in the next 2 minutes");
     } 
     
 }
