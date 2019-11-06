@@ -17,6 +17,6 @@ public class Evacuation extends Decision {
     }
     
     public void execute(ceo CEO){
-        System.out.println("I want a report on this incident on my desk in the next 2 minutes");
+        System.out.println("Everyone please evacuate");
     } 
 }
