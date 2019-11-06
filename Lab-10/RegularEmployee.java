@@ -8,7 +8,7 @@ package cs542_a10;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public class RegularEmployee extends Employee {
     

@@ -6,7 +6,7 @@
 package cs542_a10;
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public abstract class Leader extends Admin{
     

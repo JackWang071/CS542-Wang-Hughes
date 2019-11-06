@@ -7,7 +7,7 @@ package cs542_a10;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public abstract class Employee implements Hazard_Report_IF {
     
@@ -30,6 +30,6 @@ public abstract class Employee implements Hazard_Report_IF {
         if(superior != null){
             return superior;
         }
-        return this;
+        return null;
     }
 }

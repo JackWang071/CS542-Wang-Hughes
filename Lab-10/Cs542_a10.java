@@ -7,7 +7,7 @@ package cs542_a10;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public class Cs542_a10 {
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public class ProjectLead extends Leader{
     

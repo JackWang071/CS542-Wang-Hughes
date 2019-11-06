@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public class CEO extends Admin{
     
