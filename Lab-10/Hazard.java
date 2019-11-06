@@ -23,4 +23,7 @@ public class Hazard {
         return hazard_lvl;
     }
     
+    public String getType(){
+        return type;
+    }
 }

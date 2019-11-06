@@ -11,12 +11,8 @@ package cs542_a10;
  */
 public class Evacuation extends Decision {
     
-    private String type;
-    private int hazard_lvl;
-    private int priority;
-    
-    public Evacuation(String t, int hL, int p){
-        super(t, hL, p);
+    public Evacuation(int p){
+        super(p);
     }
     
     public void execute(CEO ceo){

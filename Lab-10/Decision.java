@@ -11,13 +11,9 @@ package cs542_a10;
  */
 abstract class Decision {
     
-    private String type;
-    private int hazard_lvl;
     private int priority;
     
-    public Decision(String t, int hL, int p){
-        this.type = t;
-        this.hazard_lvl = hL;
+    public Decision(int p){
         this.priority = p;
     }
     

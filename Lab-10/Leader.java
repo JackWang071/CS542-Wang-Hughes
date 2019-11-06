@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cs542_a10;
 /**
  *
@@ -10,7 +15,9 @@ public abstract class Leader extends Admin{
     }
     
     public boolean getFeedback(Hazard h){
-        
+        if(h.getHazard_lvl() >= 4){
+            return true;
+        }
         return false;
     }
     

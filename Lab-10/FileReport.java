@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cs542_a10;
 
 /**
@@ -7,12 +11,8 @@ package cs542_a10;
  */
 public class FileReport extends Decision  {
         
-    public FileReport(String t, int hL, int p){
-        super(t, hL, p);
-    }
-    
-    public int getHazard_lvl() {
-        return hazard_lvl;
+    public FileReport(int p){
+        super(p);
     }
     
     public void execute(CEO ceo){
