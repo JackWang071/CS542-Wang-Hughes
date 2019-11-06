@@ -1,0 +1,63 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cs542_a10;
+
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Jack and Duran
+ */
+public class Evacuation extends Decision {
+    
+    private List<Hazard_Report_IF> subR; // regular employees
+    private List<Hazard_Report_IF> subM; // managers
+    private List<Hazard_Report_IF> subL; // leader
+    //private Hazard_Report_IF temp;
+    
+    public Evacuation(int p){
+        super(p);
+    }
+    
+    public void execute(CEO ceo){
+        
+        int i;
+        
+        //get list of managers
+        subM = ceo.getSubordinates(); 
+        subL = subM.get(0).getSubordinates(); 
+        
+        //get list of leaders
+        for(i = 0; i < subM.size(); i++) {            
+            subL.add(subM.get(i).getSubordinates());            
+        }
+        //get list of regulars
+        for(i = 0; i < subL.size(); i++) {
+            //temp = subL.get(i);
+            subR.add(subL.get(i).getSubordinates());
+        }
+        
+        //evacutate regulars
+        for(i = 0; i < subR.size(); i++) {
+            subR.get(i).evacuate();
+        }
+        
+        //evacutate leaders
+        for(i = 0; i < subL.size(); i++) {
+            subL.get(i).evacuate();
+        }
+        
+        //evacutate managers
+        for(i = 0; i < subM.size(); i++) {
+            subM.get(i).evacuate();
+        }       
+        
+        //evactuate CEO
+        ceo.evacuate();
+    } 
+    
+}
