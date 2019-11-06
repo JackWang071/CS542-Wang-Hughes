@@ -9,7 +9,7 @@ public class FileReport  {
     String type;
     int hazard_lvl;
         
-    public FileReport(String t, int hL,){
+    public FileReport(String t, int hL){
         type = t;
         hazard_lvl = hL;
     }
