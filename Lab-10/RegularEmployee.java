@@ -17,10 +17,11 @@ public class RegularEmployee extends Employee {
     }
     
     public void seeDanger(Hazard h){
+        System.out.println("Employee " + getName() + " reports the hazard to their direct overseer.");
         getDirectOverseer().seeDanger(h);
     }
     
     public void fixIt(){
-        System.out.println("Employee " + getName() + "is fixing the problem.");
+        System.out.println("Employee " + getName() + " is fixing the problem.");
     }
 }

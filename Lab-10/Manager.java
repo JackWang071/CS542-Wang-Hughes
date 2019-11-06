@@ -21,7 +21,7 @@ public class Manager extends Admin{
         for(Hazard_Report_IF sub : subordinates){
             if(sub != null && sub instanceof Leader){
                 Leader supervisor = (Leader) sub;
-                if(supervisor.getFeedback(h)){
+                if(!supervisor.getFeedback(h)){
                     System.out.println("Manager " + getName() + " did not report the hazard.");
                     return;
                 }
@@ -35,9 +35,11 @@ public class Manager extends Admin{
     public Decision suggestDecision(Hazard h){
         
         if(h.getHazard_lvl() >= 4){
+            System.out.println("Manager " + getName() + " suggests evacuation.");
             return new Evacuation(5);
         }
         else{
+            System.out.println("Manager " + getName() + " suggests filing a report.");
             return new FileReport(3);
         }
     }

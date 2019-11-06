@@ -12,7 +12,7 @@ package cs542_a10;
 public class FileReport extends Decision  {
         
     public FileReport(int p){
-        super(p);
+        super("File report", p);
     }
     
     public void execute(CEO ceo){

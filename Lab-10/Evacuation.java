@@ -12,7 +12,7 @@ package cs542_a10;
 public class Evacuation extends Decision {
     
     public Evacuation(int p){
-        super(p);
+        super("Evacuation", p);
     }
     
     public void execute(CEO ceo){

@@ -23,11 +23,16 @@ public abstract class Admin extends Employee {
         h.setDirectOverseer(this);
     }
     
-    protected List<Hazard_Report_IF> getSubordinates(){
+    public List<Hazard_Report_IF> getSubordinates(){
         return subordinates;
     }
     
     public void evacuate(){
+        /*
+        for(Hazard_Report_IF h : subordinates){
+            h.evacuate();
+        }
+        */
         System.out.println(getName() + " is evacuating.");
     }
 }

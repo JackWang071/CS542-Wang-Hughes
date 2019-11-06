@@ -30,9 +30,32 @@ public class CEO extends Admin{
     
     public void implementDecision(List<Decision> ls){
         if(ls.size() >= 2){
+            int firstpriority = 0;
+            int secondpriority = 0;
             
-            ls.get(0).execute(this);
-            ls.get(1).execute(this);
+            for(int i = 1; i < ls.size(); i++){
+                if(ls.get(i).getPriority() > ls.get(firstpriority).getPriority()){
+                    firstpriority = i;
+                }
+            }
+            for(int i = 1; i < ls.size(); i++){
+                if(i != firstpriority && ls.get(i).getPriority() >= ls.get(secondpriority).getPriority()){
+                    secondpriority = i;
+                }
+            }
+            
+            System.out.println(getName() + " decides to do this first: " + ls.get(firstpriority).getType());
+            ls.get(firstpriority).execute(this);
+            System.out.println(getName() + " decides to do this second: " + ls.get(firstpriority).getType());
+            if(ls.get(secondpriority) instanceof Evacuation && ls.get(firstpriority) instanceof Evacuation){
+                System.out.println("The building has already been evacuated.");
+            }
+            else if(ls.get(secondpriority) instanceof FileReport && ls.get(firstpriority) instanceof FileReport){
+                System.out.println("A report has already been filed.");
+            }
+            else{
+                ls.get(secondpriority).execute(this);
+            }
         }
         else if(ls.size() == 1){
             ls.get(0).execute(this);

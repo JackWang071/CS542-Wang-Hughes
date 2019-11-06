@@ -12,13 +12,19 @@ package cs542_a10;
 public abstract class Decision {
     
     private int priority;
+    private String type;
     
-    public Decision(int p){
+    public Decision(String t, int p){
+        this.type = t;
         this.priority = p;
     }
     
     public int getPriority() {
         return priority;
+    }
+    
+    public String getType(){
+        return type;
     }
     
     public abstract void execute(CEO ceo);
