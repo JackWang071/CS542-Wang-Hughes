@@ -1,0 +1,27 @@
+package Lab10;
+
+/**
+ *
+ * @author Jack and Duran
+ */
+public class FileReport extends Decision  {
+    
+    String type;
+    int hazard_lvl;
+    int priority;
+        
+    public FileReport(String t, int hL, int p){
+        type = t;
+        hazard_lvl = hL;
+        priority = p;
+    }
+    
+    public int getHazard_lvl() {
+        return hazard_lvl;
+    }
+    
+    public void execute(ceo CEO){
+        System.out.println("Everyone please evacuate");
+    } 
+    
+}
