@@ -1,4 +1,4 @@
-package Lab10;
+package cs542_a10;
 
 /**
  *
