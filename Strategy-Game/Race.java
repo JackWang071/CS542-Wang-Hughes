@@ -7,7 +7,7 @@ package cs542_project;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public interface Race {
     public int getAttackBonus();

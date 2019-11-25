@@ -9,9 +9,7 @@ package cs542_project;
  *
  * @author Jack and Duran
  */
-public interface GameObject_IF {
-    int[] getPosition();
-    int[] getStartingPosition();
-    ObjectIcon getIcon();
-    String getName();
+public interface LoadableServer_IF {
+    public void start();
+    public void setEnvironment(GameManager_IF env);
 }
