@@ -39,7 +39,7 @@ public abstract class Unit implements GameObject_IF{
     public int[] getStartingPosition(){
         return new int[]{0, 0};
     }
-    public ObjectIcon getIcon(){
+    public ObjectIcon getObjectIcon(){
         return icon;
     }
     

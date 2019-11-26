@@ -7,11 +7,15 @@ package cs542_project;
 
 /**
  *
- * @author Jack and Duran
+ * @author Jack
  */
-public interface GameObject_IF {
-    int[] getPosition();
-    int[] getStartingPosition();
-    ObjectIcon getObjectIcon();
-    String getName();
+public class Village extends Building{
+    
+    public Village(String name){
+        super(name);
+    }
+    
+    public void affectUnit(Unit u){
+        
+    }
 }

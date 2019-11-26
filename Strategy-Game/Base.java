@@ -7,11 +7,8 @@ package cs542_project;
 
 /**
  *
- * @author Jack and Duran
+ * @author Jack
  */
-public interface GameObject_IF {
-    int[] getPosition();
-    int[] getStartingPosition();
-    ObjectIcon getObjectIcon();
-    String getName();
+public class Base {
+    
 }

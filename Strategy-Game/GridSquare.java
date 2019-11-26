@@ -6,18 +6,20 @@
 package cs542_project;
 import java.util.List;
 import java.util.ArrayList;
+import javax.swing.JButton;
 
 /**
  *
  * @author Jack and Duran
  */
-public class GridSquare implements GameObject_IF{
+public class GridSquare extends JButton implements GameObject_IF{
     
     private int[] position;
     private List<GameObject_IF> occupiers;
     
     public GridSquare(int[] position){
         this.position = position;
+        occupiers = new ArrayList();
     }
     
     public List<GameObject_IF> getOccupiers(){
@@ -26,7 +28,7 @@ public class GridSquare implements GameObject_IF{
     public int[] getPosition(){
         return position;
     }
-    public ObjectIcon getIcon(){
+    public ObjectIcon getObjectIcon(){
         return null;
     }
     public int[] getStartingPosition(){
