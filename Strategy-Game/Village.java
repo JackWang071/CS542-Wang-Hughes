@@ -11,14 +11,11 @@ package cs542_project;
  */
 public class Village extends Building{
     
+    private static final int HP_RECOVERY = 10;
+    private static final int ATTACK_BOOST = 0;
+    private static final int DEFENSE_BOOST = 0;
     
-    
-    
-    public Village(String name){
-        super(name);
-    }
-    
-    public void affectUnit(Unit u){
-        
+    public Village(){
+        super(ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);
     }
 }

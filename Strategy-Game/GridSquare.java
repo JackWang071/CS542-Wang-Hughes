@@ -15,16 +15,13 @@ import javax.swing.JButton;
 public class GridSquare extends JButton implements GameObject_IF{
     
     private int[] position;
-    private List<GameObject_IF> occupiers;
+    private Unit occupier;
+    private Building building;
     
     public GridSquare(int[] position){
         this.position = position;
-        occupiers = new ArrayList();
     }
     
-    public List<GameObject_IF> getOccupiers(){
-        return occupiers;
-    }
     public int[] getPosition(){
         return position;
     }
@@ -34,21 +31,22 @@ public class GridSquare extends JButton implements GameObject_IF{
     public int[] getStartingPosition(){
         return getPosition();
     }
-    public String getName(){
-        return "";
+    
+    public Unit getOccupier(){
+        return occupier;
+    }
+    public Building getBuilding(){
+        return building;
     }
     
-    public void addOccupier(GameObject_IF occ){
-        occupiers.add(occ);
+    public void setOccupier(Unit occ){
+        occupier = occ;
+    }
+    public void setBuilding(Building build){
+        building = building;
     }
     
-    public boolean removeOccupier(String name){
-        for(int i = 0; i < occupiers.size(); i++){
-            if(name.equalsIgnoreCase(occupiers.get(i).getName())){
-                occupiers.remove(i);
-                return true;
-            }
-        }
-        return false;
+    public void removeOccupier(){
+        occupier = null;
     }
 }

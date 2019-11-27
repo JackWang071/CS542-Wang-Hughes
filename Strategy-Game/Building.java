@@ -11,11 +11,15 @@ package cs542_project;
  */
 public abstract class Building implements GameObject_IF {
     
-    private String buildName;
+    private int attack_boost;
+    private int defense_boost;
+    private int hp_recovery;
     private int[] position;
     
-    public Building(String name){
-        this.buildName = name;
+    public Building(int attack, int defense, int hp_rec){
+        this.attack_boost = attack;
+        this.defense_boost = defense;
+        this.hp_recovery = hp_rec;
     }
     
     public int[] getPosition(){
@@ -27,9 +31,16 @@ public abstract class Building implements GameObject_IF {
     public ObjectIcon getObjectIcon(){
         return null;
     }
-    public String getName(){
-        return buildName;
+    
+    public int getAttackBoost(){
+        return attack_boost;
     }
     
-    public abstract void affectUnit(Unit u);
+    public int getDefenseBoost(){
+        return defense_boost;
+    }
+    
+    public int getHPRecovery(){
+        return hp_recovery;
+    }
 }

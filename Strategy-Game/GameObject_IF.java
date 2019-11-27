@@ -13,5 +13,4 @@ public interface GameObject_IF {
     int[] getPosition();
     int[] getStartingPosition();
     ObjectIcon getObjectIcon();
-    String getName();
 }

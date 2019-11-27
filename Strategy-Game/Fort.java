@@ -9,6 +9,14 @@ package cs542_project;
  *
  * @author Jack
  */
-public class Fort {
+public class Fort extends Building{
+    
+    private static final int HP_RECOVERY = 0;
+    private static final int ATTACK_BOOST = 5;
+    private static final int DEFENSE_BOOST = 5;
+    
+    public Fort(){
+        super(ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);
+    }
     
 }
