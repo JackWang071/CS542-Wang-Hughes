@@ -5,6 +5,8 @@
  */
 package cs542_project;
 import javax.swing.*;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,11 +19,13 @@ public class Cs542_project {
      */
     public static void main(String[] args) {
         JFrame f=new JFrame("Button Example");  
-        JButton b=new JButton("Click Here");  
-        b.setBounds(50,100,95,30);  
-        f.add(b);  
-        f.setSize(400,400);  
-        f.setLayout(null);  
+        
+        f.setSize(800,800);
+        f.setLayout(new BorderLayout());  
+        f.add(GameBoard.getGameBoard(5), BorderLayout.WEST);
+        f.add(new JPanel(), BorderLayout.EAST);
+        
+        
         f.setVisible(true);
     }
     
