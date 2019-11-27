@@ -6,6 +6,7 @@
 package cs542_project;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.awt.Dimension;
 /**
  *
  * @author Jack and Duran
@@ -17,6 +18,7 @@ public class GameBoard extends JPanel {
     private GameBoard(int size){
         
         this.setLayout(new GridLayout(size, size));
+        this.setPreferredSize(new Dimension(700, 700));
         
         grid = new GridSquare[size][size];
         int[] currPos = new int[2];
