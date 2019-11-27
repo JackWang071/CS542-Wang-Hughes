@@ -11,6 +11,9 @@ package cs542_project;
  */
 public class Village extends Building{
     
+    
+    
+    
     public Village(String name){
         super(name);
     }
