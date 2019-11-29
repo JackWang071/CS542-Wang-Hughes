@@ -12,13 +12,16 @@ import java.util.List;
  */
 public class GameManager implements GameManager_IF {
     
-    private GameBoard board;
+    private GameGUI gui;
     private List<Army> factions;
     private LoadableServer_IF server;
     
-    public GameManager(GameBoard board){
-        this.board = board;
+    public GameManager(){
+        gui = new GameGUI();
     }
+    
+    
+    
     public void run(){
         server.start();
     }
@@ -31,9 +34,6 @@ public class GameManager implements GameManager_IF {
         
     }
     public void showLegalMoves(Unit u){
-        
-    }
-    public void doNothing(Unit u){
         
     }
     public void showUnits(Army army){

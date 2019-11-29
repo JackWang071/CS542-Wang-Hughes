@@ -15,21 +15,36 @@ import javax.swing.JPanel;
 public class GameGUI extends JFrame {
     
     private GameBoard board;
-    private GameOptionPanel message_board;
+    private GameOptionPanel game_options_panel;
+    private GameStartPanel start_panel;
     
     public GameGUI(){
         super("Jack and Alex Project");
-        board = GameBoard.getGameBoard(8);
-        message_board = GameOptionPanel.getGameOptionPanel();
-        
         setSize(1200,800);
-        setLayout(new BorderLayout());  
-        add(board, BorderLayout.WEST);
-        add(message_board, BorderLayout.EAST);
+        setLayout(new BorderLayout());
+        
+        start_panel = new GameStartPanel(this);
+        add(start_panel, BorderLayout.CENTER);
         
         setVisible(true);
     }
     
+    public void boardSetup(int size){
+        board = GameBoard.getGameBoard(size);
+        game_options_panel = GameOptionPanel.getGameOptionPanel();
+        
+        remove(start_panel);
+        add(board, BorderLayout.WEST);
+        add(game_options_panel, BorderLayout.EAST);
+        revalidate();
+    }
     
+    public GameBoard getBoard(){
+        return board;
+    }
+    
+    public GameOptionPanel getOptionPanel(){
+        return game_options_panel;
+    }
     
 }
