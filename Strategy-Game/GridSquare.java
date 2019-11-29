@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package cs542_project;
-import java.util.List;
-import java.util.ArrayList;
 import javax.swing.JButton;
 
 /**
@@ -28,7 +26,7 @@ public class GridSquare extends JButton implements GameObject_IF{
     public ObjectIcon getObjectIcon(){
         return null;
     }
-    public int[] getStartingPosition(){
+    public int[] setStartingPosition(){
         return getPosition();
     }
     

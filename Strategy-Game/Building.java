@@ -25,7 +25,7 @@ public abstract class Building implements GameObject_IF {
     public int[] getPosition(){
         return position;
     }
-    public int[] getStartingPosition(){
+    public int[] setStartingPosition(){
         return new int[]{0, 0};
     }
     public ObjectIcon getObjectIcon(){

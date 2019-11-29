@@ -18,4 +18,8 @@ public class Village extends Building{
     public Village(){
         super(ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);
     }
+    
+    public int[] setStartingPosition(){
+        return null;
+    }
 }

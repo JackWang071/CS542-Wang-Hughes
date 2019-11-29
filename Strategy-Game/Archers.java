@@ -18,6 +18,8 @@ public class Archers extends Unit {
     private static final int BASE_ATTACK = 10;
     private static final int BASE_DEFENSE = 10;
     
+    private static final ObjectIcon icon = new ObjectIcon();
+    
     public Archers(String name, Army army){
         super(army.getRace().getRaceName() + " Archers " + name, 
                 army, 
@@ -26,10 +28,12 @@ public class Archers extends Unit {
                 BASE_MOVEMENT + army.getRace().getMoveBonus(), 
                 BASE_DEFENSE + army.getRace().getDefBonus(), 
                 UNIT_RANGE, 
-                UNIT_COST);
+                UNIT_COST,
+                icon);
     }
     
-    public int[] getStartingPosition(){
+    public int[] setStartingPosition(){
         return new int[]{0, 0};
     }
+
 }
