@@ -15,7 +15,7 @@ public class GameBoard extends JPanel {
     private GridSquare[][] grid;
     private static GameBoard the_board;
     
-    private GameBoard(int size){
+    public GameBoard(int size){
         
         this.setLayout(new GridLayout(size, size));
         this.setPreferredSize(new Dimension(700, 700));
@@ -30,13 +30,6 @@ public class GameBoard extends JPanel {
                 this.add(grid[i][j]);
             }
         }
-    }
-    
-    public static GameBoard getGameBoard(int size){
-        if(the_board == null){
-            the_board = new GameBoard(size);
-        }
-        return the_board;
     }
     
     public GridSquare getSquare(int[] position){

@@ -17,6 +17,7 @@ public class GameGUI extends JFrame {
     private GameBoard board;
     private GameOptionPanel game_options_panel;
     private GameStartPanel start_panel;
+    private GameManager game_manager;
     
     public GameGUI(){
         super("Jack and Alex Project");
@@ -30,10 +31,10 @@ public class GameGUI extends JFrame {
     }
     
     public void boardSetup(int size){
-        board = GameBoard.getGameBoard(size);
-        game_options_panel = GameOptionPanel.getGameOptionPanel();
+        board = new GameBoard(size);
+        game_options_panel = new GameOptionPanel();
         
-        remove(start_panel);
+        start_panel.setVisible(false);
         add(board, BorderLayout.WEST);
         add(game_options_panel, BorderLayout.EAST);
         revalidate();

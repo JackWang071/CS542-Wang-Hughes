@@ -14,22 +14,14 @@ import javax.swing.JButton;
  */
 public class GameOptionPanel extends JPanel {
     
-    private static GameOptionPanel game_option_panel;
     
-    private GameOptionPanel(){
+    public GameOptionPanel(){
         this.setPreferredSize(new Dimension(400, 700));
-        this.setLayout(new BorderLayout());  
-        
         
         JButton tester = new JButton("Testing");
-        tester.setSize(50, 50);
-        this.add(tester, BorderLayout.NORTH);
+        tester.setPreferredSize(new Dimension(100, 50));
+        this.add(tester);
     }
     
-    public static GameOptionPanel getGameOptionPanel(){
-        if(game_option_panel == null){
-            game_option_panel = new GameOptionPanel();
-        }
-        return game_option_panel;
-    }
+
 }
