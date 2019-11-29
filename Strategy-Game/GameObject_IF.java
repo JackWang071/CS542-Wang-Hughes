@@ -11,6 +11,6 @@ package cs542_project;
  */
 public interface GameObject_IF {
     int[] getPosition();
-    int[] setStartingPosition();
+    int[] setStartingPosition(int[] startPos);
     ObjectIcon getObjectIcon();
 }

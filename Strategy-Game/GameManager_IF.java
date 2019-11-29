@@ -11,8 +11,9 @@ package cs542_project;
  * @author Jack
  */
 public interface GameManager_IF {
+    public GameGUI getGUI();
     public void showLegalAttacks(Unit u);
     public void showLegalMoves(Unit u);
-    public void doNothing(Unit u);
     public void showUnits(Army army);
+    
 }

@@ -26,7 +26,7 @@ public class GridSquare extends JButton implements GameObject_IF{
     public ObjectIcon getObjectIcon(){
         return null;
     }
-    public int[] setStartingPosition(){
+    public int[] setStartingPosition(int[] startPos){
         return getPosition();
     }
     

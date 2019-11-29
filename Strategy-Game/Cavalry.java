@@ -30,8 +30,4 @@ public class Cavalry extends Unit {
                 UNIT_COST,
                 icon);
     }
-    
-    public int[] setStartingPosition(){
-        return new int[]{0, 0};
-    }
 }

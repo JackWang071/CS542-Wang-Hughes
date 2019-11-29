@@ -25,6 +25,11 @@ public class GameManager implements GameManager_IF {
     public void run(){
         server.start();
     }
+    
+    public GameGUI getGUI(){
+        return gui;
+    }
+    
     public void setServer(LoadableServer_IF server){
         this.server = server;
         server.setEnvironment(this);

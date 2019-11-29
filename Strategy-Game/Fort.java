@@ -18,8 +18,4 @@ public class Fort extends Building{
     public Fort(){
         super(ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);
     }
-    
-    public int[] setStartingPosition(){
-        return null;
-    }
 }

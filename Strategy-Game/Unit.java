@@ -22,7 +22,7 @@ public abstract class Unit implements GameObject_IF{
     private Army army;
     private ObjectIcon icon;
     
-    public Unit(String name, Army army, int hp, int attack, int move, int def, int range, int cost){
+    public Unit(String name, Army army, int hp, int attack, int move, int def, int range, int cost, ObjectIcon icon){
         this.unitName = name;
         this.army = army;
         this.HP = hp;
@@ -36,8 +36,11 @@ public abstract class Unit implements GameObject_IF{
     public int[] getPosition(){
         return position;
     }
-    public int[] getStartingPosition(){
-        return new int[]{0, 0};
+    public int[] setStartingPosition(int[] startPos){
+        if(position == null){
+            position = startPos;
+        }
+        return position;
     }
     public ObjectIcon getObjectIcon(){
         return icon;
