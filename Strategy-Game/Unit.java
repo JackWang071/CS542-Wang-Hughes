@@ -32,6 +32,7 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         this.moveDist = move;
         this.range = range;
         this.cost = cost;
+        this.icon = icon;
     }
     
     public Object clone() throws CloneNotSupportedException {

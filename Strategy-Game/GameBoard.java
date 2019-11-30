@@ -79,6 +79,7 @@ public class GameBoard extends JPanel {
                 this_coordinate[1] = j;
                 if(getSquare(this_coordinate).getOccupier() == null){
                     getSquare(this_coordinate).setBackground(army_color);
+                    getSquare(this_coordinate).addActionListener(new ArmySetupPanel.UnitPlacementListener());
                 }
             }
         }

@@ -61,8 +61,4 @@ public class GridSquare extends JButton implements GameObject_IF{
         occupier = null;
     }
     
-    
-    public class UnitPlacementListener{
-        
-    }
 }

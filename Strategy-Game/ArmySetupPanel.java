@@ -62,11 +62,8 @@ public class ArmySetupPanel extends JPanel{
     
     public void startArmySetup(){
 
-        current_army = the_gui.getManager().cycleThroughArmies(1);
-        current_unit_factory = current_army.createUnitFactory();
-        
+        changeArmy();
         this.add(current_army_name);
-        current_army_name.setText(current_army.getName());
         
         choose_elf.addActionListener(new RacePickListener(Elf_Race.getElfArchetype()));
         choose_dwarf.addActionListener(new RacePickListener(Dwarf_Race.getDwarfArchetype()));
@@ -80,18 +77,28 @@ public class ArmySetupPanel extends JPanel{
         choose_cavalry.addActionListener(new UnitPickListener("Cavalry"));
         choose_archers.addActionListener(new UnitPickListener("Archers"));
         
-        this.add(remaining_points);
-        remaining_points.setText(current_army.getPointsLeft() + " points left");
-        
         this.add(choose_infantry);
         this.add(choose_cavalry);
         this.add(choose_archers);
+        this.add(remaining_points);
         
         finish_setup.addActionListener(new FinishArmySetupListener());
         this.add(finish_setup);
         
     }
     
+    private void changeArmy(){
+        current_army = the_gui.getManager().cycleThroughArmies(1);
+        if(current_army != null){
+            current_unit_factory = current_army.createUnitFactory();
+            current_army_name.setText(current_army.getName());
+            remaining_points.setText(current_army.getPointsLeft() + " points left");
+            the_gui.getBoard().highlightLegalStartingPositions(current_army.getArmyColor());
+        }
+        else{
+            the_gui.showReadyGame();
+        }
+    }
     
     public class RacePickListener implements ActionListener{
         private Race army_race;
@@ -112,7 +119,9 @@ public class ArmySetupPanel extends JPanel{
         
         public void actionPerformed(ActionEvent e){
             try{
-                current_army.addUnit(current_unit_factory.createUnit(unit_type));
+                Unit new_unit = current_unit_factory.createUnit(unit_type);
+                current_army.addUnit(new_unit);
+                UnitPlacementListener.setCurrentUnit(new_unit);
                 remaining_points.setText(current_army.getPointsLeft() + " points left");
             }
             catch(CloneNotSupportedException cnse){
@@ -126,14 +135,26 @@ public class ArmySetupPanel extends JPanel{
             if(current_army.getRace() == null){
                 return;
             }
-            current_army = the_gui.getManager().cycleThroughArmies(1);
-            if(current_army != null){
-                current_unit_factory = current_army.createUnitFactory();
-                current_army_name.setText(current_army.getName());
-                remaining_points.setText(current_army.getPointsLeft() + " points left");
-            }
-            else{
-                the_gui.showReadyGame();
+            changeArmy();
+        }
+    }
+    
+    public static class UnitPlacementListener implements ActionListener{
+        private static Unit current_unit;
+        public static void setCurrentUnit(Unit u){
+            current_unit = u;
+        }
+        public void actionPerformed(ActionEvent e){
+            if(current_unit != null){
+                GridSquare this_tile = (GridSquare) e.getSource();
+                current_unit.setStartingPosition(this_tile.getPosition());
+                this_tile.setOccupier(current_unit);
+                this_tile.redrawIcons();
+                setCurrentUnit(null);
+
+                for(ActionListener act : this_tile.getActionListeners()) {
+                    this_tile.removeActionListener(act);
+                }
             }
         }
     }
