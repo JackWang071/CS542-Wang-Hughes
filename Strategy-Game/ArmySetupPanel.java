@@ -18,14 +18,8 @@ import java.util.ListIterator;
 public class ArmySetupPanel extends JPanel{
     private GameGUI the_gui;
     
-    private JButton choose_elf;
-    private JButton choose_dwarf;
-    private JButton choose_orc;
-    
-    private JButton choose_infantry;
-    private JButton choose_cavalry;
-    private JButton choose_archers;
-    
+    private JPanel race_panel;
+    private JPanel unit_panel;
     
     private TextField remaining_points;
     private TextField current_army_name;
@@ -39,50 +33,51 @@ public class ArmySetupPanel extends JPanel{
         this.setPreferredSize(new Dimension(400, 700));
         this.the_gui = the_gui;
         
-        choose_elf = new JButton("Elves - Faster");
-        choose_dwarf = new JButton("Dwarves - Tougher");
-        choose_orc = new JButton("Orcs - Stronger");
+        race_panel = new JPanel();
+        
+        JButton choose_elf = new JButton("Elves - Faster");
+        JButton choose_dwarf = new JButton("Dwarves - Tougher");
+        JButton choose_orc = new JButton("Orcs - Stronger");
         choose_elf.setPreferredSize(new Dimension(200, 50));
         choose_dwarf.setPreferredSize(new Dimension(200, 50));
         choose_orc.setPreferredSize(new Dimension(200, 50));
+        choose_elf.addActionListener(new RacePickListener(Elf_Race.getElfArchetype()));
+        choose_dwarf.addActionListener(new RacePickListener(Dwarf_Race.getDwarfArchetype()));
+        choose_orc.addActionListener(new RacePickListener(Orc_Race.getOrcArchetype()));
+        race_panel.add(choose_elf);
+        race_panel.add(choose_dwarf);
+        race_panel.add(choose_orc);
         
-        choose_infantry = new JButton("Infantry - cost " + Infantry.getUnitCost());
-        choose_cavalry = new JButton("Cavalry - cost " + Cavalry.getUnitCost());
-        choose_archers = new JButton("Archers - cost " + Archers.getUnitCost());
+        unit_panel = new JPanel();
+        
+        JButton choose_infantry = new JButton("Infantry - cost " + Infantry.getUnitCost());
+        JButton choose_cavalry = new JButton("Cavalry - cost " + Cavalry.getUnitCost());
+        JButton choose_archers = new JButton("Archers - cost " + Archers.getUnitCost());
         choose_infantry.setPreferredSize(new Dimension(200, 50));
         choose_cavalry.setPreferredSize(new Dimension(200, 50));
         choose_archers.setPreferredSize(new Dimension(200, 50));
+        choose_infantry.addActionListener(new UnitPickListener("Infantry"));
+        choose_cavalry.addActionListener(new UnitPickListener("Cavalry"));
+        choose_archers.addActionListener(new UnitPickListener("Archers"));
+        unit_panel.add(choose_infantry);
+        unit_panel.add(choose_cavalry);
+        unit_panel.add(choose_archers);
         
         remaining_points = new TextField();
         current_army_name = new TextField();
         
         finish_setup = new JButton("Finish");
         finish_setup.setPreferredSize(new Dimension(100, 50));
+        finish_setup.addActionListener(new FinishArmySetupListener());
     }
     
     public void startArmySetup(){
-
         changeArmy();
         this.add(current_army_name);
-        
-        choose_elf.addActionListener(new RacePickListener(Elf_Race.getElfArchetype()));
-        choose_dwarf.addActionListener(new RacePickListener(Dwarf_Race.getDwarfArchetype()));
-        choose_orc.addActionListener(new RacePickListener(Orc_Race.getOrcArchetype()));
-        
-        this.add(choose_elf);
-        this.add(choose_dwarf);
-        this.add(choose_orc);
-        
-        choose_infantry.addActionListener(new UnitPickListener("Infantry"));
-        choose_cavalry.addActionListener(new UnitPickListener("Cavalry"));
-        choose_archers.addActionListener(new UnitPickListener("Archers"));
-        
-        this.add(choose_infantry);
-        this.add(choose_cavalry);
-        this.add(choose_archers);
+        this.add(race_panel);
+        this.add(unit_panel);
         this.add(remaining_points);
         
-        finish_setup.addActionListener(new FinishArmySetupListener());
         this.add(finish_setup);
         
     }
@@ -118,6 +113,9 @@ public class ArmySetupPanel extends JPanel{
         }
         
         public void actionPerformed(ActionEvent e){
+            if(UnitPlacementListener.getCurrentUnit() != null){
+                return;
+            }
             try{
                 Unit new_unit = current_unit_factory.createUnit(unit_type);
                 current_army.addUnit(new_unit);
@@ -143,6 +141,9 @@ public class ArmySetupPanel extends JPanel{
         private static Unit current_unit;
         public static void setCurrentUnit(Unit u){
             current_unit = u;
+        }
+        public static Unit getCurrentUnit(){
+            return current_unit;
         }
         public void actionPerformed(ActionEvent e){
             if(current_unit != null){
