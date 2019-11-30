@@ -125,10 +125,12 @@ public class ArmySetupPanel extends JPanel{
     public class FinishArmySetupListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             current_army = the_gui.getManager().cycleThroughArmies(1);
-            current_unit_factory = current_army.createUnitFactory();
-            current_army_name.setText(current_army.getName());
-            remaining_points.setText(current_army.getPointsLeft() + " points left");
-            if(current_army == null){
+            if(current_army != null){
+                current_unit_factory = current_army.createUnitFactory();
+                current_army_name.setText(current_army.getName());
+                remaining_points.setText(current_army.getPointsLeft() + " points left");
+            }
+            else{
                 the_gui.showReadyGame();
             }
         }
