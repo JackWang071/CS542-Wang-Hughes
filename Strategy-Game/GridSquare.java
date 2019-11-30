@@ -6,6 +6,7 @@
 package cs542_project;
 import javax.swing.JButton;
 
+
 /**
  *
  * @author Jack and Duran
@@ -24,10 +25,22 @@ public class GridSquare extends JButton implements GameObject_IF{
         return position;
     }
     public ObjectIcon getObjectIcon(){
-        return null;
+        return ObjectIcon.getEmptyIcon();
     }
     public int[] setStartingPosition(int[] startPos){
         return getPosition();
+    }
+    
+    public void redrawIcons(){
+        String combined_icon = getObjectIcon().drawThis();
+        if(building != null){
+            combined_icon += building.getObjectIcon().drawThis();
+        }
+        if(occupier != null){
+            combined_icon += occupier.getObjectIcon().drawThis();
+            setBackground(occupier.getArmy().getArmyColor());
+        }
+        setText(combined_icon);
     }
     
     public Unit getOccupier(){
@@ -46,5 +59,10 @@ public class GridSquare extends JButton implements GameObject_IF{
     
     public void removeOccupier(){
         occupier = null;
+    }
+    
+    
+    public class UnitPlacementListener{
+        
     }
 }

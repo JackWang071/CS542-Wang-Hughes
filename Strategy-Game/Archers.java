@@ -10,14 +10,14 @@ package cs542_project;
  */
 public class Archers extends Unit {
     private static final String UNIT_NAME = "Archers";
-    private static final int BASE_HP = 10;
+    private static final int BASE_HP = 30;
     private static final int UNIT_COST = 10;
     private static final int UNIT_RANGE = 3;
     private static final int BASE_MOVEMENT = 1;
-    private static final int BASE_ATTACK = 10;
-    private static final int BASE_DEFENSE = 10;
+    private static final int BASE_ATTACK = 15;
+    private static final int BASE_DEFENSE = 5;
     
-    private static final ObjectIcon ARCHERS_ICON = new ObjectIcon();
+    private static final ObjectIcon ARCHERS_ICON = new ObjectIcon("A");
     
     public Archers(Army army){
         super(UNIT_NAME, 

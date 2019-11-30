@@ -57,6 +57,7 @@ public class GameGUI extends JFrame {
     public void showReadyGame(){
         remove(army_setup_panel);
         add(game_options_panel, BorderLayout.EAST);
+        game_options_panel.startActualGame();
         revalidate();
         repaint();
     }

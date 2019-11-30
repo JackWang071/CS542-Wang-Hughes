@@ -11,4 +11,19 @@ package cs542_project;
  */
 public class ObjectIcon {
     
+    private String link;
+    
+    private static ObjectIcon EMPTY_ICON = new ObjectIcon("");
+    
+    public ObjectIcon(String link){
+        this.link = link;
+    }
+    
+    public String drawThis(){
+        return link;
+    }
+    
+    public static ObjectIcon getEmptyIcon(){
+        return EMPTY_ICON;
+    }
 }

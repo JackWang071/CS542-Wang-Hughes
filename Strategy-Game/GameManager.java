@@ -42,6 +42,7 @@ public class GameManager implements GameManager_IF {
     public void setServer(LoadableServer_IF server){
         this.server = server;
         server.setEnvironment(this);
+        run();
     }
     
     public List<Army> getArmies(){
@@ -71,23 +72,12 @@ public class GameManager implements GameManager_IF {
         return null;
     }
     
-    
-    public void highlightRadius(int[] center, int radius){
-        
-    }
-    public void highlightLegalStartingPositions(){
-        
-    }
-    
-    public void showLegalAttacks(Unit u){
-        
-    }
-    public void showLegalMoves(Unit u){
-        
-    }
     public void showUnits(Army army){
         
     }
     
-
+    public void finishServer(){
+        server = null;
+        server.setEnvironment(null);
+    }
 }

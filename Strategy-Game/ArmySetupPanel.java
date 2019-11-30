@@ -113,7 +113,6 @@ public class ArmySetupPanel extends JPanel{
         public void actionPerformed(ActionEvent e){
             try{
                 current_army.addUnit(current_unit_factory.createUnit(unit_type));
-                //int points_left = the_gui.getManager().getArmies().get(the_gui.getManager().getArmies().size() - 1).getPointsLeft();
                 remaining_points.setText(current_army.getPointsLeft() + " points left");
             }
             catch(CloneNotSupportedException cnse){
@@ -124,6 +123,9 @@ public class ArmySetupPanel extends JPanel{
     
     public class FinishArmySetupListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+            if(current_army.getRace() == null){
+                return;
+            }
             current_army = the_gui.getManager().cycleThroughArmies(1);
             if(current_army != null){
                 current_unit_factory = current_army.createUnitFactory();

@@ -10,14 +10,14 @@ package cs542_project;
  */
 public class Cavalry extends Unit {
     private static final String UNIT_NAME = "Cavalry";
-    private static final int BASE_HP = 10;
+    private static final int BASE_HP = 60;
     private static final int UNIT_COST = 10;
     private static final int UNIT_RANGE = 1;
     private static final int BASE_MOVEMENT = 3;
-    private static final int BASE_ATTACK = 10;
+    private static final int BASE_ATTACK = 20;
     private static final int BASE_DEFENSE = 10;
     
-    private static final ObjectIcon CAVALRY_ICON = new ObjectIcon();
+    private static final ObjectIcon CAVALRY_ICON = new ObjectIcon("C");
     
     public Cavalry(Army army){
         super(UNIT_NAME, 

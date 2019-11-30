@@ -80,8 +80,8 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         position = new_position;
     }
     
-    public void attack(Unit u){
-        u.changeHP(-(attack + getAttack()));
+    public void attack(Unit u, int modifier){
+        u.changeHP(-(attack + getAttack() + modifier));
     }
     
     public int changeHP(int amt){

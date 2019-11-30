@@ -6,6 +6,7 @@
 package cs542_project;
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.Color;
 
 /**
  *
@@ -17,16 +18,23 @@ public class Army {
     private int unit_cost_points;
     private List<Unit> units;
     private String name;
+    private Color army_color;
     
     private static int ARMY_COUNT = 0;
+    private static Color[] available_army_colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE};
     
     public Army(int unit_cost_points){
         this.unit_cost_points = unit_cost_points;
         units = new ArrayList();
+        
+        army_color = available_army_colors[ARMY_COUNT];
         ARMY_COUNT += 1;
         name = "Army " + ARMY_COUNT;
     }
     
+    public Color getArmyColor(){
+        return army_color;
+    }
     public String getName(){
         return name;
     }
