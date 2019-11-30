@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 package cs542_project;
-import javax.swing.*;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public class Cs542_project {
 
@@ -18,7 +15,7 @@ public class Cs542_project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GameGUI test = new GameGUI();
+        GameManager test = new GameManager();
     }
     
 }

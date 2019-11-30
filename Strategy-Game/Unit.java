@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package cs542_project;
+import java.lang.Cloneable;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
-public abstract class Unit implements GameObject_IF{
+public abstract class Unit implements GameObject_IF, Cloneable{
     
     private String unitName;
     private int attack;
@@ -33,6 +34,10 @@ public abstract class Unit implements GameObject_IF{
         this.cost = cost;
     }
     
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+    
     public int[] getPosition(){
         return position;
     }
@@ -50,10 +55,13 @@ public abstract class Unit implements GameObject_IF{
         return army;
     }
     public String getName(){
-        return unitName;
+        return army.getName() + " " + army.getRace().getRaceName() + " " + unitName;
     }
     public int getAttack(){
-        return attack;
+        return attack + army.getRace().getAttackBonus();
+    }
+    public int getDefense(){
+        return defense + army.getRace().getDefBonus();
     }
     public int getRange(){
         return range;
@@ -62,7 +70,7 @@ public abstract class Unit implements GameObject_IF{
         return HP;
     }
     public int getMoveDist(){
-        return moveDist;
+        return moveDist + army.getRace().getMoveBonus();
     }
     public int getCost(){
         return cost;
@@ -73,12 +81,12 @@ public abstract class Unit implements GameObject_IF{
     }
     
     public void attack(Unit u){
-        u.changeHP(-attack);
+        u.changeHP(-(attack + getAttack()));
     }
     
     public int changeHP(int amt){
         if (amt < 0){
-            HP += (amt + defense);
+            HP += (amt + getDefense());
         }
         else{
             HP += amt;

@@ -14,8 +14,11 @@ import javax.swing.JButton;
  */
 public class GameOptionPanel extends JPanel {
     
+    private GameGUI the_gui;
     
-    public GameOptionPanel(){
+    public GameOptionPanel(GameGUI the_gui){
+        this.the_gui = the_gui;
+        
         this.setPreferredSize(new Dimension(400, 700));
         
         JButton tester = new JButton("Testing");
@@ -24,4 +27,6 @@ public class GameOptionPanel extends JPanel {
     }
     
 
+    
+    
 }

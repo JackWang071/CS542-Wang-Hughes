@@ -11,21 +11,25 @@ package cs542_project;
  */
 public class Unit_Factory {
     
-    private Army army;
+    private Archers archers_proto;
+    private Cavalry cavalry_proto;
+    private Infantry infantry_proto;
     
     public Unit_Factory(Army army){
-        this.army = army;
+        archers_proto = new Archers(army);
+        cavalry_proto = new Cavalry(army);
+        infantry_proto = new Infantry(army);
     }
     
-    public Unit createUnit(String type, String name){
-        if(type == "Archers"){
-            return new Archers(name, army);
+    public Unit createUnit(String type) throws CloneNotSupportedException {
+        if(type.equals("Archers")){
+            return (Unit) archers_proto.clone();
         }
-        else if (type == "Cavalry"){
-            return new Cavalry(name, army);
+        else if (type.equals("Cavalry")){
+            return (Unit) cavalry_proto.clone();
         }
         else{
-            return new Infantry(name, army);
+            return (Unit) infantry_proto.clone();
         }
     }
 }

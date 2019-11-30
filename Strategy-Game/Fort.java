@@ -4,18 +4,21 @@
  * and open the template in the editor.
  */
 package cs542_project;
-
+import java.lang.Cloneable;
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
-public class Fort extends Building{
+public class Fort extends Building implements Cloneable{
     
     private static final int HP_RECOVERY = 0;
     private static final int ATTACK_BOOST = 5;
     private static final int DEFENSE_BOOST = 5;
     
+    
+    private static final ObjectIcon FORT_ICON = new ObjectIcon();
+    
     public Fort(){
-        super(ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);
+        super(FORT_ICON, ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);
     }
 }

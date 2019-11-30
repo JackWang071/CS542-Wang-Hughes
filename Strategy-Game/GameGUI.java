@@ -10,42 +10,62 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public class GameGUI extends JFrame {
     
     private GameBoard board;
     private GameOptionPanel game_options_panel;
     private GameStartPanel start_panel;
-    private GameManager game_manager;
+    private ArmySetupPanel army_setup_panel;
+    private GameManager_IF game_manager;
     
-    public GameGUI(){
+    public GameGUI(GameManager_IF game_manager){
         super("Jack and Alex Project");
+        this.game_manager = game_manager;
         setSize(1200,800);
         setLayout(new BorderLayout());
         
+        army_setup_panel = new ArmySetupPanel(this);
         start_panel = new GameStartPanel(this);
+        game_options_panel = new GameOptionPanel(this);
+    }
+    
+    public void showStartPanel(){
         add(start_panel, BorderLayout.CENTER);
+        start_panel.chooseStartingOptions();
         
         setVisible(true);
     }
     
-    public void boardSetup(int size){
+    public void showBoard(int size){
         board = new GameBoard(size);
-        game_options_panel = new GameOptionPanel();
         
-        start_panel.setVisible(false);
+        remove(start_panel);
         add(board, BorderLayout.WEST);
+        revalidate();
+        repaint();
+    }
+    
+    public void showArmySetup(){
+        add(army_setup_panel, BorderLayout.EAST);
+        army_setup_panel.startArmySetup();
+        revalidate();
+        repaint();
+    }
+    
+    public void showReadyGame(){
+        remove(army_setup_panel);
         add(game_options_panel, BorderLayout.EAST);
         revalidate();
+        repaint();
     }
     
     public GameBoard getBoard(){
         return board;
     }
-    
-    public GameOptionPanel getOptionPanel(){
-        return game_options_panel;
+        
+    public GameManager_IF getManager(){
+        return game_manager;
     }
-    
 }
