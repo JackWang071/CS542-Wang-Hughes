@@ -58,10 +58,10 @@ public class GameOptionPanel extends JPanel {
         add(options_menu);
         add(current_unit_info);
         
-        updateNextTurn();
+        clearOptionsPanel();
     }
     
-    public void updateNextTurn(){
+    public void clearOptionsPanel(){
         current_army_name.setText("Turn: " + the_gui.getManager().getCurrentArmy().getName());
         attack_option_listener.setCurrentUnit(null);
         move_option_listener.setCurrentUnit(null);
@@ -78,6 +78,10 @@ public class GameOptionPanel extends JPanel {
                 attack_option_listener.setCurrentUnit(g.getOccupier());
                 move_option_listener.setCurrentUnit(g.getOccupier());
             }
+        }
+        else{
+            attack_option_listener.setCurrentUnit(null);
+            move_option_listener.setCurrentUnit(null);
         }
         if(g.getBuilding() != null){
             tile_info += g.getBuilding().toString();

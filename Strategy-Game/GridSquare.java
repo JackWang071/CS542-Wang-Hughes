@@ -25,6 +25,8 @@ public class GridSquare extends JButton{
         this.position = position;
         move_here = new MoveHereListener();
         attack_here = new AttackHereListener();
+        addActionListener(move_here);
+        addActionListener(attack_here);
     }
     
     public int[] getCoordinates(){
@@ -58,13 +60,11 @@ public class GridSquare extends JButton{
     
     public void setOccupier(Unit occ){
         occupier = occ;
+        redrawIcons();
     }
     public void setBuilding(Building build){
         building = build;
-    }
-    
-    public void removeOccupier(){
-        occupier = null;
+        redrawIcons();
     }
     
     public void setMoveHereListener(Unit actor){
@@ -73,6 +73,7 @@ public class GridSquare extends JButton{
             redrawIcons();
             return;
         }
+        
         int actor_moveDist = actor.getMoveDist();
         int[] actor_pos = actor.getPosition().getCoordinates();
         int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
@@ -95,9 +96,11 @@ public class GridSquare extends JButton{
         int actor_range = actor.getRange();
         int[] actor_pos = actor.getPosition().getCoordinates();
         int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
-        if(getOccupier() != null && distance > 0 && distance <= actor_range){
-            attack_here.setActor(actor);
+        if(distance > 0 && distance <= actor_range){
             setBackground(Color.MAGENTA);
+            if(getOccupier() != null){
+                attack_here.setActor(actor);
+            }
         }
         else{
             attack_here.setActor(null);
@@ -115,11 +118,8 @@ public class GridSquare extends JButton{
         }
         public void actionPerformed(ActionEvent e){
             if(actor != null){
-                actor.getPosition().setOccupier(null);
-                actor.getPosition().redrawIcons();
                 actor.move(GridSquare.this);
-                setOccupier(actor);
-                redrawIcons();
+                setActor(null);
             }
         }
     }
@@ -134,7 +134,7 @@ public class GridSquare extends JButton{
                 actor.attack(getOccupier(), getBuilding().getDefenseBoost());
                 if(getOccupier().is_destroyed()){
                     setOccupier(null);
-                    redrawIcons();
+                    setActor(null);
                 }
             }
         }

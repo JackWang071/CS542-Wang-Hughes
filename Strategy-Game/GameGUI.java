@@ -61,7 +61,8 @@ public class GameGUI extends JFrame {
         revalidate();
         repaint();
         
-        updateGUI_nextTurn();
+        clearOptionsPanel();
+        clearBoard();
         game_manager.getCurrentArmy().updateUnitStatuses();
     }
     
@@ -73,12 +74,16 @@ public class GameGUI extends JFrame {
         board.highlightStartingPositions(army);
     }
     
-    public void updateGUI_nextTurn(){
-        game_options_panel.updateNextTurn();
-        board.updateNextTurn();
+    public void clearOptionsPanel(){
+        game_options_panel.clearOptionsPanel();
+    }
+    
+    public void clearBoard(){
+        board.clearBoard();
     }
     
     public void updateGUI_selectedTile(GridSquare g){
+        
         game_options_panel.currentTileDetails(g);
     }
     

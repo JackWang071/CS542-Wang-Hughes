@@ -25,9 +25,8 @@ public class AttackServer implements LoadableServer_IF {
     }
     
     public void start(){
-        
+        env.getGUI().clearBoard();
         env.getGUI().highlightAffectedTiles(actor, "Attack");
-        
         env.finishServer();
     }
     

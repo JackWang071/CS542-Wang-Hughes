@@ -24,9 +24,8 @@ public class MoveServer implements LoadableServer_IF {
         return singleton;
     }
     public void start(){
-        
-        env.getGUI().highlightAffectedTiles(actor, "Attack");
-        
+        env.getGUI().clearBoard();
+        env.getGUI().highlightAffectedTiles(actor, "Move");
         env.finishServer();
     }
     

@@ -138,7 +138,9 @@ public class ArmySetupPanel extends JPanel{
             if(current_army.getRace() == null){
                 return;
             }
-            changeArmy();
+            else if(current_army.getUnits().size() > 0){
+                changeArmy();
+            }
         }
     }
     

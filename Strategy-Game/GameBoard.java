@@ -53,7 +53,6 @@ public class GameBoard extends JPanel {
                     if(rng.nextFloat() < 0.1){
                         grid[i][j].setBuilding(buildings.get(counter));
                         buildings.get(counter).setStartingPosition(grid[i][j]);
-                        grid[i][j].redrawIcons();
                         counter++;
                     }
                 }
@@ -61,7 +60,7 @@ public class GameBoard extends JPanel {
         } while(counter < buildings.size());
     }
     
-    public void updateNextTurn(){
+    public void clearBoard(){
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid.length; j++){
                 grid[i][j].setAttackHereListener(null);
@@ -74,6 +73,8 @@ public class GameBoard extends JPanel {
     public void highlightAffectedTiles(Unit u, String purpose){
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid.length; j++){
+                grid[i][j].setAttackHereListener(null);
+                grid[i][j].setMoveHereListener(null);
                 if(purpose.equals("Attack")){
                     grid[i][j].setAttackHereListener(u);
                 }

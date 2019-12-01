@@ -81,7 +81,11 @@ public abstract class Unit implements GameObject_IF, Cloneable{
     
     public void move(GridSquare new_position){
         if(can_move()){
+            position.setOccupier(null);
+            position.redrawIcons();
             position = new_position;
+            position.setOccupier(this);
+            position.redrawIcons();
         }
         finished_moving();
     }
