@@ -13,7 +13,7 @@ import java.lang.Math;
  *
  * @author Jack and Duran
  */
-public class GridSquare extends JButton implements GameObject_IF{
+public class GridSquare extends JButton{
     
     private int[] position;
     private Unit occupier;
@@ -27,14 +27,11 @@ public class GridSquare extends JButton implements GameObject_IF{
         attack_here = new AttackHereListener();
     }
     
-    public int[] getPosition(){
+    public int[] getCoordinates(){
         return position;
     }
     public ObjectIcon getObjectIcon(){
         return ObjectIcon.getEmptyIcon();
-    }
-    public int[] setStartingPosition(int[] startPos){
-        return getPosition();
     }
     
     public void redrawIcons(){
@@ -45,6 +42,9 @@ public class GridSquare extends JButton implements GameObject_IF{
         if(occupier != null){
             combined_icon += occupier.getObjectIcon().drawThis();
             setBackground(occupier.getArmy().getArmyColor());
+        }
+        else{
+            setBackground(null);
         }
         setText(combined_icon);
     }
@@ -71,9 +71,10 @@ public class GridSquare extends JButton implements GameObject_IF{
         if(actor == null){
             move_here.setActor(null);
             redrawIcons();
+            return;
         }
         int actor_moveDist = actor.getMoveDist();
-        int[] actor_pos = actor.getPosition();
+        int[] actor_pos = actor.getPosition().getCoordinates();
         int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
         if(getOccupier() == null && distance <= actor_moveDist){
             move_here.setActor(actor);
@@ -89,9 +90,10 @@ public class GridSquare extends JButton implements GameObject_IF{
         if(actor == null){
             attack_here.setActor(null);
             redrawIcons();
+            return;
         }
         int actor_range = actor.getRange();
-        int[] actor_pos = actor.getPosition();
+        int[] actor_pos = actor.getPosition().getCoordinates();
         int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
         if(getOccupier() != null && distance <= actor_range){
             attack_here.setActor(actor);
@@ -103,6 +105,9 @@ public class GridSquare extends JButton implements GameObject_IF{
         }
     }
     
+    /**
+     * TODO: allow the actor's previous position to redraw itself minus the actor
+     */
     private class MoveHereListener implements ActionListener{
         private Unit actor;
         public void setActor(Unit actor){
@@ -110,8 +115,11 @@ public class GridSquare extends JButton implements GameObject_IF{
         }
         public void actionPerformed(ActionEvent e){
             if(actor != null){
-                actor.move(getPosition());
+                actor.getPosition().setOccupier(null);
+                actor.getPosition().redrawIcons();
+                actor.move(GridSquare.this);
                 setOccupier(actor);
+                redrawIcons();
             }
         }
     }
@@ -124,6 +132,10 @@ public class GridSquare extends JButton implements GameObject_IF{
         public void actionPerformed(ActionEvent e){
             if(actor != null){
                 actor.attack(getOccupier(), getBuilding().getDefenseBoost());
+                if(getOccupier().is_destroyed()){
+                    setOccupier(null);
+                    redrawIcons();
+                }
             }
         }
     }

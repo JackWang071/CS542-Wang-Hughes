@@ -68,12 +68,14 @@ public class GameManager implements GameManager_IF {
         
     }
     
-    public void loadServer(String server){
-        
+    public void loadServer(LoadableServer_IF server){
+        this.server = server;
+        server.setEnvironment(this);
+        run();
     }
     
     public void finishServer(){
-        server = null;
         server.setEnvironment(null);
+        server = null;
     }
 }

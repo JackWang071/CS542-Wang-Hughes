@@ -10,7 +10,7 @@ package cs542_project;
  * @author Jack and Duran
  */
 public interface GameObject_IF {
-    int[] getPosition();
-    int[] setStartingPosition(int[] startPos);
+    GridSquare getPosition();
+    void setStartingPosition(GridSquare startPos);
     ObjectIcon getObjectIcon();
 }

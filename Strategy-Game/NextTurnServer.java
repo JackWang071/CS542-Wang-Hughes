@@ -10,13 +10,28 @@ package cs542_project;
  * @author Jack
  */
 public class NextTurnServer implements LoadableServer_IF{
-    
     private GameManager_IF env;
+    private static NextTurnServer singleton;
+    
+    private NextTurnServer(){}
+    
+    public static NextTurnServer getServer(){
+        if(singleton == null){
+            singleton = new NextTurnServer();
+        }
+        return singleton;
+    }
     
     public void start(){
         //Updates game board
         //updates game option board
         //updates all units in the current army
+        
+        env.nextArmy();
+        env.getGUI().updateGUI_nextTurn();
+        env.getCurrentArmy().updateUnitStatuses();
+        
+        env.finishServer();
     }
     
     public void setEnvironment(GameManager_IF env){

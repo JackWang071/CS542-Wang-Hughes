@@ -50,7 +50,7 @@ public class GameOptionPanel extends JPanel {
         options_menu.setPreferredSize(new Dimension(400, 200));
         
         current_army_name = new TextField();
-        current_unit_info = new TextArea();
+        current_unit_info = new TextArea(20, 40);
     }
     
     public void startActualGame(){
@@ -63,13 +63,25 @@ public class GameOptionPanel extends JPanel {
     
     public void updateNextTurn(){
         current_army_name.setText("Turn: " + the_gui.getManager().getCurrentArmy().getName());
+        attack_option_listener.setCurrentUnit(null);
+        move_option_listener.setCurrentUnit(null);
+        current_unit_info.setText("");
     }
     
-    public void setCurrentUnit(Unit actor){
-        attack_option_listener.setCurrentUnit(actor);
-        move_option_listener.setCurrentUnit(actor);
+    public void currentTileDetails(GridSquare g){
+        String tile_info = "";
+        if(g.getOccupier() != null && g.getOccupier().getArmy().equals(the_gui.getManager().getCurrentArmy())){
+            attack_option_listener.setCurrentUnit(g.getOccupier());
+            move_option_listener.setCurrentUnit(g.getOccupier());
+            tile_info += g.getOccupier().getName() + "\nHP:" + g.getOccupier().getHP();
+        }
+        if(g.getBuilding() != null){
+            tile_info += "\n" + g.getBuilding().getName();
+        }
         
-        current_unit_info.setText(actor.getName());
+        int[] g_pos = g.getCoordinates();
+        
+        current_unit_info.setText("Coordinates: "+ g_pos[0] + "," + g_pos[1]);
     }
     
     private class AttackOptionListener implements ActionListener{
@@ -79,7 +91,7 @@ public class GameOptionPanel extends JPanel {
         }
         public void actionPerformed(ActionEvent e){
             //Tells GameManager to run the AttackServer?
-            the_gui.getManager().loadServer("Attack");
+            the_gui.getManager().loadServer(AttackServer.getServer(actor));
         }
     }    
     
@@ -90,12 +102,13 @@ public class GameOptionPanel extends JPanel {
         }
         public void actionPerformed(ActionEvent e){
             //Tells GameManager to run the MoveServer?
+            the_gui.getManager().loadServer(MoveServer.getServer(actor));
         }
     }
     
     private class EndTurnListener implements ActionListener {
         public void actionPerformed(ActionEvent e){
-            updateNextTurn();
+            the_gui.getManager().loadServer(NextTurnServer.getServer());
         }
     }
     

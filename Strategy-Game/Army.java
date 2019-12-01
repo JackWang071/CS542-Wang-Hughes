@@ -57,13 +57,15 @@ public class Army {
     }
     
     public void addUnit(Unit u){
-        if(u.getCost() <= unit_cost_points){
+        if(u != null){
             units.add(u);
             unit_cost_points -= u.getCost();
         }
     }
     
-    public void gameMessage(){
-        
+    public void updateUnitStatuses(){
+        for(int i = 0; i < units.size(); i++){
+            units.get(i).updateStatus();
+        }
     }
 }

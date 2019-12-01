@@ -16,12 +16,15 @@ import java.awt.event.ActionEvent;
  */
 public class GameBoard extends JPanel {
     private GridSquare[][] grid;
+    private GameGUI the_gui;
     
-    public GameBoard(int size){
-        
-        this.setLayout(new GridLayout(size, size));
+    public GameBoard(GameGUI the_gui){
+        this.the_gui = the_gui;
         this.setPreferredSize(new Dimension(700, 700));
-        
+    }
+    
+    public void createBoard(int size){
+        setLayout(new GridLayout(size, size));
         grid = new GridSquare[size][size];
         int[] currPos = new int[2];
         for(int i = 0; i < grid.length; i++){
@@ -29,6 +32,7 @@ public class GameBoard extends JPanel {
             for(int j = 0; j < grid[0].length; j++){
                 currPos[1] = j;
                 grid[i][j] = new GridSquare(currPos);
+                grid[i][j].addActionListener(new TileSelectListener());
                 this.add(grid[i][j]);
             }
         }
@@ -48,7 +52,7 @@ public class GameBoard extends JPanel {
         }
     }
     
-    public void highlightAffectedUnits(Unit u, String purpose){
+    public void highlightAffectedTiles(Unit u, String purpose){
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid.length; j++){
                 if(purpose.equals("Attack")){
@@ -60,7 +64,7 @@ public class GameBoard extends JPanel {
             }
         }
     }
-    public void highlightLegalStartingPositions(Army army){
+    public void highlightStartingPositions(Army army){
         
         int left = 0;
         int right = 0;
@@ -107,9 +111,18 @@ public class GameBoard extends JPanel {
     }
     
     private class TileSelectListener implements ActionListener{
-        
+
         public void actionPerformed(ActionEvent e){
+            GridSquare source = (GridSquare) e.getSource();
+            for(int i = 0; i < grid.length; i++){
+                for(int j = 0; j < grid.length; j++){
+                    
+                }
+            }
             
+            the_gui.updateGUI_selectedTile(source);
+            
+            System.out.println(source.getCoordinates()[0] + "," + source.getCoordinates()[1]);
         }
     }
 }

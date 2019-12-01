@@ -14,10 +14,13 @@ public class Village extends Building implements Cloneable{
     private static final int HP_RECOVERY = 10;
     private static final int ATTACK_BOOST = 0;
     private static final int DEFENSE_BOOST = 0;
+    private static final String BUILDING_NAME = "Village";
     
     private static final ObjectIcon VILLAGE_ICON = new ObjectIcon("V");
     
     public Village(){
-        super(VILLAGE_ICON, ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);
+        super(BUILDING_NAME, VILLAGE_ICON, ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);
     }
+    
+    
 }

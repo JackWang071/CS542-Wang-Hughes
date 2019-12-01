@@ -16,14 +16,12 @@ public interface GameManager_IF {
     public GameGUI getGUI();
     
     public void createArmies(int num_players);
-
-    public List<Army> getArmies();
     public Army getCurrentArmy();
     public Army nextArmy();
     
     public void showUnits(Army army);
     
-    public void loadServer(String server);
+    public void loadServer(LoadableServer_IF server);
     public void finishServer();
     
 }

@@ -26,6 +26,7 @@ public class GameGUI extends JFrame {
         setSize(1200,800);
         setLayout(new BorderLayout());
         
+        board = new GameBoard(this);
         army_setup_panel = new ArmySetupPanel(this);
         start_panel = new GameStartPanel(this);
         game_options_panel = new GameOptionPanel(this);
@@ -39,8 +40,7 @@ public class GameGUI extends JFrame {
     }
     
     public void showBoard(int size){
-        board = new GameBoard(size);
-        
+        board.createBoard(size);
         remove(start_panel);
         add(board, BorderLayout.WEST);
         revalidate();
@@ -60,19 +60,26 @@ public class GameGUI extends JFrame {
         game_options_panel.startActualGame();
         revalidate();
         repaint();
+        
+        updateGUI_nextTurn();
+        game_manager.getCurrentArmy().updateUnitStatuses();
     }
     
-    public GameBoard getBoard(){
-        return board;
+    public void highlightAffectedTiles(Unit actor, String purpose){
+        board.highlightAffectedTiles(actor, purpose);
     }
     
-    public void updateGUI_turn(){
+    public void highlightStartingPositions(Army army){
+        board.highlightStartingPositions(army);
+    }
+    
+    public void updateGUI_nextTurn(){
         game_options_panel.updateNextTurn();
         board.updateNextTurn();
     }
     
-    public void updateGUI_unit(Unit u){
-        game_options_panel.setCurrentUnit(u);
+    public void updateGUI_selectedTile(GridSquare g){
+        game_options_panel.currentTileDetails(g);
     }
     
     public GameManager_IF getManager(){

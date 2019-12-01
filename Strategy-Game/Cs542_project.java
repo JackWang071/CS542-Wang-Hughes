@@ -6,7 +6,8 @@
 package cs542_project;
 
 import java.awt.Color;
-
+import java.awt.*;
+import javax.swing.*;
 /**
  *
  * @author Jack and Duran
@@ -19,6 +20,22 @@ public class Cs542_project {
     public static void main(String[] args) {
         GameManager test = new GameManager();
         
+        /*
+        
+        JFrame testframe = new JFrame();
+        JPanel testpanel = new JPanel();
+        
+        TextArea test = new TextArea(20, 40);
+        
+        testframe.setSize(800, 800);
+        testpanel.setPreferredSize(new Dimension(400, 200));
+        
+        testpanel.add(test);
+        testframe.add(testpanel);
+        
+        testframe.setVisible(true);
+        
+        */
         
         /*
         Army a_test = new Army(50);

@@ -14,28 +14,33 @@ public abstract class Building implements GameObject_IF, Cloneable {
     private int attack_boost;
     private int defense_boost;
     private int hp_recovery;
-    private int[] position;
+    private GridSquare position;
     private ObjectIcon icon;
+    private String name;
     
-    public Building(ObjectIcon icon, int attack, int defense, int hp_rec){
+    public Building(String name, ObjectIcon icon, int attack, int defense, int hp_rec){
         this.attack_boost = attack;
         this.defense_boost = defense;
         this.hp_recovery = hp_rec;
         this.icon = icon;
+        this.name = name;
     }
     
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
     
-    public int[] getPosition(){
+    public String getName(){
+        return name;
+    }
+    
+    public GridSquare getPosition(){
         return position;
     }
-    public int[] setStartingPosition(int[] startPos){
+    public void setStartingPosition(GridSquare startPos){
         if(position == null){
             position = startPos;
         }
-        return position;
     }
     public ObjectIcon getObjectIcon(){
         return icon;

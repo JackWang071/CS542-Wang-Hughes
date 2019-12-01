@@ -74,7 +74,6 @@ public class ArmySetupPanel extends JPanel{
     }
     
     public void startArmySetup(){
-        changeArmy();
         this.add(current_army_name);
         this.add(race_panel);
         this.add(unit_panel);
@@ -82,16 +81,19 @@ public class ArmySetupPanel extends JPanel{
         
         this.add(finish_setup);
         
+        changeArmy();
     }
     
     private void changeArmy(){
+        //Won't be visible until a race is selected.
+        unit_panel.setVisible(false);
         current_army = the_gui.getManager().nextArmy();
         //If the current army's race is NULL, that means this army hasn't been set up yet.
         if(current_army.getRace() == null){
             current_unit_factory = current_army.createUnitFactory();
             current_army_name.setText(current_army.getName());
             remaining_points.setText(current_army.getPointsLeft() + " points left");
-            the_gui.getBoard().highlightLegalStartingPositions(current_army);
+            the_gui.highlightStartingPositions(current_army);
             UnitPlacementListener.setCurrentUnit(null);
         }
         else{
@@ -107,6 +109,7 @@ public class ArmySetupPanel extends JPanel{
         }
         public void actionPerformed(ActionEvent e){
             current_army.setRace(army_race);
+            unit_panel.setVisible(true);
         }
     }
     
@@ -126,9 +129,7 @@ public class ArmySetupPanel extends JPanel{
                 UnitPlacementListener.setCurrentUnit(new_unit);
                 remaining_points.setText(current_army.getPointsLeft() + " points left");
             }
-            catch(CloneNotSupportedException cnse){
-                
-            }
+            catch(CloneNotSupportedException cnse){}
         }
     }
     
@@ -152,7 +153,7 @@ public class ArmySetupPanel extends JPanel{
         public void actionPerformed(ActionEvent e){
             if(current_unit != null){
                 GridSquare this_tile = (GridSquare) e.getSource();
-                current_unit.setStartingPosition(this_tile.getPosition());
+                current_unit.setStartingPosition(this_tile);
                 this_tile.setOccupier(current_unit);
                 this_tile.redrawIcons();
                 setCurrentUnit(null);

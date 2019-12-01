@@ -18,7 +18,7 @@ public abstract class Unit implements GameObject_IF, Cloneable{
     private int defense;
     private int range;
     private int HP;
-    private int[] position;
+    private GridSquare position;
     private int cost;
     private Army army;
     private ObjectIcon icon;
@@ -42,14 +42,13 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         return super.clone();
     }
     
-    public int[] getPosition(){
+    public GridSquare getPosition(){
         return position;
     }
-    public int[] setStartingPosition(int[] startPos){
+    public void setStartingPosition(GridSquare startPos){
         if(position == null){
             position = startPos;
         }
-        return position;
     }
     public ObjectIcon getObjectIcon(){
         return icon;
@@ -80,16 +79,16 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         return cost;
     }
     
-    public void move(int[] new_position){
+    public void move(GridSquare new_position){
         if(can_move()){
             position = new_position;
         }
         finished_moving();
     }
     
-    public void attack(Unit u, int def_modifier){
+    public void attack(Unit target, int def_modifier){
         if(can_attack()){
-            u.changeHP(-(getAttack() - def_modifier));
+            target.changeHP(-(getAttack() - def_modifier));
         }
         finished_attacking();
         finished_moving();
@@ -105,9 +104,15 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         return HP;
     }
     
-    public void all_actions_available(){
-        can_move = true;
-        can_attack = true;
+    public void updateStatus(){
+        if(!is_destroyed()){
+            can_move = true;
+            can_attack = true;
+            
+            if(getPosition().getBuilding() != null){
+                changeHP(getPosition().getBuilding().getHPRecovery());
+            }
+        }
     }
     public void finished_attacking(){
         can_attack = false;
