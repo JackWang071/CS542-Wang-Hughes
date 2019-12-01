@@ -11,10 +11,22 @@ package cs542_project;
  */
 public class AttackServer implements LoadableServer_IF {
     private GameManager_IF env;
+    private static AttackServer singleton;
+    private static Unit actor;
+    
+    private AttackServer(){}
+    
+    public static AttackServer getServer(Unit actor){
+        if(singleton == null){
+            singleton = new AttackServer();
+        }
+        AttackServer.actor = actor;
+        return singleton;
+    }
     
     public void start(){
         
-        env.getGUI().getBoard();
+        env.getGUI().highlightAffectedTiles(actor, "Attack");
         
         env.finishServer();
     }

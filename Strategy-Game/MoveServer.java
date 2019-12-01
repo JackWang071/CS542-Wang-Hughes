@@ -11,9 +11,23 @@ package cs542_project;
  */
 public class MoveServer implements LoadableServer_IF {
     private GameManager_IF env;
+    private static MoveServer singleton;
+    private static Unit actor;
     
+    private MoveServer(){}
+    
+    public static MoveServer getServer(Unit actor){
+        if(singleton == null){
+            singleton = new MoveServer();
+        }
+        MoveServer.actor = actor;
+        return singleton;
+    }
     public void start(){
         
+        env.getGUI().highlightAffectedTiles(actor, "Attack");
+        
+        env.finishServer();
     }
     
     public void setEnvironment(GameManager_IF env){
