@@ -12,7 +12,7 @@ import java.lang.Cloneable;
 public class Fort extends Building implements Cloneable{
     
     private static final int HP_RECOVERY = 0;
-    private static final int ATTACK_BOOST = 5;
+    private static final int ATTACK_BOOST = 0;
     private static final int DEFENSE_BOOST = 5;
     
     

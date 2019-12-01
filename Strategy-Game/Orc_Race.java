@@ -10,9 +10,9 @@ package cs542_project;
  * @author Jack and Duran
  */
 public class Orc_Race implements Race {
-    private static int ATTACK_BONUS;
-    private static int MOVE_BONUS;
-    private static int DEF_BONUS;
+    private static int ATTACK_BONUS = 5;
+    private static int MOVE_BONUS = 0;
+    private static int DEF_BONUS = 0;
     private static String RACE_NAME = "Orc";
     private static Orc_Race orc;
     

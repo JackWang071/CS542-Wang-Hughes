@@ -23,6 +23,9 @@ public abstract class Unit implements GameObject_IF, Cloneable{
     private Army army;
     private ObjectIcon icon;
     
+    private boolean can_move;
+    private boolean can_attack;
+    
     public Unit(String name, Army army, int hp, int attack, int move, int def, int range, int cost, ObjectIcon icon){
         this.unitName = name;
         this.army = army;
@@ -78,11 +81,18 @@ public abstract class Unit implements GameObject_IF, Cloneable{
     }
     
     public void move(int[] new_position){
-        position = new_position;
+        if(can_move()){
+            position = new_position;
+        }
+        finished_moving();
     }
     
-    public void attack(Unit u, int modifier){
-        u.changeHP(-(attack + getAttack() + modifier));
+    public void attack(Unit u, int def_modifier){
+        if(can_attack()){
+            u.changeHP(-(getAttack() - def_modifier));
+        }
+        finished_attacking();
+        finished_moving();
     }
     
     public int changeHP(int amt){
@@ -93,6 +103,23 @@ public abstract class Unit implements GameObject_IF, Cloneable{
             HP += amt;
         }
         return HP;
+    }
+    
+    public void all_actions_available(){
+        can_move = true;
+        can_attack = true;
+    }
+    public void finished_attacking(){
+        can_attack = false;
+    }
+    public void finished_moving(){
+        can_move = false;
+    }
+    public boolean can_attack(){
+        return can_attack;
+    }
+    public boolean can_move(){
+        return can_move;
     }
     
     public boolean is_destroyed(){

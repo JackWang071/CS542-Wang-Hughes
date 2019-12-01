@@ -75,7 +75,7 @@ public class GameStartPanel extends JPanel {
         this.add(gamestart_finish);
     }
     
-    public class BoardSizeListener implements ActionListener{
+    private class BoardSizeListener implements ActionListener{
         private int board_size;
         
         public BoardSizeListener(int size){
@@ -87,7 +87,7 @@ public class GameStartPanel extends JPanel {
         }
     }
     
-    public class NumPlayersListener implements ActionListener{
+    private class NumPlayersListener implements ActionListener{
         private int num_players;
         
         public NumPlayersListener(int num_players){
@@ -99,7 +99,7 @@ public class GameStartPanel extends JPanel {
         }
     }
  
-    public class FinishGameStartListener implements ActionListener{
+    private class FinishGameStartListener implements ActionListener{
         
         public void actionPerformed(ActionEvent e){
             if(final_num_players > 0 && final_board_size > 0){

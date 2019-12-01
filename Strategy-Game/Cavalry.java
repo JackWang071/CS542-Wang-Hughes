@@ -34,4 +34,12 @@ public class Cavalry extends Unit {
     public static int getUnitCost(){
         return UNIT_COST;
     }
+    
+    public void attack(Unit u, int def_modifier){
+        if(can_attack()){
+            u.changeHP(-(getAttack() - def_modifier));
+        }
+        finished_attacking();
+    }
+    
 }

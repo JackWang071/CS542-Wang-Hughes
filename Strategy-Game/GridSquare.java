@@ -5,7 +5,9 @@
  */
 package cs542_project;
 import javax.swing.JButton;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.lang.Math;
 
 /**
  *
@@ -16,9 +18,13 @@ public class GridSquare extends JButton implements GameObject_IF{
     private int[] position;
     private Unit occupier;
     private Building building;
+    private MoveHereListener move_here;
+    private AttackHereListener attack_here;
     
     public GridSquare(int[] position){
         this.position = position;
+        move_here = new MoveHereListener();
+        attack_here = new AttackHereListener();
     }
     
     public int[] getPosition(){
@@ -61,4 +67,58 @@ public class GridSquare extends JButton implements GameObject_IF{
         occupier = null;
     }
     
+    
+    
+    public void setMoveHereListeners(Unit actor){
+        int actor_moveDist = actor.getMoveDist();
+        int[] actor_pos = actor.getPosition();
+        int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
+        if(getOccupier() == null && distance <= actor_moveDist){
+            move_here.setActor(actor);
+            
+        }
+        else{
+            move_here.setActor(null);
+            redrawIcons();
+        }
+    }
+    
+    public void setAttackHereListeners(Unit actor){
+        int actor_range = actor.getRange();
+        int[] actor_pos = actor.getPosition();
+        int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
+        if(getOccupier() != null && distance <= actor_range){
+            attack_here.setActor(actor);
+            
+        }
+        else{
+            move_here.setActor(null);
+            redrawIcons();
+        }
+    }
+    
+    private class MoveHereListener implements ActionListener{
+        private Unit actor;
+        public void setActor(Unit actor){
+            this.actor = actor;
+        }
+        public void actionPerformed(ActionEvent e){
+            if(actor != null){
+                actor.move(getPosition());
+                setOccupier(actor);
+            }
+        }
+    }
+    
+    private class AttackHereListener implements ActionListener{
+        private Unit actor;
+        public void setActor(Unit actor){
+            this.actor = actor;
+        }
+        public void actionPerformed(ActionEvent e){
+            if(actor != null){
+                actor.attack(getOccupier(), getBuilding().getDefenseBoost());
+            }
+        }
+    }
 }

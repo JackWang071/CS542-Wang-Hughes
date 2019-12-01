@@ -34,7 +34,7 @@ public class ArmySetupPanel extends JPanel{
         this.the_gui = the_gui;
         
         race_panel = new JPanel();
-        
+        race_panel.setPreferredSize(new Dimension(300, 200));
         JButton choose_elf = new JButton("Elves - Faster");
         JButton choose_dwarf = new JButton("Dwarves - Tougher");
         JButton choose_orc = new JButton("Orcs - Stronger");
@@ -49,7 +49,7 @@ public class ArmySetupPanel extends JPanel{
         race_panel.add(choose_orc);
         
         unit_panel = new JPanel();
-        
+        unit_panel.setPreferredSize(new Dimension(300, 200));
         JButton choose_infantry = new JButton("Infantry - cost " + Infantry.getUnitCost());
         JButton choose_cavalry = new JButton("Cavalry - cost " + Cavalry.getUnitCost());
         JButton choose_archers = new JButton("Archers - cost " + Archers.getUnitCost());
@@ -88,14 +88,14 @@ public class ArmySetupPanel extends JPanel{
             current_unit_factory = current_army.createUnitFactory();
             current_army_name.setText(current_army.getName());
             remaining_points.setText(current_army.getPointsLeft() + " points left");
-            the_gui.getBoard().highlightLegalStartingPositions(current_army.getArmyColor());
+            the_gui.getBoard().highlightLegalStartingPositions(current_army);
         }
         else{
             the_gui.showReadyGame();
         }
     }
     
-    public class RacePickListener implements ActionListener{
+    private class RacePickListener implements ActionListener{
         private Race army_race;
         
         public RacePickListener(Race army_race){
@@ -106,7 +106,7 @@ public class ArmySetupPanel extends JPanel{
         }
     }
     
-    public class UnitPickListener implements ActionListener{
+    private class UnitPickListener implements ActionListener{
         private String unit_type;
         public UnitPickListener(String unit_type){
             this.unit_type = unit_type;
@@ -128,7 +128,7 @@ public class ArmySetupPanel extends JPanel{
         }
     }
     
-    public class FinishArmySetupListener implements ActionListener{
+    private class FinishArmySetupListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(current_army.getRace() == null){
                 return;

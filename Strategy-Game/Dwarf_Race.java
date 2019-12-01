@@ -10,9 +10,9 @@ package cs542_project;
  * @author Jack and Duran
  */
 public class Dwarf_Race implements Race {
-    private static int ATTACK_BONUS;
-    private static int MOVE_BONUS;
-    private static int DEF_BONUS;
+    private static int ATTACK_BONUS = 0;
+    private static int MOVE_BONUS = 0;
+    private static int DEF_BONUS = 5;
     private static String RACE_NAME = "Dwarf";
     private static Dwarf_Race dwarf;
     

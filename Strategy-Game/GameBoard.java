@@ -36,36 +36,41 @@ public class GameBoard extends JPanel {
         return grid[position[0]][position[1]];
     }
     
-    public void highlightRadius(int[] center, int radius){
+    public void highlightAffectedUnits(Unit u, String purpose){
         
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid.length; j++){
+                
+            }
+        }
     }
-    public void highlightLegalStartingPositions(Color army_color){
+    public void highlightLegalStartingPositions(Army army){
         
         int left = 0;
         int right = 0;
         int top = 0;
         int bottom = 0;
         
-        if(army_color == Color.RED){
+        if(army.getArmyColor() == Color.RED){
             top = 2;
             bottom = grid.length - 2;
             left = 0;
             right = 2;
         }
-        else if(army_color == Color.YELLOW){
+        else if(army.getArmyColor() == Color.YELLOW){
             top = 2;
             bottom = grid.length - 2;
             left = grid.length - 2;
             right = grid.length;
         }
-        else if(army_color == Color.GREEN){
+        else if(army.getArmyColor() == Color.GREEN){
             top = 0;
             bottom = 2;
             left = 2;
             right = grid.length - 2;
             
         }
-        else if(army_color == Color.BLUE){
+        else if(army.getArmyColor() == Color.BLUE){
             top = grid.length - 2;
             bottom = grid.length;
             left = 2;
@@ -78,7 +83,7 @@ public class GameBoard extends JPanel {
                 this_coordinate[0] = i;
                 this_coordinate[1] = j;
                 if(getSquare(this_coordinate).getOccupier() == null){
-                    getSquare(this_coordinate).setBackground(army_color);
+                    getSquare(this_coordinate).setBackground(army.getArmyColor());
                     getSquare(this_coordinate).addActionListener(new ArmySetupPanel.UnitPlacementListener());
                 }
             }

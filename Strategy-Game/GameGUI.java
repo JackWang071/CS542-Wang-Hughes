@@ -65,7 +65,11 @@ public class GameGUI extends JFrame {
     public GameBoard getBoard(){
         return board;
     }
-        
+    
+    public void passUnitInfo(Unit u){
+        game_options_panel.setCurrentUnit(u);
+    }
+    
     public GameManager_IF getManager(){
         return game_manager;
     }

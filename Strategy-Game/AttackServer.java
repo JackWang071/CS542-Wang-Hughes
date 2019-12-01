@@ -14,6 +14,9 @@ public class AttackServer implements LoadableServer_IF {
     
     public void start(){
         
+        env.getGUI().getBoard();
+        
+        env.finishServer();
     }
     
     public void setEnvironment(GameManager_IF env){

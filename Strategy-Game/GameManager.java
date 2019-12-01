@@ -19,6 +19,7 @@ public class GameManager implements GameManager_IF {
     private LoadableServer_IF server;
     
     private ListIterator army_iterator;
+    private Army current_army;
     
     public GameManager(){
         gui = new GameGUI(this);
@@ -60,16 +61,17 @@ public class GameManager implements GameManager_IF {
             army_iterator = factions.listIterator();
         }
         if(army_iterator.hasNext()){
-            return (Army) army_iterator.next();
+            current_army = (Army) army_iterator.next();
         }
         else if (repeats != 1){
             army_iterator = factions.listIterator();
-            return (Army) army_iterator.next();
+            current_army = (Army) army_iterator.next();
         }
         else{
+            current_army = null;
             army_iterator = null;
         }
-        return null;
+        return current_army;
     }
     
     public void showUnits(Army army){
