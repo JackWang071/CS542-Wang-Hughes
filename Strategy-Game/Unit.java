@@ -58,7 +58,7 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         return army;
     }
     public String getName(){
-        return army.getName() + " " + army.getRace().getRaceName() + " " + unitName;
+        return army.getRace().getRaceName() + " " + unitName;
     }
     public int getAttack(){
         return attack + army.getRace().getAttackBonus();
@@ -129,5 +129,16 @@ public abstract class Unit implements GameObject_IF, Cloneable{
     
     public boolean is_destroyed(){
         return (HP <= 0);
+    }
+    
+    public String toString(){
+        return getArmy().getName()
+                + "\n " + getName() 
+                + "\n HP: " + getHP()
+                + "\n Attack: " + getAttack()
+                + "\n Defense: " + getDefense()
+                + "\n Movement: " + getMoveDist()
+                + "\n Range: " + getRange()
+                + "\n";
     }
 }

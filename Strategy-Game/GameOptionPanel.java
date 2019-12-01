@@ -69,19 +69,21 @@ public class GameOptionPanel extends JPanel {
     }
     
     public void currentTileDetails(GridSquare g){
-        String tile_info = "";
-        if(g.getOccupier() != null && g.getOccupier().getArmy().equals(the_gui.getManager().getCurrentArmy())){
-            attack_option_listener.setCurrentUnit(g.getOccupier());
-            move_option_listener.setCurrentUnit(g.getOccupier());
-            tile_info += g.getOccupier().getName() + "\nHP:" + g.getOccupier().getHP();
+        int[] g_pos = g.getCoordinates();
+        String tile_info = "Coordinates: "+ g_pos[0] + "," + g_pos[1] + "\n";
+        
+        if(g.getOccupier() != null){
+            tile_info += g.getOccupier().toString();
+            if(g.getOccupier().getArmy().equals(the_gui.getManager().getCurrentArmy())){
+                attack_option_listener.setCurrentUnit(g.getOccupier());
+                move_option_listener.setCurrentUnit(g.getOccupier());
+            }
         }
         if(g.getBuilding() != null){
-            tile_info += "\n" + g.getBuilding().getName();
+            tile_info += g.getBuilding().toString();
         }
         
-        int[] g_pos = g.getCoordinates();
-        
-        current_unit_info.setText("Coordinates: "+ g_pos[0] + "," + g_pos[1]);
+        current_unit_info.setText(tile_info);
     }
     
     private class AttackOptionListener implements ActionListener{

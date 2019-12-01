@@ -16,15 +16,19 @@ public class GameManager implements GameManager_IF {
     
     private GameGUI gui;
     private List<Army> factions;
+    private List<Building> buildings;
     private LoadableServer_IF server;
     
     private int iterator_index;
     private Army current_army;
+    private int army_points;
     
     public GameManager(){
         gui = new GameGUI(this);
         factions = new ArrayList();
-        this.iterator_index = 0;
+        buildings = new ArrayList();
+        iterator_index = 0;
+        army_points = 0;
         gui.showStartPanel();
     }
     
@@ -51,7 +55,7 @@ public class GameManager implements GameManager_IF {
     
     public void createArmies(int num_players){
         for(int i = 0; i < num_players; i++){
-            factions.add(new Army(40));
+            factions.add(new Army(army_points));
         }
     }
     
@@ -64,8 +68,24 @@ public class GameManager implements GameManager_IF {
         return current_army;
     }
     
-    public void showUnits(Army army){
-        
+    public void setArmyPoints(int seed_value){
+        army_points = seed_value * 5;
+    }
+    
+    public void setupBuildings(int seed_value){
+        BuildingFactory bfac = new BuildingFactory();
+        for(int i = 0; i < seed_value/2; i++){
+            try{
+                if(i % 2 == 0){
+                    buildings.add(bfac.createBuilding("Village"));
+                }
+                else{
+                    buildings.add(bfac.createBuilding("Fort"));
+                }
+            }
+            catch(CloneNotSupportedException cnse){}
+        }
+        gui.setupBuildings(buildings);
     }
     
     public void loadServer(LoadableServer_IF server){

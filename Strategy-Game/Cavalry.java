@@ -14,7 +14,7 @@ public class Cavalry extends Unit {
     private static final int UNIT_COST = 10;
     private static final int UNIT_RANGE = 1;
     private static final int BASE_MOVEMENT = 3;
-    private static final int BASE_ATTACK = 20;
+    private static final int BASE_ATTACK = 25;
     private static final int BASE_DEFENSE = 10;
     
     private static final ObjectIcon CAVALRY_ICON = new ObjectIcon("C");

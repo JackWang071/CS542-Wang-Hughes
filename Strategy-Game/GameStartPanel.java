@@ -103,9 +103,15 @@ public class GameStartPanel extends JPanel {
         
         public void actionPerformed(ActionEvent e){
             if(final_num_players > 0 && final_board_size > 0){
+                the_gui.getManager().loadServer(InitialSetupServer.getServer(final_board_size, final_num_players));
+                /*
+                the_gui.getManager().setArmyPoints(final_board_size);
+                the_gui.getManager().setupBuildings(final_board_size);
                 the_gui.getManager().createArmies(final_num_players);
                 the_gui.showBoard(final_board_size);
                 the_gui.showArmySetup();
+                
+                */
             }
         }
     }

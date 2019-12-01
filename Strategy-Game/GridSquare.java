@@ -60,7 +60,7 @@ public class GridSquare extends JButton{
         occupier = occ;
     }
     public void setBuilding(Building build){
-        building = building;
+        building = build;
     }
     
     public void removeOccupier(){

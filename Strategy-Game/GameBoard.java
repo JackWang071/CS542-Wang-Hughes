@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
+import java.util.Random;
 /**
  *
  * @author Jack and Duran
@@ -26,20 +28,37 @@ public class GameBoard extends JPanel {
     public void createBoard(int size){
         setLayout(new GridLayout(size, size));
         grid = new GridSquare[size][size];
-        int[] currPos = new int[2];
         for(int i = 0; i < grid.length; i++){
-            currPos[0] = i;
             for(int j = 0; j < grid[0].length; j++){
-                currPos[1] = j;
-                grid[i][j] = new GridSquare(currPos);
-                grid[i][j].addActionListener(new TileSelectListener());
+                grid[i][j] = new GridSquare(new int[]{i, j});
                 this.add(grid[i][j]);
+                grid[i][j].addActionListener(new TileSelectListener());
             }
         }
     }
     
     public GridSquare getSquare(int[] position){
         return grid[position[0]][position[1]];
+    }
+    
+    public void addBuildings(List<Building> buildings){
+        int counter = 0;
+        Random rng = new Random();
+        do{
+            for(int i = 2; i < grid.length-2; i++){
+                for(int j = 2; j < grid.length-2; j++){
+                    if(counter >= buildings.size()){
+                        break;
+                    }
+                    if(rng.nextFloat() < 0.1){
+                        grid[i][j].setBuilding(buildings.get(counter));
+                        buildings.get(counter).setStartingPosition(grid[i][j]);
+                        grid[i][j].redrawIcons();
+                        counter++;
+                    }
+                }
+            }
+        } while(counter < buildings.size());
     }
     
     public void updateNextTurn(){
@@ -111,18 +130,8 @@ public class GameBoard extends JPanel {
     }
     
     private class TileSelectListener implements ActionListener{
-
         public void actionPerformed(ActionEvent e){
-            GridSquare source = (GridSquare) e.getSource();
-            for(int i = 0; i < grid.length; i++){
-                for(int j = 0; j < grid.length; j++){
-                    
-                }
-            }
-            
-            the_gui.updateGUI_selectedTile(source);
-            
-            System.out.println(source.getCoordinates()[0] + "," + source.getCoordinates()[1]);
+            the_gui.updateGUI_selectedTile((GridSquare) e.getSource());
         }
     }
 }

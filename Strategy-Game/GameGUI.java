@@ -7,7 +7,7 @@ package cs542_project;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+import java.util.List;
 /**
  *
  * @author Jack and Duran
@@ -80,6 +80,10 @@ public class GameGUI extends JFrame {
     
     public void updateGUI_selectedTile(GridSquare g){
         game_options_panel.currentTileDetails(g);
+    }
+    
+    public void setupBuildings(List<Building> buildings){
+        board.addBuildings(buildings);
     }
     
     public GameManager_IF getManager(){

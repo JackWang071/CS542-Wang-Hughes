@@ -14,8 +14,8 @@ public class Infantry extends Unit {
     private static final int UNIT_COST = 5;
     private static final int UNIT_RANGE = 1;
     private static final int BASE_MOVEMENT = 1;
-    private static final int BASE_ATTACK = 15;
-    private static final int BASE_DEFENSE = 10;
+    private static final int BASE_ATTACK = 20;
+    private static final int BASE_DEFENSE = 8;
     
     private static final ObjectIcon INFANTRY_ICON = new ObjectIcon("I");
     

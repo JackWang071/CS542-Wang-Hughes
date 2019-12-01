@@ -13,4 +13,5 @@ public interface GameObject_IF {
     GridSquare getPosition();
     void setStartingPosition(GridSquare startPos);
     ObjectIcon getObjectIcon();
+    String toString();
 }

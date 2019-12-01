@@ -19,7 +19,8 @@ public interface GameManager_IF {
     public Army getCurrentArmy();
     public Army nextArmy();
     
-    public void showUnits(Army army);
+    public void setArmyPoints(int seed_value);
+    public void setupBuildings(int seed_value);
     
     public void loadServer(LoadableServer_IF server);
     public void finishServer();

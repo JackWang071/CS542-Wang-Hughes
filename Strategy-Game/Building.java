@@ -57,4 +57,11 @@ public abstract class Building implements GameObject_IF, Cloneable {
     public int getHPRecovery(){
         return hp_recovery;
     }
+    
+    public String toString(){
+        return getName() 
+                + "\nDEF+: " + getDefenseBoost()
+                + "\nHP+: " + getHPRecovery()
+                + "\n";
+    }
 }

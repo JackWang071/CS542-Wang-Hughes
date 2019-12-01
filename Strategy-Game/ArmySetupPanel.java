@@ -159,7 +159,9 @@ public class ArmySetupPanel extends JPanel{
                 setCurrentUnit(null);
 
                 for(ActionListener act : this_tile.getActionListeners()) {
-                    this_tile.removeActionListener(act);
+                    if(act instanceof UnitPlacementListener){
+                        this_tile.removeActionListener(act);
+                    }
                 }
             }
         }
