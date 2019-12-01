@@ -18,11 +18,12 @@ public interface GameManager_IF {
     public void createArmies(int num_players);
 
     public List<Army> getArmies();
-    
-    public Army cycleThroughArmies(int repeats);
+    public Army getCurrentArmy();
+    public Army nextArmy();
     
     public void showUnits(Army army);
     
+    public void loadServer(String server);
     public void finishServer();
     
 }

@@ -69,6 +69,8 @@ public class ArmySetupPanel extends JPanel{
         finish_setup = new JButton("Finish");
         finish_setup.setPreferredSize(new Dimension(100, 50));
         finish_setup.addActionListener(new FinishArmySetupListener());
+        
+        
     }
     
     public void startArmySetup(){
@@ -83,8 +85,9 @@ public class ArmySetupPanel extends JPanel{
     }
     
     private void changeArmy(){
-        current_army = the_gui.getManager().cycleThroughArmies(1);
-        if(current_army != null){
+        current_army = the_gui.getManager().nextArmy();
+        //If the current army's race is NULL, that means this army hasn't been set up yet.
+        if(current_army.getRace() == null){
             current_unit_factory = current_army.createUnitFactory();
             current_army_name.setText(current_army.getName());
             remaining_points.setText(current_army.getPointsLeft() + " points left");

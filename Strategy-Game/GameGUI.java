@@ -66,7 +66,12 @@ public class GameGUI extends JFrame {
         return board;
     }
     
-    public void passUnitInfo(Unit u){
+    public void updateGUI_turn(){
+        game_options_panel.updateNextTurn();
+        board.updateNextTurn();
+    }
+    
+    public void updateGUI_unit(Unit u){
         game_options_panel.setCurrentUnit(u);
     }
     

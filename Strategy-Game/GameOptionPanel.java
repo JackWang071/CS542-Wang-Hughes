@@ -43,6 +43,7 @@ public class GameOptionPanel extends JPanel {
         move_option.setPreferredSize(new Dimension(100, 50));
         end_turn.setPreferredSize(new Dimension(100, 50));
         
+        options_menu = new JPanel();
         options_menu.add(attack_option);
         options_menu.add(move_option);
         options_menu.add(end_turn);
@@ -57,20 +58,18 @@ public class GameOptionPanel extends JPanel {
         add(options_menu);
         add(current_unit_info);
         
-        nextTurn();
+        updateNextTurn();
     }
     
-    private void nextTurn(){
-        Army current_army = the_gui.getManager().cycleThroughArmies(0);
-        current_army_name.setText("Turn: " + current_army.getName());
-        
+    public void updateNextTurn(){
+        current_army_name.setText("Turn: " + the_gui.getManager().getCurrentArmy().getName());
     }
     
     public void setCurrentUnit(Unit actor){
         attack_option_listener.setCurrentUnit(actor);
         move_option_listener.setCurrentUnit(actor);
         
-        
+        current_unit_info.setText(actor.getName());
     }
     
     private class AttackOptionListener implements ActionListener{
@@ -80,6 +79,7 @@ public class GameOptionPanel extends JPanel {
         }
         public void actionPerformed(ActionEvent e){
             //Tells GameManager to run the AttackServer?
+            the_gui.getManager().loadServer("Attack");
         }
     }    
     
@@ -95,7 +95,7 @@ public class GameOptionPanel extends JPanel {
     
     private class EndTurnListener implements ActionListener {
         public void actionPerformed(ActionEvent e){
-            nextTurn();
+            updateNextTurn();
         }
     }
     

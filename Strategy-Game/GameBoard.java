@@ -36,11 +36,25 @@ public class GameBoard extends JPanel {
         return grid[position[0]][position[1]];
     }
     
-    public void highlightAffectedUnits(Unit u, String purpose){
-        
+    public void updateNextTurn(){
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid.length; j++){
-                
+                grid[i][j].setAttackHereListener(null);
+                grid[i][j].setMoveHereListener(null);
+                grid[i][j].redrawIcons();
+            }
+        }
+    }
+    
+    public void highlightAffectedUnits(Unit u, String purpose){
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid.length; j++){
+                if(purpose.equals("Attack")){
+                    grid[i][j].setAttackHereListener(u);
+                }
+                else if (purpose.equals("Move")){
+                    grid[i][j].setMoveHereListener(u);
+                }
             }
         }
     }

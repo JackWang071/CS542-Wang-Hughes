@@ -67,15 +67,17 @@ public class GridSquare extends JButton implements GameObject_IF{
         occupier = null;
     }
     
-    
-    
-    public void setMoveHereListeners(Unit actor){
+    public void setMoveHereListener(Unit actor){
+        if(actor == null){
+            move_here.setActor(null);
+            redrawIcons();
+        }
         int actor_moveDist = actor.getMoveDist();
         int[] actor_pos = actor.getPosition();
         int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
         if(getOccupier() == null && distance <= actor_moveDist){
             move_here.setActor(actor);
-            
+            setBackground(actor.getArmy().getArmyColor());
         }
         else{
             move_here.setActor(null);
@@ -83,16 +85,20 @@ public class GridSquare extends JButton implements GameObject_IF{
         }
     }
     
-    public void setAttackHereListeners(Unit actor){
+    public void setAttackHereListener(Unit actor){
+        if(actor == null){
+            attack_here.setActor(null);
+            redrawIcons();
+        }
         int actor_range = actor.getRange();
         int[] actor_pos = actor.getPosition();
         int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
         if(getOccupier() != null && distance <= actor_range){
             attack_here.setActor(actor);
-            
+            setBackground(actor.getArmy().getArmyColor());
         }
         else{
-            move_here.setActor(null);
+            attack_here.setActor(null);
             redrawIcons();
         }
     }
