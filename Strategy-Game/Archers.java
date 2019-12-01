@@ -17,7 +17,7 @@ public class Archers extends Unit {
     private static final int BASE_ATTACK = 20;
     private static final int BASE_DEFENSE = 5;
     
-    private static final ObjectIcon ARCHERS_ICON = new ObjectIcon("A");
+    private static final ObjectIcon ARCHERS_ICON = new ObjectIcon("Arc");
     
     public Archers(Army army){
         super(UNIT_NAME, 

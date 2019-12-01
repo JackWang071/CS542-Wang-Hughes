@@ -7,8 +7,8 @@ package cs542_project;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 import java.lang.Math;
-
 /**
  *
  * @author Jack and Duran
@@ -76,9 +76,9 @@ public class GridSquare extends JButton{
         int actor_moveDist = actor.getMoveDist();
         int[] actor_pos = actor.getPosition().getCoordinates();
         int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
-        if(getOccupier() == null && distance <= actor_moveDist){
+        if(getOccupier() == null && distance > 0 && distance <= actor_moveDist){
             move_here.setActor(actor);
-            setBackground(actor.getArmy().getArmyColor());
+            setBackground(Color.CYAN);
         }
         else{
             move_here.setActor(null);
@@ -95,9 +95,9 @@ public class GridSquare extends JButton{
         int actor_range = actor.getRange();
         int[] actor_pos = actor.getPosition().getCoordinates();
         int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
-        if(getOccupier() != null && distance <= actor_range){
+        if(getOccupier() != null && distance > 0 && distance <= actor_range){
             attack_here.setActor(actor);
-            setBackground(actor.getArmy().getArmyColor());
+            setBackground(Color.MAGENTA);
         }
         else{
             attack_here.setActor(null);

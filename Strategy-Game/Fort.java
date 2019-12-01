@@ -16,7 +16,7 @@ public class Fort extends Building implements Cloneable{
     private static final int DEFENSE_BOOST = 5;
     private static final String BUILDING_NAME = "Fort";
     
-    private static final ObjectIcon FORT_ICON = new ObjectIcon("F");
+    private static final ObjectIcon FORT_ICON = new ObjectIcon("For");
     
     public Fort(){
         super(BUILDING_NAME, FORT_ICON, ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);
