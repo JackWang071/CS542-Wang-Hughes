@@ -100,12 +100,7 @@ public class GameStartPanel extends JPanel {
     }
  
     private class FinishGameStartListener implements ActionListener{
-        
         public void actionPerformed(ActionEvent e){
-            
-            final_num_players = 1;
-            final_board_size = 8;
-            
             if(final_num_players > 0 && final_board_size > 0){
                 the_gui.getManager().loadServer(InitialSetupServer.getServer(final_board_size, final_num_players));
             }

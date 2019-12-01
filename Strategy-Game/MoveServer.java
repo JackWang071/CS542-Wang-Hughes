@@ -25,7 +25,9 @@ public class MoveServer implements LoadableServer_IF {
     }
     public void start(){
         env.getGUI().clearBoard();
-        env.getGUI().highlightAffectedTiles(actor, "Move");
+        if(actor!= null && actor.can_move()){
+            env.getGUI().highlightAffectedTiles(actor, "Move");
+        }
         env.finishServer();
     }
     

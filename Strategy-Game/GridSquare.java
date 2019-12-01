@@ -131,7 +131,7 @@ public class GridSquare extends JButton{
         }
         public void actionPerformed(ActionEvent e){
             if(actor != null){
-                actor.attack(getOccupier(), getBuilding().getDefenseBoost());
+                actor.attack(getOccupier());
                 if(getOccupier().is_destroyed()){
                     setOccupier(null);
                     setActor(null);

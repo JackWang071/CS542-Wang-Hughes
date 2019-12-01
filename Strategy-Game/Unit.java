@@ -90,15 +90,23 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         finished_moving();
     }
     
-    public void attack(Unit target, int def_modifier){
+    public void attack(Unit target){
         if(can_attack()){
-            target.changeHP(-(getAttack() - def_modifier));
+            target.changeHP(-(getAttack() - getAttackModifier(target)));
         }
         finished_attacking();
         finished_moving();
     }
     
-    public int changeHP(int amt){
+    protected int getAttackModifier(Unit target){
+        int def_modifier = 0;
+        if(target.getPosition().getBuilding() != null){
+            def_modifier = target.getPosition().getBuilding().getDefenseBoost();
+        }
+        return def_modifier;
+    }
+    
+    protected int changeHP(int amt){
         if (amt < 0){
             HP += (amt + getDefense());
         }
@@ -118,10 +126,10 @@ public abstract class Unit implements GameObject_IF, Cloneable{
             }
         }
     }
-    public void finished_attacking(){
+    protected void finished_attacking(){
         can_attack = false;
     }
-    public void finished_moving(){
+    protected void finished_moving(){
         can_move = false;
     }
     public boolean can_attack(){
