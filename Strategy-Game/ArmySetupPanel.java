@@ -92,6 +92,7 @@ public class ArmySetupPanel extends JPanel{
             current_army_name.setText(current_army.getName());
             remaining_points.setText(current_army.getPointsLeft() + " points left");
             the_gui.getBoard().highlightLegalStartingPositions(current_army);
+            UnitPlacementListener.setCurrentUnit(null);
         }
         else{
             the_gui.showReadyGame();

@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 /**
  *
  * @author Jack and Duran
@@ -104,5 +106,10 @@ public class GameBoard extends JPanel {
         }
     }
     
-    
+    private class TileSelectListener implements ActionListener{
+        
+        public void actionPerformed(ActionEvent e){
+            
+        }
+    }
 }
