@@ -48,8 +48,14 @@ public class Army {
         return unit_cost_points;
     }
 
-    public List<Unit> getUnits(){
-        return units;
+    public int getNumActiveUnits(){
+        int still_alive = units.size();
+        for(Unit u : units){
+            if(u.is_destroyed()){
+                still_alive -= 1;
+            }
+        }
+        return still_alive;
     }
     
     public Unit_Factory createUnitFactory(){

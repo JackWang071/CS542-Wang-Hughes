@@ -31,7 +31,6 @@ public class NextTurnServer implements LoadableServer_IF{
         env.getGUI().clearBoard();
         env.getGUI().clearOptionsPanel();
         env.getCurrentArmy().updateUnitStatuses();
-        
         env.finishServer();
     }
     

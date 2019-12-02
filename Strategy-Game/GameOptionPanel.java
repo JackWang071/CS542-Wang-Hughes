@@ -70,7 +70,7 @@ public class GameOptionPanel extends JPanel {
     
     public void currentTileDetails(GridSquare g){
         int[] g_pos = g.getCoordinates();
-        String tile_info = "Coordinates: "+ g_pos[0] + "," + g_pos[1] + "\n";
+        String tile_info = "Coordinates: "+ g_pos[0] + "," + g_pos[1] + "\n\n";
         
         if(g.getOccupier() != null){
             tile_info += g.getOccupier().toString();
@@ -84,7 +84,7 @@ public class GameOptionPanel extends JPanel {
             move_option_listener.setCurrentUnit(null);
         }
         if(g.getBuilding() != null){
-            tile_info += g.getBuilding().toString();
+            tile_info += "\n" + g.getBuilding().toString();
         }
         
         current_unit_info.setText(tile_info);

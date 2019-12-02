@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cs542_project;
+import java.util.Random;
 
 /**
  *
@@ -13,19 +14,34 @@ public class BuildingFactory {
     
     private Village village_proto;
     private Fort fort_proto;
+    private Random rng;
     
     public BuildingFactory(){
         village_proto = new Village();
         fort_proto = new Fort();
+        
+        rng = new Random();
     }
     
-    public Building createBuilding(String type) throws CloneNotSupportedException {
-        if(type.equals("Village")){
-            return (Building) village_proto.clone();
+    public Building createBuilding(String type) {
+        try{
+            if(type.equals("Village")){
+                return (Building) village_proto.clone();
+            }
+            else if (type.equals("Fort")){
+                return (Building) fort_proto.clone();
+            }
         }
-        else if (type.equals("Fort")){
-            return (Building) fort_proto.clone();
-        }
+        catch (CloneNotSupportedException cnse) {}
         return null;
+    }
+    
+    public Building getRandomBuilding(){
+        if(rng.nextFloat() <= 0.5){
+            return createBuilding("Village");
+        }
+        else{
+            return createBuilding("Fort");
+        }
     }
 }

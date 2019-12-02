@@ -23,6 +23,7 @@ public class MoveServer implements LoadableServer_IF {
         MoveServer.actor = actor;
         return singleton;
     }
+    
     public void start(){
         env.getGUI().clearBoard();
         if(actor!= null && actor.can_move()){

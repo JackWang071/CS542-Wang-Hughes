@@ -7,7 +7,9 @@ package cs542_project;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -84,6 +86,12 @@ public class GameStartPanel extends JPanel {
         
         public void actionPerformed(ActionEvent e){
             final_board_size = board_size;
+            for(Component c : board_size_selection.getComponents()){
+                c.setBackground(null);
+                if(c.equals(e.getSource())){
+                    c.setBackground(Color.GREEN);
+                }
+            }
         }
     }
     
@@ -96,6 +104,12 @@ public class GameStartPanel extends JPanel {
         
         public void actionPerformed(ActionEvent e){
             final_num_players = num_players;
+            for(Component c : num_players_selection.getComponents()){
+                c.setBackground(null);
+                if(c.equals(e.getSource())){
+                    c.setBackground(Color.GREEN);
+                }
+            }
         }
     }
  

@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package cs542_project;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.TextField;
-import java.util.ListIterator;
 /**
  *
  * @author Jack and Duran
@@ -110,6 +111,13 @@ public class ArmySetupPanel extends JPanel{
         public void actionPerformed(ActionEvent e){
             current_army.setRace(army_race);
             unit_panel.setVisible(true);
+            
+            for(Component c : race_panel.getComponents()){
+                c.setBackground(null);
+                if(c.equals(e.getSource())){
+                    c.setBackground(Color.GREEN);
+                }
+            }
         }
     }
     
@@ -123,13 +131,10 @@ public class ArmySetupPanel extends JPanel{
             if(UnitPlacementListener.getCurrentUnit() != null){
                 return;
             }
-            try{
-                Unit new_unit = current_unit_factory.createUnit(unit_type);
-                current_army.addUnit(new_unit);
-                UnitPlacementListener.setCurrentUnit(new_unit);
-                remaining_points.setText(current_army.getPointsLeft() + " points left");
-            }
-            catch(CloneNotSupportedException cnse){}
+            Unit new_unit = current_unit_factory.createUnit(unit_type);
+            current_army.addUnit(new_unit);
+            UnitPlacementListener.setCurrentUnit(new_unit);
+            remaining_points.setText(current_army.getPointsLeft() + " points left");
         }
     }
     
@@ -138,8 +143,11 @@ public class ArmySetupPanel extends JPanel{
             if(current_army.getRace() == null){
                 return;
             }
-            else if(current_army.getUnits().size() > 0){
+            else if(current_army.getNumActiveUnits() > 0){
                 changeArmy();
+                for(Component c : race_panel.getComponents()){
+                    c.setBackground(null);
+                }
             }
         }
     }

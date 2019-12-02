@@ -46,9 +46,6 @@ public class GameManager implements GameManager_IF {
         run();
     }
     
-    public List<Army> getArmies(){
-        return factions;
-    }
     public Army getCurrentArmy(){
         return current_army;
     }
@@ -60,11 +57,13 @@ public class GameManager implements GameManager_IF {
     }
     
     public Army nextArmy(){
-        if(iterator_index == factions.size()){
+        if(iterator_index >= factions.size()){
             iterator_index = 0;
         }
-        current_army = factions.get(iterator_index);
-        iterator_index += 1;
+        do{
+            current_army = factions.get(iterator_index);
+            iterator_index += 1;
+        } while(current_army.getNumActiveUnits() <= 0);
         return current_army;
     }
     
@@ -75,15 +74,7 @@ public class GameManager implements GameManager_IF {
     public void setupBuildings(int seed_value){
         BuildingFactory bfac = new BuildingFactory();
         for(int i = 0; i < seed_value/2; i++){
-            try{
-                if(i % 2 == 0){
-                    buildings.add(bfac.createBuilding("Village"));
-                }
-                else{
-                    buildings.add(bfac.createBuilding("Fort"));
-                }
-            }
-            catch(CloneNotSupportedException cnse){}
+            buildings.add(bfac.getRandomBuilding());
         }
         gui.setupBuildings(buildings);
     }

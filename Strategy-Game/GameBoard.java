@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Random;
 /**
@@ -30,15 +28,22 @@ public class GameBoard extends JPanel {
         grid = new GridSquare[size][size];
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[0].length; j++){
-                grid[i][j] = new GridSquare(new int[]{i, j});
+                grid[i][j] = new GridSquare(new int[]{i, j}, this);
                 this.add(grid[i][j]);
-                grid[i][j].addActionListener(new TileSelectListener());
             }
         }
     }
     
-    public GridSquare getSquare(int[] position){
-        return grid[position[0]][position[1]];
+    public GameGUI getGUI(){
+        return the_gui;
+    }
+    
+    public void activateBoard(){
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[0].length; j++){
+                grid[i][j].activateListeners();
+            }
+        }
     }
     
     public void addBuildings(List<Building> buildings){
@@ -122,17 +127,13 @@ public class GameBoard extends JPanel {
             for(int j = left; j < right; j++){
                 this_coordinate[0] = i;
                 this_coordinate[1] = j;
-                if(getSquare(this_coordinate).getOccupier() == null){
-                    getSquare(this_coordinate).setBackground(army.getArmyColor());
-                    getSquare(this_coordinate).addActionListener(new ArmySetupPanel.UnitPlacementListener());
+                if(grid[i][j].getOccupier() == null){
+                    grid[i][j].setBackground(army.getArmyColor());
+                    grid[i][j].addActionListener(new ArmySetupPanel.UnitPlacementListener());
                 }
             }
         }
     }
     
-    private class TileSelectListener implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            the_gui.updateGUI_selectedTile((GridSquare) e.getSource());
-        }
-    }
+
 }

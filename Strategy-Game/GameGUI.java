@@ -63,6 +63,7 @@ public class GameGUI extends JFrame {
         
         clearOptionsPanel();
         clearBoard();
+        board.activateBoard();
         game_manager.getCurrentArmy().updateUnitStatuses();
     }
     
@@ -83,7 +84,7 @@ public class GameGUI extends JFrame {
     }
     
     public void updateGUI_selectedTile(GridSquare g){
-        
+        clearOptionsPanel();
         game_options_panel.currentTileDetails(g);
     }
     

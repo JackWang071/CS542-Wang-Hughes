@@ -18,15 +18,17 @@ public class GridSquare extends JButton{
     private int[] position;
     private Unit occupier;
     private Building building;
+    private GameBoard the_board;
     private MoveHereListener move_here;
     private AttackHereListener attack_here;
+    private TileSelectListener select_here;
     
-    public GridSquare(int[] position){
+    public GridSquare(int[] position, GameBoard the_board){
         this.position = position;
+        this.the_board = the_board;
         move_here = new MoveHereListener();
         attack_here = new AttackHereListener();
-        addActionListener(move_here);
-        addActionListener(attack_here);
+        select_here = new TileSelectListener();
     }
     
     public int[] getCoordinates(){
@@ -34,6 +36,12 @@ public class GridSquare extends JButton{
     }
     public ObjectIcon getObjectIcon(){
         return ObjectIcon.getEmptyIcon();
+    }
+    
+    public void activateListeners(){
+        addActionListener(move_here);
+        addActionListener(attack_here);
+        addActionListener(select_here);
     }
     
     public void redrawIcons(){
@@ -100,12 +108,20 @@ public class GridSquare extends JButton{
             setBackground(Color.MAGENTA);
             if(getOccupier() != null){
                 attack_here.setActor(actor);
+                if(getOccupier().getArmy().equals(actor.getArmy())){
+                    setBackground(getOccupier().getArmy().getArmyColor());
+                }
             }
         }
         else{
             attack_here.setActor(null);
             redrawIcons();
         }
+    }
+    
+    private void updateTileStatus(){
+        the_board.clearBoard();
+        the_board.getGUI().updateGUI_selectedTile(this);
     }
     
     /**
@@ -116,10 +132,14 @@ public class GridSquare extends JButton{
         public void setActor(Unit actor){
             this.actor = actor;
         }
+        public boolean hasActor(){
+            return (actor != null);
+        }
         public void actionPerformed(ActionEvent e){
             if(actor != null){
                 actor.move(GridSquare.this);
                 setActor(null);
+                updateTileStatus();
             }
         }
     }
@@ -129,13 +149,25 @@ public class GridSquare extends JButton{
         public void setActor(Unit actor){
             this.actor = actor;
         }
+        public boolean hasActor(){
+            return (actor != null);
+        }
         public void actionPerformed(ActionEvent e){
             if(actor != null){
                 actor.attack(getOccupier());
+                setActor(null);
                 if(getOccupier().is_destroyed()){
                     setOccupier(null);
-                    setActor(null);
                 }
+                updateTileStatus();
+            }
+        }
+    }
+    
+    private class TileSelectListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            if(!attack_here.hasActor() && !move_here.hasActor()){
+                updateTileStatus();
             }
         }
     }

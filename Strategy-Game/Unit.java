@@ -18,6 +18,7 @@ public abstract class Unit implements GameObject_IF, Cloneable{
     private int defense;
     private int range;
     private int HP;
+    private int maxHP;
     private GridSquare position;
     private int cost;
     private Army army;
@@ -30,6 +31,7 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         this.unitName = name;
         this.army = army;
         this.HP = hp;
+        this.maxHP = hp;
         this.attack = attack;
         this.defense = def;
         this.moveDist = move;
@@ -112,6 +114,9 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         }
         else{
             HP += amt;
+            if(HP > maxHP){
+                HP = maxHP;
+            }
         }
         return HP;
     }
@@ -146,7 +151,7 @@ public abstract class Unit implements GameObject_IF, Cloneable{
     public String toString(){
         return getArmy().getName()
                 + "\n " + getName() 
-                + "\n HP: " + getHP()
+                + "\n HP: " + getHP() + "/" + maxHP
                 + "\n Attack: " + getAttack()
                 + "\n Defense: " + getDefense()
                 + "\n Movement: " + getMoveDist()

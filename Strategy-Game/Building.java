@@ -60,8 +60,8 @@ public abstract class Building implements GameObject_IF, Cloneable {
     
     public String toString(){
         return getName() 
-                + "\nDefense: +" + getDefenseBoost()
-                + "\nHP: +" + getHPRecovery() + " per turn"
+                + "\n Defense: +" + getDefenseBoost()
+                + "\n HP: +" + getHPRecovery() + " per turn"
                 + "\n";
     }
 }
