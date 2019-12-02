@@ -37,7 +37,7 @@ public class Infantry extends Unit {
     
     public void attack(Unit target){
         if(can_attack()){
-            target.changeHP(-(getAttack() - getAttackModifier(target)));
+            target.changeHP(-(getAttack()));
         }
         finished_attacking();
         finished_moving();

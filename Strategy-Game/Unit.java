@@ -60,13 +60,21 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         return army;
     }
     public String getName(){
-        return army.getRace().getRaceName() + " " + unitName;
+        return unitName;
     }
     public int getAttack(){
-        return attack + army.getRace().getAttackBonus();
+        int attack_modifier = 0;
+        if(getPosition().getBuilding() != null){
+            attack_modifier = getPosition().getBuilding().getAttackBoost();
+        }
+        return attack + army.getRace().getAttackBonus() + attack_modifier;
     }
     public int getDefense(){
-        return defense + army.getRace().getDefBonus();
+        int def_modifier = 0;
+        if(getPosition().getBuilding() != null){
+            def_modifier = getPosition().getBuilding().getDefenseBoost();
+        }
+        return defense + army.getRace().getDefBonus() + def_modifier;
     }
     public int getRange(){
         return range;
@@ -94,22 +102,20 @@ public abstract class Unit implements GameObject_IF, Cloneable{
     
     public void attack(Unit target){
         if(can_attack()){
-            target.changeHP(-(getAttack() - getAttackModifier(target)));
+            target.changeHP(-(getAttack()));
         }
         finished_attacking();
     }
     
-    protected int getAttackModifier(Unit target){
-        int def_modifier = 0;
-        if(target.getPosition().getBuilding() != null){
-            def_modifier = target.getPosition().getBuilding().getDefenseBoost();
-        }
-        return def_modifier;
-    }
-    
     protected int changeHP(int amt){
         if (amt < 0){
-            HP += (amt + getDefense());
+            //Scratch damage
+            if(getDefense() >= -(amt)){
+                HP -= 1;
+            }
+            else{
+                HP += (amt + getDefense());
+            }
         }
         else{
             HP += amt;
@@ -149,7 +155,7 @@ public abstract class Unit implements GameObject_IF, Cloneable{
     
     public String toString(){
         return getArmy().getName()
-                + "\n " + getName() 
+                + "\n " + army.getRace().getRaceName() + " " + getName() 
                 + "\n HP: " + getHP() + "/" + maxHP
                 + "\n Attack: " + getAttack()
                 + "\n Defense: " + getDefense()

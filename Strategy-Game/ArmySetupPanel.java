@@ -31,18 +31,21 @@ public class ArmySetupPanel extends JPanel{
     private Army current_army;
     private Unit_Factory current_unit_factory;
     
+    private Dimension default_button_size;
+    
     public ArmySetupPanel(GameGUI the_gui){
         this.setPreferredSize(new Dimension(400, 700));
         this.the_gui = the_gui;
+        default_button_size = new Dimension(200, 50);
         
         race_panel = new JPanel();
         race_panel.setPreferredSize(new Dimension(300, 200));
         JButton choose_elf = new JButton("Elves - Faster");
         JButton choose_dwarf = new JButton("Dwarves - Tougher");
         JButton choose_orc = new JButton("Orcs - Stronger");
-        choose_elf.setPreferredSize(new Dimension(200, 50));
-        choose_dwarf.setPreferredSize(new Dimension(200, 50));
-        choose_orc.setPreferredSize(new Dimension(200, 50));
+        choose_elf.setPreferredSize(default_button_size);
+        choose_dwarf.setPreferredSize(default_button_size);
+        choose_orc.setPreferredSize(default_button_size);
         choose_elf.addActionListener(new RacePickListener(Elf_Race.getElfArchetype()));
         choose_dwarf.addActionListener(new RacePickListener(Dwarf_Race.getDwarfArchetype()));
         choose_orc.addActionListener(new RacePickListener(Orc_Race.getOrcArchetype()));
@@ -52,24 +55,10 @@ public class ArmySetupPanel extends JPanel{
         
         unit_panel = new JPanel();
         unit_panel.setPreferredSize(new Dimension(300, 270));
-        JButton choose_infantry = new JButton("Infantry - cost " + Infantry.getUnitCost());
-        JButton choose_cavalry = new JButton("Cavalry - cost " + Cavalry.getUnitCost());
-        JButton choose_archers = new JButton("Archers - cost " + Archers.getUnitCost());
-        choose_infantry.setPreferredSize(new Dimension(200, 50));
-        choose_cavalry.setPreferredSize(new Dimension(200, 50));
-        choose_archers.setPreferredSize(new Dimension(200, 50));
-        choose_infantry.addActionListener(new UnitPickListener("Infantry"));
-        choose_cavalry.addActionListener(new UnitPickListener("Cavalry"));
-        choose_archers.addActionListener(new UnitPickListener("Archers"));
-        
+
         remaining_points = new JLabel();
         remaining_points.setPreferredSize(new Dimension(300, 40));
         remaining_points.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        unit_panel.add(remaining_points);
-        unit_panel.add(choose_infantry);
-        unit_panel.add(choose_cavalry);
-        unit_panel.add(choose_archers);
         
         current_army_name = new JLabel();
         current_army_name.setPreferredSize(new Dimension(300, 40));
@@ -78,8 +67,6 @@ public class ArmySetupPanel extends JPanel{
         finish_setup = new JButton("Finish");
         finish_setup.setPreferredSize(new Dimension(100, 50));
         finish_setup.addActionListener(new FinishArmySetupListener());
-        
-        
     }
     
     public void startArmySetup(){
@@ -92,6 +79,18 @@ public class ArmySetupPanel extends JPanel{
         changeArmy();
     }
     
+    private void updateUnitCatalog(){
+        unit_panel.removeAll();
+        unit_panel.add(remaining_points);
+        Unit[] catalog = current_unit_factory.getUnitCatalog();
+        for(Unit u : catalog){
+            JButton new_button = new JButton(u.getName() + " - cost " + u.getCost());
+            new_button.setPreferredSize(default_button_size);
+            new_button.addActionListener(new UnitPickListener(u.getName()));
+            unit_panel.add(new_button);
+        }
+    }
+    
     private void changeArmy(){
         //Won't be visible until a race is selected.
         unit_panel.setVisible(false);
@@ -99,6 +98,7 @@ public class ArmySetupPanel extends JPanel{
         //If the current army's race is NULL, that means this army hasn't been set up yet.
         if(current_army.getRace() == null){
             current_unit_factory = current_army.createUnitFactory();
+            updateUnitCatalog();
             current_army_name.setText(current_army.getName());
             remaining_points.setText(current_army.getPointsLeft() + " points left");
             the_gui.highlightStartingPositions(current_army);
