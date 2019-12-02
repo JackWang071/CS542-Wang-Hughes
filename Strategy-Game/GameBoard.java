@@ -17,6 +17,7 @@ import java.util.Random;
 public class GameBoard extends JPanel {
     private GridSquare[][] grid;
     private GameGUI the_gui;
+    private static final int PLACEMENT_MARGIN = 2;
     
     public GameBoard(GameGUI the_gui){
         this.the_gui = the_gui;
@@ -50,8 +51,8 @@ public class GameBoard extends JPanel {
         int counter = 0;
         Random rng = new Random();
         do{
-            for(int i = 2; i < grid.length-2; i++){
-                for(int j = 2; j < grid.length-2; j++){
+            for(int i = PLACEMENT_MARGIN; i < grid.length-PLACEMENT_MARGIN; i++){
+                for(int j = PLACEMENT_MARGIN; j < grid.length-PLACEMENT_MARGIN; j++){
                     if(counter >= buildings.size()){
                         break;
                     }
@@ -97,29 +98,29 @@ public class GameBoard extends JPanel {
         int bottom = 0;
         
         if(army.getArmyColor() == Color.RED){
-            top = 2;
-            bottom = grid.length - 2;
+            top = PLACEMENT_MARGIN;
+            bottom = grid.length - PLACEMENT_MARGIN;
             left = 0;
-            right = 2;
+            right = PLACEMENT_MARGIN;
         }
         else if(army.getArmyColor() == Color.YELLOW){
-            top = 2;
-            bottom = grid.length - 2;
-            left = grid.length - 2;
+            top = PLACEMENT_MARGIN;
+            bottom = grid.length - PLACEMENT_MARGIN;
+            left = grid.length - PLACEMENT_MARGIN;
             right = grid.length;
         }
         else if(army.getArmyColor() == Color.GREEN){
             top = 0;
-            bottom = 2;
-            left = 2;
-            right = grid.length - 2;
+            bottom = PLACEMENT_MARGIN;
+            left = PLACEMENT_MARGIN;
+            right = grid.length - PLACEMENT_MARGIN;
             
         }
         else if(army.getArmyColor() == Color.BLUE){
-            top = grid.length - 2;
+            top = grid.length - PLACEMENT_MARGIN;
             bottom = grid.length;
-            left = 2;
-            right = grid.length - 2;
+            left = PLACEMENT_MARGIN;
+            right = grid.length - PLACEMENT_MARGIN;
         }
         
         int[] this_coordinate = new int[]{0, 0};

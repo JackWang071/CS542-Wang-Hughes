@@ -49,9 +49,9 @@ public class Cs542_project {
             icon1 = new JLabel(new ImageIcon(img));
             icon2 = new JLabel(new ImageIcon(img2));
             
-            button.add(icon1);
+            //button.add(icon1);
             button.add(icon2);
-            button.setBackground(Color.YELLOW);
+            //button.setBackground(Color.YELLOW);
             
         } 
         catch (Exception ex) {

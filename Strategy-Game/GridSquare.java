@@ -5,6 +5,7 @@
  */
 package cs542_project;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -22,6 +23,9 @@ public class GridSquare extends JButton{
     private MoveHereListener move_here;
     private AttackHereListener attack_here;
     private TileSelectListener select_here;
+    
+    private JLabel unit_icon;
+    private JLabel building_icon;
     
     public GridSquare(int[] position, GameBoard the_board){
         this.position = position;
