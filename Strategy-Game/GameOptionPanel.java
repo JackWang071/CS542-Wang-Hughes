@@ -54,6 +54,8 @@ public class GameOptionPanel extends JPanel {
         current_army_name.setOpaque(true);
         current_army_name.setPreferredSize(new Dimension(300, 40));
         current_army_name.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        
         current_unit_info = new TextArea(20, 40);
     }
     
