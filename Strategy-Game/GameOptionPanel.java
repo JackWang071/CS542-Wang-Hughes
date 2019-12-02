@@ -7,9 +7,10 @@ package cs542_project;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
-import java.awt.TextField;
 import java.awt.TextArea;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 /**
@@ -24,7 +25,7 @@ public class GameOptionPanel extends JPanel {
     private MoveOptionListener move_option_listener;
     
     private TextArea current_unit_info;
-    private TextField current_army_name;
+    private JLabel current_army_name;
     
     public GameOptionPanel(GameGUI the_gui){
         this.the_gui = the_gui;
@@ -49,7 +50,10 @@ public class GameOptionPanel extends JPanel {
         options_menu.add(end_turn);
         options_menu.setPreferredSize(new Dimension(400, 200));
         
-        current_army_name = new TextField();
+        current_army_name = new JLabel();
+        current_army_name.setOpaque(true);
+        current_army_name.setPreferredSize(new Dimension(300, 40));
+        current_army_name.setHorizontalAlignment(SwingConstants.CENTER);
         current_unit_info = new TextArea(20, 40);
     }
     
@@ -63,6 +67,7 @@ public class GameOptionPanel extends JPanel {
     
     public void clearOptionsPanel(){
         current_army_name.setText("Turn: " + the_gui.getManager().getCurrentArmy().getName());
+        current_army_name.setBackground(the_gui.getManager().getCurrentArmy().getArmyColor());
         attack_option_listener.setCurrentUnit(null);
         move_option_listener.setCurrentUnit(null);
         current_unit_info.setText("");

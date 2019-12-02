@@ -17,6 +17,8 @@ public interface GameManager_IF {
     
     public void createArmies(int num_players);
     public Army getCurrentArmy();
+    public void updateArmies();
+    public boolean checkEndGame();
     public Army nextArmy();
     
     public void setArmyPoints(int seed_value);

@@ -27,6 +27,11 @@ public class NextTurnServer implements LoadableServer_IF{
         //updates game option board
         //updates all units in the current army
         
+        env.updateArmies();
+        if(env.checkEndGame() == true){
+            env.finishServer();
+            return;
+        }
         env.nextArmy();
         env.getGUI().clearBoard();
         env.getGUI().clearOptionsPanel();

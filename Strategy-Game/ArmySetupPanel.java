@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.TextField;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 /**
  *
  * @author Jack and Duran
@@ -22,8 +23,8 @@ public class ArmySetupPanel extends JPanel{
     private JPanel race_panel;
     private JPanel unit_panel;
     
-    private TextField remaining_points;
-    private TextField current_army_name;
+    private JLabel remaining_points;
+    private JLabel current_army_name;
     
     private JButton finish_setup;
     
@@ -50,7 +51,7 @@ public class ArmySetupPanel extends JPanel{
         race_panel.add(choose_orc);
         
         unit_panel = new JPanel();
-        unit_panel.setPreferredSize(new Dimension(300, 200));
+        unit_panel.setPreferredSize(new Dimension(300, 270));
         JButton choose_infantry = new JButton("Infantry - cost " + Infantry.getUnitCost());
         JButton choose_cavalry = new JButton("Cavalry - cost " + Cavalry.getUnitCost());
         JButton choose_archers = new JButton("Archers - cost " + Archers.getUnitCost());
@@ -60,12 +61,19 @@ public class ArmySetupPanel extends JPanel{
         choose_infantry.addActionListener(new UnitPickListener("Infantry"));
         choose_cavalry.addActionListener(new UnitPickListener("Cavalry"));
         choose_archers.addActionListener(new UnitPickListener("Archers"));
+        
+        remaining_points = new JLabel();
+        remaining_points.setPreferredSize(new Dimension(300, 40));
+        remaining_points.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        unit_panel.add(remaining_points);
         unit_panel.add(choose_infantry);
         unit_panel.add(choose_cavalry);
         unit_panel.add(choose_archers);
         
-        remaining_points = new TextField();
-        current_army_name = new TextField();
+        current_army_name = new JLabel();
+        current_army_name.setPreferredSize(new Dimension(300, 40));
+        current_army_name.setHorizontalAlignment(SwingConstants.CENTER);
         
         finish_setup = new JButton("Finish");
         finish_setup.setPreferredSize(new Dimension(100, 50));
@@ -78,7 +86,6 @@ public class ArmySetupPanel extends JPanel{
         this.add(current_army_name);
         this.add(race_panel);
         this.add(unit_panel);
-        this.add(remaining_points);
         
         this.add(finish_setup);
         

@@ -7,6 +7,8 @@ package cs542_project;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import java.util.List;
 /**
  *
@@ -94,5 +96,15 @@ public class GameGUI extends JFrame {
     
     public GameManager_IF getManager(){
         return game_manager;
+    }
+    
+    public void declareVictory(){
+        remove(board);
+        remove(game_options_panel);
+        String victor = game_manager.getCurrentArmy().getName();
+        JLabel endgame_message = new JLabel("Victory! The winner is " + victor + ".", SwingConstants.CENTER);
+        add(endgame_message);
+        revalidate();
+        repaint();
     }
 }

@@ -6,6 +6,8 @@
 package cs542_project;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -33,9 +35,13 @@ public class GameStartPanel extends JPanel {
         this.the_gui = the_gui;
         
         this.final_board_size = 0;
-        int final_num_players = 0;
+        this.final_num_players = 0;
         
         board_size_selection = new JPanel();
+        board_size_selection.setPreferredSize(new Dimension(1200, 150));
+        JLabel board_size_selection_title = new JLabel("Choose Board Size", SwingConstants.CENTER);
+        board_size_selection_title.setPreferredSize(new Dimension(1200, 30));
+        board_size_selection.add(board_size_selection_title);
         
         JButton option_8x8 = new JButton("8x8");
         JButton option_10x10 = new JButton("10x10");
@@ -51,6 +57,10 @@ public class GameStartPanel extends JPanel {
         board_size_selection.add(option_12x12);
 
         num_players_selection = new JPanel();
+        num_players_selection.setPreferredSize(new Dimension(1200, 200));
+        JLabel num_players_selection_title = new JLabel("Choose Number of Players", SwingConstants.CENTER);
+        num_players_selection_title.setPreferredSize(new Dimension(1200, 30));
+        num_players_selection.add(num_players_selection_title);
         
         JButton two_players = new JButton("2 Players");
         JButton three_players = new JButton("3 Players");

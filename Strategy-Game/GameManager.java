@@ -15,7 +15,7 @@ import java.util.ListIterator;
 public class GameManager implements GameManager_IF {
     
     private GameGUI gui;
-    private List<Army> factions;
+    private List<Army> armies;
     private List<Building> buildings;
     private LoadableServer_IF server;
     
@@ -25,7 +25,7 @@ public class GameManager implements GameManager_IF {
     
     public GameManager(){
         gui = new GameGUI(this);
-        factions = new ArrayList();
+        armies = new ArrayList();
         buildings = new ArrayList();
         iterator_index = 0;
         army_points = 0;
@@ -52,18 +52,36 @@ public class GameManager implements GameManager_IF {
     
     public void createArmies(int num_players){
         for(int i = 0; i < num_players; i++){
-            factions.add(new Army(army_points));
+            armies.add(new Army(army_points));
         }
     }
     
+    public void updateArmies(){
+        int counter = 0;
+        while(counter < armies.size()){
+            if(armies.get(counter).getNumActiveUnits() <= 0){
+                armies.remove(counter);
+            }
+            else{
+                counter += 1;
+            }
+        }
+    }
+    
+    public boolean checkEndGame(){
+        if(armies.size() <= 1){
+            gui.declareVictory();
+            return true;
+        }
+        return false;
+    }
+    
     public Army nextArmy(){
-        if(iterator_index >= factions.size()){
+        if(iterator_index >= armies.size()){
             iterator_index = 0;
         }
-        do{
-            current_army = factions.get(iterator_index);
-            iterator_index += 1;
-        } while(current_army.getNumActiveUnits() <= 0);
+        current_army = armies.get(iterator_index);
+        iterator_index += 1;
         return current_army;
     }
     
