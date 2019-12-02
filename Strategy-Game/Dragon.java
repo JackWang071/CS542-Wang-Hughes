@@ -12,7 +12,7 @@ package cs542_project;
 public class Dragon extends Unit {
     private static final String UNIT_NAME = "Dragon Rider";
     private static final int BASE_HP = 100;
-    private static final int UNIT_COST = 40;
+    private static final int UNIT_COST = 30;
     private static final int UNIT_RANGE = 3;
     private static final int BASE_MOVEMENT = 3;
     private static final int BASE_ATTACK = 30;

@@ -25,16 +25,16 @@ public class Unit_Factory {
     
     public Unit createUnit(String type) {
         try{
-            if(type.equals(archers_proto.getName()) && archers_proto.getCost() <= archers_proto.getArmy().getPointsLeft()){
+            if(can_be_created(type, archers_proto)){
                 return (Unit) archers_proto.clone();
             }
-            else if (type.equals(cavalry_proto.getName()) && cavalry_proto.getCost() <= cavalry_proto.getArmy().getPointsLeft()){
+            else if (can_be_created(type, cavalry_proto)){
                 return (Unit) cavalry_proto.clone();
             }
-            else if (type.equals(infantry_proto.getName()) && infantry_proto.getCost() <= infantry_proto.getArmy().getPointsLeft()){
+            else if (can_be_created(type, infantry_proto)){
                 return (Unit) infantry_proto.clone();
             }
-            else if (type.equals(dragon_proto.getName()) && dragon_proto.getCost() <= dragon_proto.getArmy().getPointsLeft()){
+            else if (can_be_created(type, dragon_proto)){
                 return (Unit) dragon_proto.clone();
             }
         }
@@ -44,5 +44,9 @@ public class Unit_Factory {
     
     public Unit[] getUnitCatalog(){
         return new Unit[]{archers_proto, cavalry_proto, infantry_proto, dragon_proto};
+    }
+    
+    private boolean can_be_created(String type, Unit u){
+        return type.equals(u.getName()) && u.getCost() <= u.getArmy().getPointsLeft();
     }
 }
