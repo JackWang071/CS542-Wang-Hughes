@@ -14,7 +14,7 @@ public class Archers extends Unit {
     private static final int UNIT_COST = 10;
     private static final int UNIT_RANGE = 3;
     private static final int BASE_MOVEMENT = 1;
-    private static final int BASE_ATTACK = 20;
+    private static final int BASE_ATTACK = 30;
     private static final int BASE_DEFENSE = 5;
     
     private static final ObjectIcon ARCHERS_ICON = new ObjectIcon("Arc");

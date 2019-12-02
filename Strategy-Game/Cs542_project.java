@@ -19,5 +19,8 @@ public class Cs542_project {
      */
     public static void main(String[] args) {
         GameManager test = new GameManager();
+        
+        
+        
     }
 }
