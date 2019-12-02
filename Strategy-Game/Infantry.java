@@ -34,4 +34,12 @@ public class Infantry extends Unit {
     public static int getUnitCost(){
         return UNIT_COST;
     }
+    
+    public void attack(Unit target){
+        if(can_attack()){
+            target.changeHP(-(getAttack() - getAttackModifier(target)));
+        }
+        finished_attacking();
+        finished_moving();
+    }
 }

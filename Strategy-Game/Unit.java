@@ -97,7 +97,6 @@ public abstract class Unit implements GameObject_IF, Cloneable{
             target.changeHP(-(getAttack() - getAttackModifier(target)));
         }
         finished_attacking();
-        finished_moving();
     }
     
     protected int getAttackModifier(Unit target){
