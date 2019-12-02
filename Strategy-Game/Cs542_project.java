@@ -27,8 +27,8 @@ public class Cs542_project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //GameManager test = new GameManager();
-        
+        GameManager test = new GameManager();
+        /*
         JFrame tester = new JFrame();
         tester.setLayout(new BorderLayout());
         tester.setSize(500, 500);
@@ -58,5 +58,6 @@ public class Cs542_project {
             System.out.println(ex);
         }
         tester.setVisible(true);
+        */
     }
 }

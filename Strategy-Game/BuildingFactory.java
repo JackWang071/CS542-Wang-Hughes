@@ -25,10 +25,10 @@ public class BuildingFactory {
     
     public Building createBuilding(String type) {
         try{
-            if(type.equals("Village")){
+            if(type.equals(village_proto.getName())){
                 return (Building) village_proto.clone();
             }
-            else if (type.equals("Fort")){
+            else if (type.equals(fort_proto.getName())){
                 return (Building) fort_proto.clone();
             }
         }
@@ -38,10 +38,10 @@ public class BuildingFactory {
     
     public Building getRandomBuilding(){
         if(rng.nextFloat() <= 0.5){
-            return createBuilding("Village");
+            return createBuilding(village_proto.getName());
         }
         else{
-            return createBuilding("Fort");
+            return createBuilding(fort_proto.getName());
         }
     }
 }

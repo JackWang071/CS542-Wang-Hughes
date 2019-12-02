@@ -30,8 +30,4 @@ public class Cavalry extends Unit {
                 UNIT_COST,
                 CAVALRY_ICON);
     }
-    
-    public static int getUnitCost(){
-        return UNIT_COST;
-    }
 }

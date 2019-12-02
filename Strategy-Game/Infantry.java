@@ -30,11 +30,7 @@ public class Infantry extends Unit {
                 UNIT_COST,
                 INFANTRY_ICON);
     }
-    
-    public static int getUnitCost(){
-        return UNIT_COST;
-    }
-    
+
     public void attack(Unit target){
         if(can_attack()){
             target.changeHP(-(getAttack()));

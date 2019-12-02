@@ -6,7 +6,6 @@
 package cs542_project;
 import javax.swing.JPanel;
 import java.awt.Dimension;
-import java.awt.BorderLayout;
 import java.awt.TextArea;
 import javax.swing.JButton;
 import javax.swing.JLabel;

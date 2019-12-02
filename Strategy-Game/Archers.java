@@ -30,8 +30,4 @@ public class Archers extends Unit {
                 UNIT_COST,
                 ARCHERS_ICON);
     }
-    
-    public static int getUnitCost(){
-        return UNIT_COST;
-    }
 }

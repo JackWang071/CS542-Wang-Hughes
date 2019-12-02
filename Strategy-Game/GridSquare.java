@@ -33,6 +33,11 @@ public class GridSquare extends JButton{
         move_here = new MoveHereListener();
         attack_here = new AttackHereListener();
         select_here = new TileSelectListener();
+        
+        unit_icon = new JLabel();
+        building_icon = new JLabel();
+        //add(unit_icon);
+        //add(building_icon);
     }
     
     public int[] getCoordinates(){
