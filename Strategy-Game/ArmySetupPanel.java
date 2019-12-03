@@ -122,7 +122,7 @@ public class ArmySetupPanel extends JPanel{
             for(Component c : race_panel.getComponents()){
                 c.setBackground(null);
                 if(c.equals(e.getSource())){
-                    c.setBackground(Color.GREEN);
+                    c.setBackground(Color.CYAN);
                 }
             }
         }

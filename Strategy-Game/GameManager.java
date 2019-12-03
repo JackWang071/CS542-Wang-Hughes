@@ -52,6 +52,7 @@ public class GameManager implements GameManager_IF {
     
     public void createArmies(int num_players){
         for(int i = 0; i < num_players; i++){
+            System.out.println();
             armies.add(new Army(army_points));
         }
     }

@@ -18,8 +18,6 @@ public class ObjectIcon {
     private String link;
     private ImageIcon the_icon;
     
-    private static ObjectIcon EMPTY_ICON = new ObjectIcon("");
-    
     public ObjectIcon(String link){
         this.link = link;
         try{
@@ -34,7 +32,8 @@ public class ObjectIcon {
         return link;
     }
     
-    public static ObjectIcon getEmptyIcon(){
-        return EMPTY_ICON;
+    public ImageIcon returnIcon(){
+        return the_icon;
     }
+    
 }

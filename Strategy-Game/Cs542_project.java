@@ -27,8 +27,15 @@ public class Cs542_project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GameManager test = new GameManager();
-        /*
+        //GameManager test = new GameManager();
+        
+        
+        IconTester();
+        
+        
+    }
+    
+    public static void IconTester(){
         JFrame tester = new JFrame();
         tester.setLayout(new BorderLayout());
         tester.setSize(500, 500);
@@ -40,24 +47,23 @@ public class Cs542_project {
         button.setPreferredSize(new Dimension(100, 100));
         tpanel.add(button, BorderLayout.NORTH);
         
-        JLabel icon1;
-        JLabel icon2;
+        JLabel icon1 = new JLabel();
+        JLabel icon2 = new JLabel();
         
         try {
-            Image img = ImageIO.read(new File("projectgraphics/Infantry.png"));
+            Image img = ImageIO.read(new File("projectgraphics/Cavalry.png"));
             Image img2 = ImageIO.read(new File("projectgraphics/Village.png"));
-            icon1 = new JLabel(new ImageIcon(img));
-            icon2 = new JLabel(new ImageIcon(img2));
+            icon1.setIcon(new ImageIcon(img));
+            icon2.setIcon(new ImageIcon(img2));
             
-            //button.add(icon1);
-            button.add(icon2);
-            //button.setBackground(Color.YELLOW);
+            button.add(icon1);
+            //button.add(icon2);
+            button.setBackground(Color.RED);
             
         } 
         catch (Exception ex) {
             System.out.println(ex);
         }
         tester.setVisible(true);
-        */
     }
 }

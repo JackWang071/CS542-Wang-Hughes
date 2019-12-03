@@ -36,15 +36,12 @@ public class GridSquare extends JButton{
         
         unit_icon = new JLabel();
         building_icon = new JLabel();
-        //add(unit_icon);
-        //add(building_icon);
+        add(unit_icon);
+        add(building_icon);
     }
     
     public int[] getCoordinates(){
         return position;
-    }
-    public ObjectIcon getObjectIcon(){
-        return ObjectIcon.getEmptyIcon();
     }
     
     public void activateListeners(){
@@ -53,8 +50,21 @@ public class GridSquare extends JButton{
         addActionListener(select_here);
     }
     
+    public void redrawIcons2(){
+        if(building != null){
+            building_icon.setIcon(building.getObjectIcon().returnIcon());
+        }
+        if(occupier != null){
+            unit_icon.setIcon(occupier.getObjectIcon().returnIcon());
+            setBackground(occupier.getArmy().getArmyColor());
+        }
+        else{
+            setBackground(null);
+        }
+    }
+    
     public void redrawIcons(){
-        String combined_icon = getObjectIcon().drawThis();
+        String combined_icon = "";
         if(building != null){
             combined_icon += building.getObjectIcon().drawThis();
         }
@@ -96,7 +106,7 @@ public class GridSquare extends JButton{
         int distance = Math.abs(actor_pos[0] - position[0]) + Math.abs(actor_pos[1] - position[1]);
         if(getOccupier() == null && distance > 0 && distance <= actor_moveDist){
             move_here.setActor(actor);
-            setBackground(Color.CYAN);
+            setBackground(Color.BLUE);
         }
         else{
             move_here.setActor(null);

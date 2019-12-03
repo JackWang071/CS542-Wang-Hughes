@@ -21,7 +21,7 @@ public class Army {
     private Color army_color;
     
     private static int ARMY_COUNT = 0;
-    private static Color[] available_army_colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE};
+    private static Color[] available_army_colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN};
     
     public Army(int unit_cost_points){
         this.unit_cost_points = unit_cost_points;

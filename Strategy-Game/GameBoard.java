@@ -116,7 +116,7 @@ public class GameBoard extends JPanel {
             right = grid.length - PLACEMENT_MARGIN;
             
         }
-        else if(army.getArmyColor() == Color.BLUE){
+        else if(army.getArmyColor() == Color.CYAN){
             top = grid.length - PLACEMENT_MARGIN;
             bottom = grid.length;
             left = PLACEMENT_MARGIN;

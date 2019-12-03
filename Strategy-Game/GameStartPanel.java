@@ -99,7 +99,7 @@ public class GameStartPanel extends JPanel {
             for(Component c : board_size_selection.getComponents()){
                 c.setBackground(null);
                 if(c.equals(e.getSource())){
-                    c.setBackground(Color.GREEN);
+                    c.setBackground(Color.CYAN);
                 }
             }
         }
@@ -117,7 +117,7 @@ public class GameStartPanel extends JPanel {
             for(Component c : num_players_selection.getComponents()){
                 c.setBackground(null);
                 if(c.equals(e.getSource())){
-                    c.setBackground(Color.GREEN);
+                    c.setBackground(Color.CYAN);
                 }
             }
         }
