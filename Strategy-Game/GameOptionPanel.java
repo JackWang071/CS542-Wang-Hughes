@@ -122,7 +122,6 @@ public class GameOptionPanel extends JPanel {
             //Tells GameManager to run the AttackServer?
             if(actor != null){
                 the_gui.getManager().loadServer(AttackServer.getServer(actor));
-                setCurrentUnit(null);
             }
         }
     }    
@@ -145,7 +144,6 @@ public class GameOptionPanel extends JPanel {
             //Tells GameManager to run the MoveServer?
             if(actor != null){
                 the_gui.getManager().loadServer(MoveServer.getServer(actor));
-                setCurrentUnit(null);
             }
         }
     }
