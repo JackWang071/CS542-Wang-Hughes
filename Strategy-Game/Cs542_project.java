@@ -27,12 +27,7 @@ public class Cs542_project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //GameManager test = new GameManager();
-        
-        
-        IconTester();
-        
-        
+        GameManager test = new GameManager();
     }
     
     public static void IconTester(){

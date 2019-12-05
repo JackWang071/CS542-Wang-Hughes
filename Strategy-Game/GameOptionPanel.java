@@ -19,6 +19,10 @@ import java.awt.event.ActionEvent;
 public class GameOptionPanel extends JPanel {
     private GameGUI the_gui;
     private JPanel options_menu;
+    
+    private JButton attack_option;
+    private JButton move_option;
+    private JButton end_turn;
 
     private AttackOptionListener attack_option_listener;
     private MoveOptionListener move_option_listener;
@@ -33,9 +37,9 @@ public class GameOptionPanel extends JPanel {
         attack_option_listener = new AttackOptionListener();
         move_option_listener = new MoveOptionListener();
         
-        JButton attack_option = new JButton("Attack");
-        JButton move_option = new JButton("Move");
-        JButton end_turn = new JButton("End Turn");
+        attack_option = new JButton("Attack");
+        move_option = new JButton("Move");
+        end_turn = new JButton("End Turn");
         attack_option.addActionListener(attack_option_listener);
         move_option.addActionListener(move_option_listener);
         end_turn.addActionListener(new EndTurnListener());
@@ -81,8 +85,12 @@ public class GameOptionPanel extends JPanel {
         if(g.getOccupier() != null){
             tile_info += g.getOccupier().toString();
             if(g.getOccupier().getArmy().equals(the_gui.getManager().getCurrentArmy())){
-                attack_option_listener.setCurrentUnit(g.getOccupier());
-                move_option_listener.setCurrentUnit(g.getOccupier());
+                if(g.getOccupier().can_attack()){
+                    attack_option_listener.setCurrentUnit(g.getOccupier());
+                }
+                if(g.getOccupier().can_move()){
+                    move_option_listener.setCurrentUnit(g.getOccupier());
+                }
             }
         }
         else{
@@ -99,7 +107,16 @@ public class GameOptionPanel extends JPanel {
     private class AttackOptionListener implements ActionListener{
         private Unit actor;
         public void setCurrentUnit(Unit actor){
-            this.actor = actor;
+            if(actor == null){
+                this.actor = null;
+                attack_option.setVisible(false);
+            }
+            else{
+                if(actor.can_attack()){
+                    this.actor = actor;
+                    attack_option.setVisible(true);
+                }
+            }
         }
         public void actionPerformed(ActionEvent e){
             //Tells GameManager to run the AttackServer?
@@ -113,7 +130,16 @@ public class GameOptionPanel extends JPanel {
     private class MoveOptionListener implements ActionListener{
         private Unit actor;
         public void setCurrentUnit(Unit actor){
-            this.actor = actor;
+            if(actor == null){
+                this.actor = null;
+                move_option.setVisible(false);
+            }
+            else{
+                if(actor.can_move()){
+                    this.actor = actor;
+                    move_option.setVisible(true);
+                }
+            }
         }
         public void actionPerformed(ActionEvent e){
             //Tells GameManager to run the MoveServer?
