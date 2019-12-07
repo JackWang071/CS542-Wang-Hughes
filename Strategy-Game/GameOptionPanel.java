@@ -23,6 +23,7 @@ public class GameOptionPanel extends JPanel {
     private JButton attack_option;
     private JButton move_option;
     private JButton end_turn;
+    private JButton save_game;
 
     private AttackOptionListener attack_option_listener;
     private MoveOptionListener move_option_listener;
@@ -47,6 +48,10 @@ public class GameOptionPanel extends JPanel {
         move_option.setPreferredSize(new Dimension(100, 50));
         end_turn.setPreferredSize(new Dimension(100, 50));
         
+        save_game = new JButton("Save");
+        save_game.addActionListener(new SaveGameListener());
+        save_game.setPreferredSize(new Dimension(100, 50));
+        
         options_menu = new JPanel();
         options_menu.add(attack_option);
         options_menu.add(move_option);
@@ -58,13 +63,13 @@ public class GameOptionPanel extends JPanel {
         current_army_name.setPreferredSize(new Dimension(300, 40));
         current_army_name.setHorizontalAlignment(SwingConstants.CENTER);
         
-        
         current_unit_info = new TextArea(20, 40);
     }
     
     public void startActualGame(){
         add(current_army_name);
         add(options_menu);
+        add(save_game);
         add(current_unit_info);
         
         clearOptionsPanel();
@@ -145,6 +150,12 @@ public class GameOptionPanel extends JPanel {
             if(actor != null){
                 the_gui.getManager().loadServer(MoveServer.getServer(actor));
             }
+        }
+    }
+    
+    private class SaveGameListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            the_gui.getManager().loadServer(SaveGameServer.getServer());
         }
     }
     

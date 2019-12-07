@@ -27,4 +27,6 @@ public interface GameManager_IF {
     public void loadServer(LoadableServer_IF server);
     public void finishServer();
     
+    public void outputSaveFile();
+    public void loadSaveFile();
 }

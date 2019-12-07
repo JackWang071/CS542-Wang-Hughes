@@ -6,7 +6,6 @@
 package cs542_project;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 /**
  *
@@ -107,5 +106,13 @@ public class GameManager implements GameManager_IF {
     public void finishServer(){
         server.setEnvironment(null);
         server = null;
+    }
+    
+    public void loadSaveFile(){
+        
+    }
+    
+    public void outputSaveFile(){
+        
     }
 }
