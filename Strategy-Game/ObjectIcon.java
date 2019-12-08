@@ -28,6 +28,8 @@ public class ObjectIcon {
         }
     }
     
+    
+    
     public String drawThis(){
         return link;
     }
@@ -36,4 +38,8 @@ public class ObjectIcon {
         return the_icon;
     }
     
+    public ImageIcon returnIcon(int width, int height){
+        the_icon.setImage(the_icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
+        return the_icon;
+    }
 }

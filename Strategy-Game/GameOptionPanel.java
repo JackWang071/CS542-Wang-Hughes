@@ -156,12 +156,14 @@ public class GameOptionPanel extends JPanel {
     private class SaveGameListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             the_gui.getManager().loadServer(SaveGameServer.getServer());
+            current_unit_info.setText("Game saved.");
         }
     }
     
     private class EndTurnListener implements ActionListener {
         public void actionPerformed(ActionEvent e){
             the_gui.getManager().loadServer(NextTurnServer.getServer());
+            current_unit_info.setText("Next turn.");
         }
     }
     

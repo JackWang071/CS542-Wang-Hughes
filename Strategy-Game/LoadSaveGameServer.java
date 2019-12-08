@@ -9,16 +9,15 @@ package cs542_project;
  *
  * @author Jack
  */
-public class SaveGameServer implements LoadableServer_IF{
-    
-    private static SaveGameServer singleton;
+public class LoadSaveGameServer implements LoadableServer_IF {
+    private static LoadSaveGameServer singleton;
     private GameManager_IF env;
     
-    private SaveGameServer(){}
+    private LoadSaveGameServer(){}
     
-    public static SaveGameServer getServer(){
+    public static LoadSaveGameServer getServer(){
         if(singleton == null){
-            singleton = new SaveGameServer();
+            singleton = new LoadSaveGameServer();
         }
         return singleton;
     }
@@ -29,8 +28,8 @@ public class SaveGameServer implements LoadableServer_IF{
     
     public void start(){
         SaveData save = new SaveData();
-        env.saveData(save);
-        save.outputToFile();
+        save.loadFromFile();
+        env.loadSaveData(save);
         env.finishServer();
     }
 }

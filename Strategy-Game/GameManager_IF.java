@@ -17,7 +17,7 @@ public interface GameManager_IF {
     
     public void createArmies(int num_players);
     public Army getCurrentArmy();
-    public void updateArmies();
+    public void removeDestroyedArmies();
     public boolean checkEndGame();
     public Army nextArmy();
     
@@ -27,6 +27,6 @@ public interface GameManager_IF {
     public void loadServer(LoadableServer_IF server);
     public void finishServer();
     
-    public void outputSaveFile();
-    public void loadSaveFile();
+    public void saveData(SaveData save);
+    public void loadSaveData(SaveData save);
 }

@@ -9,7 +9,7 @@ package cs542_project;
  *
  * @author Jack and Duran
  */
-public interface GameObject_IF {
+public interface GameObject_IF extends Cloneable{
     GridSquare getPosition();
     void setStartingPosition(GridSquare startPos);
     ObjectIcon getObjectIcon();

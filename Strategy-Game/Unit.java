@@ -4,13 +4,12 @@
  * and open the template in the editor.
  */
 package cs542_project;
-import java.lang.Cloneable;
 
 /**
  *
  * @author Jack and Duran
  */
-public abstract class Unit implements GameObject_IF, Cloneable{
+public abstract class Unit implements GameObject_IF {
     
     private String unitName;
     private int attack;
@@ -48,7 +47,7 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         return position;
     }
     public void setStartingPosition(GridSquare startPos){
-        if(position == null){
+        if(position == null || startPos == null){
             position = startPos;
         }
     }
@@ -77,7 +76,7 @@ public abstract class Unit implements GameObject_IF, Cloneable{
         return defense + army.getRace().getDefBonus() + def_modifier;
     }
     public int getRange(){
-        return range;
+        return range + army.getRace().getRangeBonus();
     }
     public int getHP(){
         return HP;

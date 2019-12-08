@@ -107,4 +107,14 @@ public class GameGUI extends JFrame {
         revalidate();
         repaint();
     }
+    
+    public void saveData(SaveData save){
+        board.saveBoardDetails(save);
+    }
+    
+    public void loadSaveData(SaveData save){
+        showBoard(save.getBoardSize());
+        board.loadBoardDetails(save);
+        showReadyGame();
+    }
 }

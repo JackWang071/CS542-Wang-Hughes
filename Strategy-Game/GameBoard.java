@@ -136,5 +136,40 @@ public class GameBoard extends JPanel {
         }
     }
     
-
+    public void saveBoardDetails(SaveData save){
+        save.saveBoardSize(grid.length);
+        for(GridSquare[] row : grid){
+            for(GridSquare gs : row){
+                if(gs.getOccupier() != null){
+                    save.saveUnit(gs.getOccupier());
+                }
+            }
+        }
+    }
+    
+    public void loadBoardDetails(SaveData save){
+        List<Unit> units = save.getUnits();
+        List<Building> buildings = save.getBuildings();
+        
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid.length; j++){
+                for(Unit u : units){
+                    if(u.getPosition().getCoordinates()[0] == i && u.getPosition().getCoordinates()[1] == j){
+                        grid[i][j].setOccupier(u);
+                        u.setStartingPosition(null);
+                        u.setStartingPosition(grid[i][j]);
+                        break;
+                    }
+                }
+                for(Building b : buildings){
+                    if(b.getPosition().getCoordinates()[0] == i && b.getPosition().getCoordinates()[1] == j){
+                        grid[i][j].setBuilding(b);
+                        b.setStartingPosition(null);
+                        b.setStartingPosition(grid[i][j]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }

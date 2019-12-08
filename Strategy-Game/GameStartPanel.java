@@ -26,6 +26,7 @@ public class GameStartPanel extends JPanel {
     private GameGUI the_gui;
     
     private JButton gamestart_finish;
+    private JButton load_game;
     
     private int final_board_size;
     private int final_num_players;
@@ -79,12 +80,17 @@ public class GameStartPanel extends JPanel {
         gamestart_finish.setPreferredSize(new Dimension(100, 50));
         gamestart_finish.addActionListener(new FinishGameStartListener());
         
+        load_game = new JButton("Load Game");
+        load_game.setPreferredSize(new Dimension(200, 50));
+        load_game.addActionListener(new LoadGameListener());
+        
     }
     
     public void chooseStartingOptions(){
         this.add(board_size_selection);
         this.add(num_players_selection);
         this.add(gamestart_finish);
+        this.add(load_game);
     }
     
     private class BoardSizeListener implements ActionListener{
@@ -128,6 +134,12 @@ public class GameStartPanel extends JPanel {
             if(final_num_players > 0 && final_board_size > 0){
                 the_gui.getManager().loadServer(InitialSetupServer.getServer(final_board_size, final_num_players));
             }
+        }
+    }
+    
+    private class LoadGameListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            the_gui.getManager().loadServer(LoadSaveGameServer.getServer());
         }
     }
 }

@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package cs542_project;
-import java.lang.Cloneable;
 /**
  *
  * @author Jack
  */
-public abstract class Building implements GameObject_IF, Cloneable {
+public abstract class Building implements GameObject_IF {
     
     private int attack_boost;
     private int defense_boost;

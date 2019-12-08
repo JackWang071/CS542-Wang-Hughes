@@ -18,7 +18,7 @@ public class GameManager implements GameManager_IF {
     private List<Building> buildings;
     private LoadableServer_IF server;
     
-    private int iterator_index;
+    private int current_turn;
     private Army current_army;
     private int army_points;
     
@@ -26,7 +26,7 @@ public class GameManager implements GameManager_IF {
         gui = new GameGUI(this);
         armies = new ArrayList();
         buildings = new ArrayList();
-        iterator_index = 0;
+        current_turn = -1;
         army_points = 0;
         gui.showStartPanel();
     }
@@ -46,6 +46,9 @@ public class GameManager implements GameManager_IF {
     }
     
     public Army getCurrentArmy(){
+        if(current_army == null){
+            current_army = armies.get(current_turn);
+        }
         return current_army;
     }
     
@@ -56,7 +59,7 @@ public class GameManager implements GameManager_IF {
         }
     }
     
-    public void updateArmies(){
+    public void removeDestroyedArmies(){
         int counter = 0;
         while(counter < armies.size()){
             if(armies.get(counter).getNumActiveUnits() <= 0){
@@ -77,11 +80,11 @@ public class GameManager implements GameManager_IF {
     }
     
     public Army nextArmy(){
-        if(iterator_index >= armies.size()){
-            iterator_index = 0;
+        if(current_turn >= armies.size()-1){
+            current_turn = -1;
         }
-        current_army = armies.get(iterator_index);
-        iterator_index += 1;
+        current_turn += 1;
+        current_army = armies.get(current_turn);
         return current_army;
     }
     
@@ -108,11 +111,34 @@ public class GameManager implements GameManager_IF {
         server = null;
     }
     
-    public void loadSaveFile(){
-        
+    public void saveData(SaveData save){
+        save.saveCurrentTurn(current_turn);
+        save.saveArmies(armies);
+        save.saveBuildings(buildings);
+        gui.saveData(save);
     }
     
-    public void outputSaveFile(){
-        
+    public void loadSaveData(SaveData save){
+        //Set the current turn.
+        current_turn = save.getCurrentTurn();
+        //Set the available points for each army. Not entirely necessary.
+        setArmyPoints(save.getBoardSize());
+        //Recreate the armies.
+        createArmies(save.getNumArmies());
+        //Set the recreated armies' races.
+        save.getArmyRaces(armies);
+        //Load in unit information from the save file. This also populates each army with their units.
+        save.loadUnits(armies);
+        //Load in building information from the save file.
+        save.loadBuildings();
+        //Set the building 
+        buildings = save.getBuildings();
+        //Update the GUI and game board with the save file information.
+        //This will allow each unit and building to be placed at the locations where they were at the time of the save.
+        gui.loadSaveData(save);
+        //Update the units' HP and action statuses.
+        save.loadUnitStatuses();
+        //Remove any armies with no active units.
+        removeDestroyedArmies();
     }
 }
