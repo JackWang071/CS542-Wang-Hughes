@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 import java.util.List;
 import java.util.ArrayList;
@@ -14,6 +9,7 @@ import java.awt.Color;
  */
 public class Army {
     
+    //variables
     private Race race;
     private int unit_cost_points;
     private List<Unit> units;
@@ -23,6 +19,7 @@ public class Army {
     private static int ARMY_COUNT = 0;
     private static Color[] available_army_colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN};
     
+    //constructor
     public Army(int unit_cost_points){
         this.unit_cost_points = unit_cost_points;
         units = new ArrayList();
@@ -32,6 +29,7 @@ public class Army {
         name = "Army " + ARMY_COUNT;
     }
     
+    //helper functions
     public Color getArmyColor(){
         return army_color;
     }
@@ -40,7 +38,7 @@ public class Army {
     }
     public Race getRace(){
         return race;
-    }
+    }    
     public void setRace(Race race){
         this.race = race;
     }
@@ -48,6 +46,7 @@ public class Army {
         return unit_cost_points;
     }
 
+    //returns number of active units on board
     public int getNumActiveUnits(){
         int still_alive = units.size();
         for(Unit u : units){
@@ -58,10 +57,12 @@ public class Army {
         return still_alive;
     }
     
+    //creates unit factory
     public Unit_Factory createUnitFactory(){
         return new Unit_Factory(this);
     }
     
+    //adds unit and updates remaining points
     public void addUnit(Unit u){
         if(u != null){
             units.add(u);
@@ -69,6 +70,7 @@ public class Army {
         }
     }
     
+    //updates status of all units
     public void updateUnitStatuses(){
         for(int i = 0; i < units.size(); i++){
             units.get(i).updateStatus();
