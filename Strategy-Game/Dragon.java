@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 
 /**
@@ -10,6 +5,7 @@ package cs542_project;
  * @author Jack and Duran
  */
 public class Dragon extends Unit {
+    //variables
     private static final String UNIT_NAME = "Dragon Rider";
     private static final int BASE_HP = 100;
     private static final int UNIT_COST = 30;
@@ -18,8 +14,10 @@ public class Dragon extends Unit {
     private static final int BASE_ATTACK = 30;
     private static final int BASE_DEFENSE = 15;
     
+    //load in dragon icon
     private static final ObjectIcon DRAGON_ICON = new ObjectIcon("projectgraphics/Dragon.png");
     
+    //constructor
     public Dragon(Army army){
         super(UNIT_NAME, 
                 army, 
