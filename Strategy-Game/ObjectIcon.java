@@ -6,25 +6,36 @@
 package cs542_project;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 
 /**
  *
  * @author Jack and Duran
  */
-public class ObjectIcon {
+public class ObjectIcon extends ImageIcon{
     
     private String link;
-    private ImageIcon the_icon;
+    private BufferedImage the_image;
+    
+    private int img_width;
+    private int img_height;
     
     public ObjectIcon(String link){
         this.link = link;
+        
         try{
-            the_icon = new ImageIcon(ImageIO.read(new File(link)));
+            the_image = ImageIO.read(new File(link));
+            setImage(the_image);
+            img_width = the_image.getWidth();
+            img_height = the_image.getHeight();
         }
         catch(IOException ioe){
-            the_icon = new ImageIcon();
+            the_image = null;
+            img_width = 0;
+            img_height = 0;
         }
     }
     
@@ -35,11 +46,18 @@ public class ObjectIcon {
     }
     
     public ImageIcon returnIcon(){
-        return the_icon;
+        return this;
     }
     
-    public ImageIcon returnIcon(int width, int height){
-        the_icon.setImage(the_icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
-        return the_icon;
+    public ImageIcon returnIcon(double length){
+        if(Math.max(img_width, img_height) > length){
+            double scale_ratio = (length-30)/ (double) Math.max(img_width, img_height);
+        
+            int new_img_width = (int) (img_width * scale_ratio);
+            int new_img_height = (int) (img_height * scale_ratio);
+
+            setImage(the_image.getScaledInstance(new_img_width, new_img_height, java.awt.Image.SCALE_SMOOTH));
+        }
+        return this;
     }
 }

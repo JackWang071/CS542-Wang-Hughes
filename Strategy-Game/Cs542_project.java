@@ -25,9 +25,9 @@ public class Cs542_project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GameManager test = new GameManager();
+        //GameManager test = new GameManager();
         
-        //IconTester();
+        IconTester();
         
         //loadFromFile();
     }
@@ -99,17 +99,17 @@ public class Cs542_project {
         tester.add(tpanel);
         
         JButton button = new JButton();
-        button.setPreferredSize(new Dimension(100, 100));
+        button.setPreferredSize(new Dimension(80, 80));
         tpanel.add(button, BorderLayout.NORTH);
         
         JLabel icon1 = new JLabel();
         JLabel icon2 = new JLabel();
         
         ObjectIcon oi_1 = new ObjectIcon("projectgraphics/Cavalry3.png");
-        ObjectIcon oi_2 = new ObjectIcon("projectgraphics/Village.jpg");
+        ObjectIcon oi_2 = new ObjectIcon("projectgraphics/Fort.png");
         
         icon1.setIcon(oi_1.returnIcon());
-        icon2.setIcon(oi_2.returnIcon(90, 76));
+        icon2.setIcon(oi_2.returnIcon(80));
         
         //button.add(icon1);
         button.add(icon2);

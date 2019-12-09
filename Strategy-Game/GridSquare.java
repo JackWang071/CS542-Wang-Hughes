@@ -23,8 +23,8 @@ public class GridSquare extends JButton{
     private AttackHereListener attack_here;
     private TileSelectListener select_here;
     
-    private JLabel unit_icon;
-    private JLabel building_icon;
+    private JLabel unit_icon_wrapper;
+    private JLabel building_icon_wrapper;
     
     public GridSquare(int[] position, GameBoard the_board){
         this.position = position;
@@ -33,10 +33,10 @@ public class GridSquare extends JButton{
         attack_here = new AttackHereListener();
         select_here = new TileSelectListener();
         
-        unit_icon = new JLabel();
-        building_icon = new JLabel();
-        add(unit_icon);
-        add(building_icon);
+        unit_icon_wrapper = new JLabel();
+        building_icon_wrapper = new JLabel();
+        add(unit_icon_wrapper);
+        add(building_icon_wrapper);
     }
     
     public int[] getCoordinates(){
@@ -50,11 +50,13 @@ public class GridSquare extends JButton{
     }
     
     public void redrawIcons2(){
+        building_icon_wrapper.setIcon(null);
+        unit_icon_wrapper.setIcon(null);
         if(building != null){
-            building_icon.setIcon(building.getObjectIcon().returnIcon());
+            building_icon_wrapper.setIcon(building.getObjectIcon().returnIcon());
         }
         if(occupier != null){
-            unit_icon.setIcon(occupier.getObjectIcon().returnIcon());
+            unit_icon_wrapper.setIcon(occupier.getObjectIcon().returnIcon());
             setBackground(occupier.getArmy().getArmyColor());
         }
         else{
