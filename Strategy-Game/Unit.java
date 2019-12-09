@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cs542_project;
 
 /**
@@ -10,7 +6,7 @@ package cs542_project;
  * @author Jack and Duran
  */
 public abstract class Unit implements GameObject_IF {
-    
+    //variables
     private String unitName;
     private int attack;
     private int moveDist;
@@ -26,6 +22,7 @@ public abstract class Unit implements GameObject_IF {
     private boolean can_move;
     private boolean can_attack;
     
+    //constructor
     public Unit(String name, Army army, int hp, int attack, int move, int def, int range, int cost, ObjectIcon icon){
         this.unitName = name;
         this.army = army;
@@ -39,22 +36,29 @@ public abstract class Unit implements GameObject_IF {
         this.icon = icon;
     }
     
+    //clonable
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
     
+    //get unit's current position
     public GridSquare getPosition(){
         return position;
     }
+    
+    //spawn unit in valid location
     public void setStartingPosition(GridSquare startPos){
         if(position == null || startPos == null){
             position = startPos;
         }
     }
+    
+    //get unit icon
     public ObjectIcon getObjectIcon(){
         return icon;
     }
     
+    //getter functions
     public Army getArmy(){
         return army;
     }
@@ -88,6 +92,7 @@ public abstract class Unit implements GameObject_IF {
         return cost;
     }
     
+    //function for moving unit and updating new position
     public void move(GridSquare new_position){
         if(can_move()){
             position.setOccupier(null);
@@ -99,6 +104,7 @@ public abstract class Unit implements GameObject_IF {
         finished_moving();
     }
     
+    //function for attacking enemy unit
     public void attack(Unit target){
         if(can_attack()){
             target.changeHP(-(getAttack()));
@@ -106,9 +112,10 @@ public abstract class Unit implements GameObject_IF {
         finished_attacking();
     }
     
+    //update unit's current HP
     protected int changeHP(int amt){
         if (amt < 0){
-            //Scratch damage
+            //Scratch damage (units must take 1dmg minimum when attacked)
             if(getDefense() >= -(amt)){
                 HP -= 1;
             }
@@ -125,16 +132,19 @@ public abstract class Unit implements GameObject_IF {
         return HP;
     }
     
+    //update unit's status
     public void updateStatus(){
         if(!is_destroyed()){
             can_move = true;
             can_attack = true;
-            
+            //if unit is in a building apply building's healing bonus to unit's HP
             if(getPosition().getBuilding() != null){
                 changeHP(getPosition().getBuilding().getHPRecovery());
             }
         }
     }
+    
+    //protected functions
     protected void finished_attacking(){
         can_attack = false;
     }
@@ -152,6 +162,7 @@ public abstract class Unit implements GameObject_IF {
         return (HP <= 0);
     }
     
+    //formats unit's current stats
     public String toString(){
         return getArmy().getName()
                 + "\n " + army.getRace().getRaceName() + " " + getName() 
