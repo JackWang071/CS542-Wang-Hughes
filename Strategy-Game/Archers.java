@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 /**
  *
  * @author Jack and Duran
  */
 public class Archers extends Unit {
+    //variables
     private static final String UNIT_NAME = "Archers";
     private static final int BASE_HP = 30;
     private static final int UNIT_COST = 10;
@@ -17,8 +13,10 @@ public class Archers extends Unit {
     private static final int BASE_ATTACK = 30;
     private static final int BASE_DEFENSE = 5;
     
+    //create archer icon
     private static final ObjectIcon ARCHERS_ICON = new ObjectIcon("projectgraphics/Archer.png");
     
+    //constructor
     public Archers(Army army){
         super(UNIT_NAME, 
                 army, 
