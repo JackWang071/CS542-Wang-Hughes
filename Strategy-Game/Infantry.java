@@ -17,7 +17,7 @@ public class Infantry extends Unit {
     private static final int BASE_ATTACK = 20;
     private static final int BASE_DEFENSE = 8;
     
-    private static final ObjectIcon INFANTRY_ICON = new ObjectIcon("Inf");
+    private static final ObjectIcon INFANTRY_ICON = new ObjectIcon("projectgraphics/Infantry.png");
     
     public Infantry(Army army){
         super(UNIT_NAME, 

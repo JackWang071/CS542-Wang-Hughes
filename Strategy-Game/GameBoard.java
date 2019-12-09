@@ -18,10 +18,11 @@ public class GameBoard extends JPanel {
     private GridSquare[][] grid;
     private GameGUI the_gui;
     private static final int PLACEMENT_MARGIN = 2;
+    private static final int BOARD_EDGE_LENGTH = 700;
     
     public GameBoard(GameGUI the_gui){
         this.the_gui = the_gui;
-        this.setPreferredSize(new Dimension(700, 700));
+        this.setPreferredSize(new Dimension(BOARD_EDGE_LENGTH, BOARD_EDGE_LENGTH));
     }
     
     public void createBoard(int size){
@@ -30,6 +31,7 @@ public class GameBoard extends JPanel {
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[0].length; j++){
                 grid[i][j] = new GridSquare(new int[]{i, j}, this);
+                grid[i][j].setTileEdge(BOARD_EDGE_LENGTH / grid.length);
                 this.add(grid[i][j]);
             }
         }

@@ -17,7 +17,7 @@ public class Cavalry extends Unit {
     private static final int BASE_ATTACK = 25;
     private static final int BASE_DEFENSE = 10;
     
-    private static final ObjectIcon CAVALRY_ICON = new ObjectIcon("Cav");
+    private static final ObjectIcon CAVALRY_ICON = new ObjectIcon("projectgraphics/Cavalry.png");
     
     public Cavalry(Army army){
         super(UNIT_NAME, 

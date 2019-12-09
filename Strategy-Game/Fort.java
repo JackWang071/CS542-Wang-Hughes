@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package cs542_project;
-import java.lang.Cloneable;
 /**
  *
  * @author Jack and Duran
@@ -16,7 +15,7 @@ public class Fort extends Building implements Cloneable{
     private static final int DEFENSE_BOOST = 10;
     private static final String BUILDING_NAME = "Fort";
     
-    private static final ObjectIcon FORT_ICON = new ObjectIcon("For");
+    private static final ObjectIcon FORT_ICON = new ObjectIcon("projectgraphics/Fort.png");
     
     public Fort(){
         super(BUILDING_NAME, FORT_ICON, ATTACK_BOOST, DEFENSE_BOOST, HP_RECOVERY);

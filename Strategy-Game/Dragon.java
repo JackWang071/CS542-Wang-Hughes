@@ -7,7 +7,7 @@ package cs542_project;
 
 /**
  *
- * @author Jack
+ * @author Jack and Duran
  */
 public class Dragon extends Unit {
     private static final String UNIT_NAME = "Dragon Rider";
@@ -18,7 +18,7 @@ public class Dragon extends Unit {
     private static final int BASE_ATTACK = 30;
     private static final int BASE_DEFENSE = 15;
     
-    private static final ObjectIcon DRAGON_ICON = new ObjectIcon("Dra");
+    private static final ObjectIcon DRAGON_ICON = new ObjectIcon("projectgraphics/Dragon.png");
     
     public Dragon(Army army){
         super(UNIT_NAME, 

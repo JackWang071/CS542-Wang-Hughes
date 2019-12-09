@@ -23,8 +23,7 @@ public class GridSquare extends JButton{
     private AttackHereListener attack_here;
     private TileSelectListener select_here;
     
-    private JLabel unit_icon_wrapper;
-    private JLabel building_icon_wrapper;
+    private int tile_edge;
     
     public GridSquare(int[] position, GameBoard the_board){
         this.position = position;
@@ -32,15 +31,17 @@ public class GridSquare extends JButton{
         move_here = new MoveHereListener();
         attack_here = new AttackHereListener();
         select_here = new TileSelectListener();
+        setRolloverEnabled(true);
         
-        unit_icon_wrapper = new JLabel();
-        building_icon_wrapper = new JLabel();
-        add(unit_icon_wrapper);
-        add(building_icon_wrapper);
+        tile_edge = 0;
     }
     
     public int[] getCoordinates(){
         return position;
+    }
+    
+    public void setTileEdge(int edge_length){
+        tile_edge = edge_length;
     }
     
     public void activateListeners(){
@@ -49,34 +50,27 @@ public class GridSquare extends JButton{
         addActionListener(select_here);
     }
     
-    public void redrawIcons2(){
-        building_icon_wrapper.setIcon(null);
-        unit_icon_wrapper.setIcon(null);
-        if(building != null){
-            building_icon_wrapper.setIcon(building.getObjectIcon().returnIcon());
-        }
-        if(occupier != null){
-            unit_icon_wrapper.setIcon(occupier.getObjectIcon().returnIcon());
-            setBackground(occupier.getArmy().getArmyColor());
-        }
-        else{
-            setBackground(null);
-        }
-    }
-    
     public void redrawIcons(){
-        String combined_icon = "";
         if(building != null){
-            combined_icon += building.getObjectIcon().drawThis();
+            setIcon(building.getObjectIcon().returnIcon(tile_edge));
+            if(occupier != null){
+                setRolloverIcon(occupier.getObjectIcon().returnIcon(tile_edge));
+            }
         }
+        else if(occupier != null){
+            setIcon(occupier.getObjectIcon().returnIcon(tile_edge));
+        }
+        else{
+            setIcon(null);
+            setRolloverIcon(null);
+        }
+        
         if(occupier != null){
-            combined_icon += occupier.getObjectIcon().drawThis();
             setBackground(occupier.getArmy().getArmyColor());
         }
         else{
             setBackground(null);
         }
-        setText(combined_icon);
     }
     
     public Unit getOccupier(){

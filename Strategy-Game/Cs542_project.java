@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JFrame;
 
 import java.io.*;
@@ -25,9 +24,9 @@ public class Cs542_project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //GameManager test = new GameManager();
+        GameManager test = new GameManager();
         
-        IconTester();
+        //IconTester();
         
         //loadFromFile();
     }
@@ -102,17 +101,13 @@ public class Cs542_project {
         button.setPreferredSize(new Dimension(80, 80));
         tpanel.add(button, BorderLayout.NORTH);
         
-        JLabel icon1 = new JLabel();
-        JLabel icon2 = new JLabel();
-        
-        ObjectIcon oi_1 = new ObjectIcon("projectgraphics/Cavalry3.png");
+        ObjectIcon oi_1 = new ObjectIcon("projectgraphics/Archer.png");
         ObjectIcon oi_2 = new ObjectIcon("projectgraphics/Fort.png");
         
-        icon1.setIcon(oi_1.returnIcon());
-        icon2.setIcon(oi_2.returnIcon(80));
+        button.setIcon(oi_2.returnIcon(80));
+        button.setRolloverEnabled(true);
+        button.setRolloverIcon(oi_1.returnIcon(80));
         
-        //button.add(icon1);
-        button.add(icon2);
         button.setBackground(Color.RED);
         
         tester.setVisible(true);
