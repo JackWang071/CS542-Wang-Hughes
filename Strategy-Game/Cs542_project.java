@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 
 import java.awt.Dimension;
@@ -20,9 +15,7 @@ import java.util.Scanner;
  */
 public class Cs542_project {
 
-    /**
-     * @param args the command line arguments
-     */
+    //command line arguments
     public static void main(String[] args) {
         GameManager test = new GameManager();
         
@@ -31,6 +24,7 @@ public class Cs542_project {
         //loadFromFile();
     }
     
+    //loads save data
     public static void loadFromFile(){
         BufferedReader br;
         Scanner scanner;
@@ -89,6 +83,7 @@ public class Cs542_project {
         }
     }
     
+    //defunct function for testing how icon art looks on tiles
     public static void IconTester(){
         JFrame tester = new JFrame();
         tester.setLayout(new BorderLayout());
