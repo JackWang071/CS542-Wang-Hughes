@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 /**
  *
  * @author Jack
  */
 public abstract class Building implements GameObject_IF {
-    
+    //variables
     private int attack_boost;
     private int defense_boost;
     private int hp_recovery;
@@ -17,6 +12,7 @@ public abstract class Building implements GameObject_IF {
     private ObjectIcon icon;
     private String name;
     
+    //constructor
     public Building(String name, ObjectIcon icon, int attack, int defense, int hp_rec){
         this.attack_boost = attack;
         this.defense_boost = defense;
@@ -25,10 +21,12 @@ public abstract class Building implements GameObject_IF {
         this.name = name;
     }
     
+    //make cloneable
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
     
+    //getters
     public String getName(){
         return name;
     }
@@ -57,6 +55,7 @@ public abstract class Building implements GameObject_IF {
         return hp_recovery;
     }
     
+    //output formatting
     public String toString(){
         return getName() 
                 + "\n Defense: +" + getDefenseBoost()
