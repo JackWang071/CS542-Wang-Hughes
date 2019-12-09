@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 import java.util.Random;
 
@@ -11,11 +6,12 @@ import java.util.Random;
  * @author Jack
  */
 public class BuildingFactory {
-    
+    //vairables
     private Village village_proto;
     private Fort fort_proto;
     private Random rng;
     
+    //constructor
     public BuildingFactory(){
         village_proto = new Village();
         fort_proto = new Fort();
@@ -23,6 +19,7 @@ public class BuildingFactory {
         rng = new Random();
     }
     
+    //generates requested building
     public Building createBuilding(String type) {
         try{
             if(type.equals(village_proto.getName())){
@@ -36,6 +33,7 @@ public class BuildingFactory {
         return null;
     }
     
+    //generates random building
     public Building getRandomBuilding(){
         if(rng.nextFloat() <= 0.5){
             return createBuilding(village_proto.getName());
