@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,6 +10,7 @@ import java.awt.Color;
  */
 public class GridSquare extends JButton{
     
+    //variables
     private int[] position;
     private Unit occupier;
     private Building building;
@@ -25,6 +21,7 @@ public class GridSquare extends JButton{
     
     private int tile_edge;
     
+    //constructor
     public GridSquare(int[] position, GameBoard the_board){
         this.position = position;
         this.the_board = the_board;
@@ -36,20 +33,24 @@ public class GridSquare extends JButton{
         tile_edge = 0;
     }
     
+    //returns int array containing x,y
     public int[] getCoordinates(){
         return position;
     }
     
+    //sets size of tile
     public void setTileEdge(int edge_length){
         tile_edge = edge_length;
     }
     
+    //adds listeners
     public void activateListeners(){
         addActionListener(move_here);
         addActionListener(attack_here);
         addActionListener(select_here);
     }
     
+    //updates tile with appropriately sized art reflecting current units occupying it
     public void redrawIcons(){
         if(building != null){
             setIcon(building.getObjectIcon().returnIcon(tile_edge));
@@ -73,22 +74,29 @@ public class GridSquare extends JButton{
         }
     }
     
+    //gets unit on tile
     public Unit getOccupier(){
         return occupier;
     }
+    
+    //gets building on tile
     public Building getBuilding(){
         return building;
     }
     
+    //sets which unit is on tile and updates art to reflect change
     public void setOccupier(Unit occ){
         occupier = occ;
         redrawIcons();
     }
+    
+    //sets which building is on tile and updates art to reflect change
     public void setBuilding(Building build){
         building = build;
         redrawIcons();
     }
     
+    //move listener
     public void setMoveHereListener(Unit actor){
         if(actor == null){
             move_here.setActor(null);
@@ -109,6 +117,7 @@ public class GridSquare extends JButton{
         }
     }
     
+    //attack listener
     public void setAttackHereListener(Unit actor){
         if(actor == null){
             attack_here.setActor(null);
@@ -133,6 +142,7 @@ public class GridSquare extends JButton{
         }
     }
     
+    //updates tiles current status
     private void updateTileStatus(){
         the_board.clearBoard();
         the_board.getGUI().updateGUI_selectedTile(this);
