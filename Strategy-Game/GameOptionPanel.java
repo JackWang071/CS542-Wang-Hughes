@@ -33,9 +33,11 @@ public class GameOptionPanel extends JPanel {
         this.the_gui = the_gui;
         this.setPreferredSize(new Dimension(400, 700));
         
+        //listeners
         attack_option_listener = new AttackOptionListener();
         move_option_listener = new MoveOptionListener();
         
+        //buttons for player actions
         attack_option = new JButton("Attack");
         move_option = new JButton("Move");
         end_turn = new JButton("End Turn");
@@ -46,16 +48,19 @@ public class GameOptionPanel extends JPanel {
         move_option.setPreferredSize(new Dimension(100, 50));
         end_turn.setPreferredSize(new Dimension(100, 50));
         
+        //save button
         save_game = new JButton("Save");
         save_game.addActionListener(new SaveGameListener());
         save_game.setPreferredSize(new Dimension(100, 50));
         
+        //section for player actions
         options_menu = new JPanel();
         options_menu.add(attack_option);
         options_menu.add(move_option);
         options_menu.add(end_turn);
         options_menu.setPreferredSize(new Dimension(400, 200));
         
+        //section for army name
         current_army_name = new JLabel();
         current_army_name.setOpaque(true);
         current_army_name.setPreferredSize(new Dimension(300, 40));
