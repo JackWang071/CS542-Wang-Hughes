@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -17,10 +12,13 @@ import java.awt.Image;
  * @author Jack and Duran
  */
 public class ObjectIcon extends ImageIcon{
+    
+    //variables
     private BufferedImage the_image;
     private int img_width;
     private int img_height;
     
+    //constructor
     public ObjectIcon(String link){
         try{
             the_image = ImageIO.read(new File(link));
@@ -35,6 +33,7 @@ public class ObjectIcon extends ImageIcon{
         }
     }
     
+    //retrives image icon at correct scale
     public ImageIcon returnIcon(double length){
         if (the_image != null && Math.max(img_width, img_height) >= length){
             double scale_ratio = length/ (double) Math.max(img_width, img_height);
