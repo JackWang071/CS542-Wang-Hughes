@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 import java.io.BufferedReader;
 import java.util.List;
@@ -26,6 +21,7 @@ public class SaveData {
     GameBoard: save board size
     */
     
+    //variables
     private String pathname;
     private int current_turn;
     private int board_size;
@@ -36,6 +32,7 @@ public class SaveData {
     private List<Unit> units;
     private List<Building> buildings;
     
+    //constructor
     public SaveData(){
         this.pathname = "savefiles/save.txt";
         all_building_data = new ArrayList();
@@ -46,10 +43,8 @@ public class SaveData {
         buildings = new ArrayList();
     }
 
-    /*
-    Save game methods
-    */
     
+    //save game methods
     public void saveCurrentTurn(int turn){
         this.current_turn = turn;
     }
@@ -91,6 +86,7 @@ public class SaveData {
         }
     }
     
+    //writes save data to save file
     public void outputToFile(){
         FileWriter fw;
         try{
@@ -130,10 +126,7 @@ public class SaveData {
         }
     }
     
-    /*
-    Load game methods
-    */
-    
+    //load game methods
     public void loadFromFile(){
         BufferedReader br;
         Scanner scanner;
@@ -236,6 +229,7 @@ public class SaveData {
         }
     }
     
+    // getters
     public List<Unit> getUnits(){
         return units;
     }
