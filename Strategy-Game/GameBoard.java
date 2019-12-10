@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
@@ -15,16 +10,20 @@ import java.util.Random;
  * @author Jack and Duran
  */
 public class GameBoard extends JPanel {
+    
+    //variables
     private GridSquare[][] grid;
     private GameGUI the_gui;
     private static final int PLACEMENT_MARGIN = 2;
     private static final int BOARD_EDGE_LENGTH = 700;
     
+    //constructor
     public GameBoard(GameGUI the_gui){
         this.the_gui = the_gui;
         this.setPreferredSize(new Dimension(BOARD_EDGE_LENGTH, BOARD_EDGE_LENGTH));
     }
     
+    //creates board at requested size
     public void createBoard(int size){
         setLayout(new GridLayout(size, size));
         grid = new GridSquare[size][size];
@@ -37,10 +36,12 @@ public class GameBoard extends JPanel {
         }
     }
     
+    //gets GUI
     public GameGUI getGUI(){
         return the_gui;
     }
     
+    //activiates board
     public void activateBoard(){
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[0].length; j++){
@@ -49,6 +50,7 @@ public class GameBoard extends JPanel {
         }
     }
     
+    //adds buildings to game board
     public void addBuildings(List<Building> buildings){
         int counter = 0;
         Random rng = new Random();
@@ -68,6 +70,7 @@ public class GameBoard extends JPanel {
         } while(counter < buildings.size());
     }
     
+    //clears board and updates icons
     public void clearBoard(){
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid.length; j++){
@@ -78,6 +81,7 @@ public class GameBoard extends JPanel {
         }
     }
     
+    //highlights move, or attack tiles
     public void highlightAffectedTiles(Unit u, String purpose){
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid.length; j++){
@@ -92,6 +96,8 @@ public class GameBoard extends JPanel {
             }
         }
     }
+    
+    //highly tiles available to spawn units on
     public void highlightStartingPositions(Army army){
         
         int left = 0;
@@ -138,6 +144,7 @@ public class GameBoard extends JPanel {
         }
     }
     
+    //save board state
     public void saveBoardDetails(SaveData save){
         save.saveBoardSize(grid.length);
         for(GridSquare[] row : grid){
@@ -149,6 +156,7 @@ public class GameBoard extends JPanel {
         }
     }
     
+    //load board state
     public void loadBoardDetails(SaveData save){
         List<Unit> units = save.getUnits();
         List<Building> buildings = save.getBuildings();
