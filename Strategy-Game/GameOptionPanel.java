@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 import javax.swing.JPanel;
 import java.awt.Dimension;
@@ -17,6 +12,8 @@ import java.awt.event.ActionEvent;
  * @author Jack
  */
 public class GameOptionPanel extends JPanel {
+    
+    //variables
     private GameGUI the_gui;
     private JPanel options_menu;
     
@@ -31,6 +28,7 @@ public class GameOptionPanel extends JPanel {
     private TextArea current_unit_info;
     private JLabel current_army_name;
     
+    //constructor
     public GameOptionPanel(GameGUI the_gui){
         this.the_gui = the_gui;
         this.setPreferredSize(new Dimension(400, 700));
@@ -66,6 +64,7 @@ public class GameOptionPanel extends JPanel {
         current_unit_info = new TextArea(20, 40);
     }
     
+    //starts game
     public void startActualGame(){
         add(current_army_name);
         add(options_menu);
@@ -75,6 +74,7 @@ public class GameOptionPanel extends JPanel {
         clearOptionsPanel();
     }
     
+    //clear options panel
     public void clearOptionsPanel(){
         current_army_name.setText("Turn: " + the_gui.getManager().getCurrentArmy().getName());
         current_army_name.setBackground(the_gui.getManager().getCurrentArmy().getArmyColor());
@@ -83,6 +83,7 @@ public class GameOptionPanel extends JPanel {
         current_unit_info.setText("");
     }
     
+    //retrives details for current selected tile
     public void currentTileDetails(GridSquare g){
         int[] g_pos = g.getCoordinates();
         String tile_info = "Coordinates: "+ g_pos[0] + "," + g_pos[1] + "\n\n";
@@ -109,6 +110,7 @@ public class GameOptionPanel extends JPanel {
         current_unit_info.setText(tile_info);
     }
     
+    //listeners below
     private class AttackOptionListener implements ActionListener{
         private Unit actor;
         public void setCurrentUnit(Unit actor){
