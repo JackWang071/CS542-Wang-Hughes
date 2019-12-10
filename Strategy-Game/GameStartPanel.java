@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -21,6 +16,7 @@ import java.awt.event.ActionEvent;
  */
 public class GameStartPanel extends JPanel {
     
+    //variables
     private JPanel board_size_selection;
     private JPanel num_players_selection;
     private GameGUI the_gui;
@@ -31,6 +27,7 @@ public class GameStartPanel extends JPanel {
     private int final_board_size;
     private int final_num_players;
     
+    //constructor
     public GameStartPanel(GameGUI the_gui){
         this.setPreferredSize(new Dimension(400, 700));
         this.the_gui = the_gui;
@@ -38,12 +35,14 @@ public class GameStartPanel extends JPanel {
         this.final_board_size = 0;
         this.final_num_players = 0;
         
+        //select board size section
         board_size_selection = new JPanel();
         board_size_selection.setPreferredSize(new Dimension(1200, 150));
         JLabel board_size_selection_title = new JLabel("Choose Board Size", SwingConstants.CENTER);
         board_size_selection_title.setPreferredSize(new Dimension(1200, 30));
         board_size_selection.add(board_size_selection_title);
         
+        //buttons for 8x8, 10x10, 12x12 options
         JButton option_8x8 = new JButton("8x8");
         JButton option_10x10 = new JButton("10x10");
         JButton option_12x12 = new JButton("12x12");
@@ -56,13 +55,15 @@ public class GameStartPanel extends JPanel {
         board_size_selection.add(option_8x8);
         board_size_selection.add(option_10x10);
         board_size_selection.add(option_12x12);
-
+        
+        //choose number of players section
         num_players_selection = new JPanel();
         num_players_selection.setPreferredSize(new Dimension(1200, 200));
         JLabel num_players_selection_title = new JLabel("Choose Number of Players", SwingConstants.CENTER);
         num_players_selection_title.setPreferredSize(new Dimension(1200, 30));
         num_players_selection.add(num_players_selection_title);
         
+        //buttons for 2,3, and 4 player options
         JButton two_players = new JButton("2 Players");
         JButton three_players = new JButton("3 Players");
         JButton four_players = new JButton("4 Players");
@@ -76,16 +77,19 @@ public class GameStartPanel extends JPanel {
         num_players_selection.add(three_players);
         num_players_selection.add(four_players);
         
+        //next button
         gamestart_finish = new JButton("Next");
         gamestart_finish.setPreferredSize(new Dimension(100, 50));
         gamestart_finish.addActionListener(new FinishGameStartListener());
         
+        //load game button
         load_game = new JButton("Load Game");
         load_game.setPreferredSize(new Dimension(200, 50));
         load_game.addActionListener(new LoadGameListener());
         
     }
     
+    //buttons for starting menu
     public void chooseStartingOptions(){
         this.add(board_size_selection);
         this.add(num_players_selection);
@@ -93,6 +97,7 @@ public class GameStartPanel extends JPanel {
         this.add(load_game);
     }
     
+    //listeners below
     private class BoardSizeListener implements ActionListener{
         private int board_size;
         
