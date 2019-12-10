@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 
 /**
@@ -10,12 +5,16 @@ package cs542_project;
  * @author Jack
  */
 public class AttackServer implements LoadableServer_IF {
+    
+    //variables
     private GameManager_IF env;
     private static AttackServer singleton;
     private static Unit actor;
     
+    //constructor
     private AttackServer(){}
     
+    //only allow for creation of single attack server
     public static AttackServer getServer(Unit actor){
         if(singleton == null){
             singleton = new AttackServer();
@@ -24,6 +23,7 @@ public class AttackServer implements LoadableServer_IF {
         return singleton;
     }
     
+    //start attack server
     public void start(){
         env.getGUI().clearBoard();
         if(actor!= null && actor.can_attack()){
@@ -32,6 +32,7 @@ public class AttackServer implements LoadableServer_IF {
         env.finishServer();
     }
     
+    //set environment
     public void setEnvironment(GameManager_IF env){
         this.env = env;
     }
