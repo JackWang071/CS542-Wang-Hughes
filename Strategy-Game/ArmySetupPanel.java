@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,6 +13,8 @@ import javax.swing.SwingConstants;
  * @author Jack and Duran
  */
 public class ArmySetupPanel extends JPanel{
+    
+    //variables
     private GameGUI the_gui;
     
     private JPanel race_panel;
@@ -33,6 +30,7 @@ public class ArmySetupPanel extends JPanel{
     
     private Dimension default_button_size;
     
+    //constructor
     public ArmySetupPanel(GameGUI the_gui){
         this.setPreferredSize(new Dimension(400, 700));
         this.the_gui = the_gui;
@@ -69,6 +67,7 @@ public class ArmySetupPanel extends JPanel{
         finish_setup.addActionListener(new FinishArmySetupListener());
     }
     
+    //initializes army setup
     public void startArmySetup(){
         this.add(current_army_name);
         this.add(race_panel);
@@ -79,6 +78,7 @@ public class ArmySetupPanel extends JPanel{
         changeArmy();
     }
     
+    //displays available units and cost
     private void updateUnitCatalog(){
         unit_panel.removeAll();
         unit_panel.add(remaining_points);
@@ -91,6 +91,7 @@ public class ArmySetupPanel extends JPanel{
         }
     }
     
+    //sets up current army
     private void changeArmy(){
         //Won't be visible until a race is selected.
         unit_panel.setVisible(false);
@@ -109,6 +110,7 @@ public class ArmySetupPanel extends JPanel{
         }
     }
     
+    //race pick listener
     private class RacePickListener implements ActionListener{
         private Race army_race;
         
@@ -128,6 +130,7 @@ public class ArmySetupPanel extends JPanel{
         }
     }
     
+    //unit pick listener
     private class UnitPickListener implements ActionListener{
         private String unit_type;
         public UnitPickListener(String unit_type){
@@ -145,6 +148,7 @@ public class ArmySetupPanel extends JPanel{
         }
     }
     
+    //set up army listener
     private class FinishArmySetupListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(current_army.getRace() == null){
@@ -159,6 +163,7 @@ public class ArmySetupPanel extends JPanel{
         }
     }
     
+    //unit placement listener
     public static class UnitPlacementListener implements ActionListener{
         private static Unit current_unit;
         public static void setCurrentUnit(Unit u){
