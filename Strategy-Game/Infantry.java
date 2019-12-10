@@ -29,7 +29,7 @@ public class Infantry extends Unit {
                 INFANTRY_ICON);
     }
     
-    //attacking function
+    //attacking function (overloaded so infantry can't attack after moving)
     public void attack(Unit target){
         if(can_attack()){
             target.changeHP(-(getAttack()));
