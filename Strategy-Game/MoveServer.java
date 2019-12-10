@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs542_project;
 
 /**
  *
- * @author Jack
+ * @author Jack and Alexander
  */
 public class MoveServer implements LoadableServer_IF {
+    
+    //variables
     private GameManager_IF env;
     private static MoveServer singleton;
     private static Unit actor;
     
+    //constructor
     private MoveServer(){}
     
+    //only allow for one move server
     public static MoveServer getServer(Unit actor){
         if(singleton == null){
             singleton = new MoveServer();
@@ -24,6 +23,7 @@ public class MoveServer implements LoadableServer_IF {
         return singleton;
     }
     
+    //start move server
     public void start(){
         env.getGUI().clearBoard();
         if(actor!= null && actor.can_move()){
@@ -32,6 +32,7 @@ public class MoveServer implements LoadableServer_IF {
         env.finishServer();
     }
     
+    //set environment to move server environment
     public void setEnvironment(GameManager_IF env){
         this.env = env;
     }
