@@ -32,7 +32,7 @@ public class AttackServer implements LoadableServer_IF {
         env.finishServer();
     }
     
-    //set environment
+    //set environment to attacker server environment
     public void setEnvironment(GameManager_IF env){
         this.env = env;
     }
